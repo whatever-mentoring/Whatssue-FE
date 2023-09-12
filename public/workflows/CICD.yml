@@ -5,17 +5,29 @@ on:
     branches:
       - main
       - develop
-
+  pull_request:
+    branches:
+      - main
+      - develop
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node-version: [18 ]
+    name: Node ${{ matrix.node }} sample
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      - uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+    - name : Install dependencies
+      run: npm install
+    - name : Test
+      run: npm test
+    - name : Build
+      run: npm run build 
 
       # Docker 빌드 생성 및 푸시
       - name: dev Docker build & push
@@ -23,7 +35,7 @@ jobs:
         run: |
           echo ${{ secrets.SONG_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           docker build -f Dockerfile -t ghcr.io/whatever-mentoring/whatssue-fe/whatssue:1.0 .
-          docker push ghcr.io/whatever-mentoring/whatssue-be/whatssue:1.0
+          docker push ghcr.io/whatever-mentoring/whatssue-fe/whatssue:1.0
 
       # 개발서버 SSH접속 및 배포
       - name: Deploy
