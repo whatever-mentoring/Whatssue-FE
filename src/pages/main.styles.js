@@ -7,34 +7,79 @@ export const MainWrapper = styled.div`
 
 `;
 
-export const GroupNameTxt = styled.div`
-    width: 100%;
+export const TitleWrapper = styled.div`
     height: 15vh;
-    line-height: 18vh;
+    width: 90%;
+    margin: 0 5%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+`;
+
+export const TitleTxt = styled.div`
+    color: #fff;
+    font-size: 13px;
+`;
+
+export const GroupWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const GroupName = styled.div`
     color: #51F8C4;
     font-size: 25px;
     font-weight: bold;
-    text-align: center;
-    
 `;
 
-export const CalendarWrapper = styled.div`
-    width: 90%;
-    height: 73vh;
-    align-items: center;
-    margin: 0 5%;
-`;
-
-export const CalendarBox = styled.div`
-    margin: 0 5%;
-`;
-
-export const DateTxt = styled.div`
-    font-weight: bold;
-    font-size: 20px;
+export const GroupRole = styled.div`
+    font-size: 13px;
     color: #fff;
-    margin-top: 2rem;
-    margin-left: 0.5rem;
+`;
+
+export const ContentWrapper = styled.div`
+    height: 75vh;
+    width: 90%;
+    margin: 0 5%;
+    padding: 5vh 0;
+`;
+
+export const ContentDateWrapper = styled.div`
+    text-align: center;
+`;
+    
+export const ContentDateTxt = styled.div`
+    color: #fff;
+    font-size: 13px;
+    `;
+    
+export const DateBox = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 2vh 0;
+`;
+
+export const PrevDay = styled.div`
+    color: #fff;
+`;
+
+export const NowDateTxt = styled.div`
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+`;
+
+export const Nextday = styled.div`
+    color: #fff;
+`;
+
+export const ScheduleBox = styled.div`
+    margin: 5vh 0;
 `;
 
 export const ScheduleWrapper = styled.div`
@@ -65,24 +110,4 @@ export const ScheduleLine = styled.div`
 
 export const ScheduleTxt = styled.div`
     padding: 0.1em 0;
-`;
-
-export const AddBtnWrapper = styled.div`
-    width: 100%;
-    height: 12vh;
-`;
-
-export const AddBtn = styled.div`
-    position: absolute;
-    margin-left: 83vw;
-    width: 12vw;
-    height: 12vw;
-    line-height: 13.5vw;
-    background-color: #51F8C4;
-    border-radius: 50px;
-
-    color: #000;
-    text-align: center;
-    vertical-align: middle;
-    
 `;
