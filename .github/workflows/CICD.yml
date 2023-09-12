@@ -50,11 +50,12 @@ jobs:
           script: |
             echo "${{ secrets.SONG_TOKEN }}" | sudo docker login ghcr.io -u ${{ github.actor }} --password-stdin
             if [ "$(docker ps -aq -f name=whatssue-fe)" ]; then
-              sudo docker rm -f $(docker ps -aq -f name=whatssue-fe)
+                  sudo docker stop whatssue-fe
+                  sudo docker rm whatssue-fe
             fi
               # 이전 이미지를 제거합니다.
-              if [ "$(docker images -q ghcr.io/whatever-mentoring/whatssue-fe/whatssue:1.0)" ]; then
-                sudo docker rmi ghcr.io/whatever-mentoring/whatssue-fe/whatssue:1.0
+              if [ "$(docker images -q ghcr.io/whatever-mentoring/whatssue-fe/whatssue)" ]; then
+                sudo docker rmi ghcr.io/whatever-mentoring/whatssue-fe/whatssue
               fi
 
             sudo docker pull ghcr.io/whatever-mentoring/whatssue-fe/whatssue:1.0
