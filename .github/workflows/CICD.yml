@@ -52,6 +52,6 @@ jobs:
             if [ "$(docker ps -aq)" ]; then
             sudo docker rm -f $(docker ps -aq)
             fi
-            sudo docker pull ghcr.io/whatever-mentoring/whatssue-be/whatssue:1.0
+            sudo docker pull ghcr.io/whatever-mentoring/whatssue-fe/whatssue:1.0
             sudo docker run -d -p 8090:8090 --name whatssue ghcr.io/whatever-mentoring/whatssue-fe/whatssue:1.0
             sudo docker image prune -f
