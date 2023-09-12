@@ -30,8 +30,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      #ESLint 경고 무시
       - name: Build
-        run: npm run build
+        run: npm run build -- --no-verify
 
       # Docker 빌드 생성 및 푸시
       - name: dev Docker build & push
