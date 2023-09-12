@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Main from './pages/main.container';
+import Main from "./pages/main.container";
 import Login from "./pages/login.container";
 import Join from './pages/join.container';
+
+import Schedule from './pages/schedule.container';
 import Detail from './pages/detail.container';
 import Register from './pages/register.container';
 
@@ -13,6 +15,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Main/>}></Route>
+
+          <Route path='/calendar' element={<Schedule/>}></Route>
           <Route path='/detail' element={<Detail/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
 

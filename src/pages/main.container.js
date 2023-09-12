@@ -1,44 +1,45 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import * as S from './main.styles.js';
-import moment from 'moment';
-import MyCalendar from '../components/calendar/MyCalendar.container.js';
+import { useState, useEffect } from "react";
+import moment from "moment";
+import * as S from "./main.styles";
 
-import register from "../assets/register.png";
+function Main (){
+    const [nowDate, setNowDate] = useState(new Date);
 
-function Main(){
-    const [value, onChange] = useState(new Date());
-    const [nowDate, setNowDate] = useState(moment(value).format('YYYY년 MM월 DD일'));
+    const handlePrevDate = () => {
+        const yesterday = new Date(nowDate.setDate(nowDate.getDate() - 1));
+        setNowDate(yesterday);
+    }
 
-    const navigate = useNavigate();
-
-    const handlePage = (e) => {
-        navigate('/detail')
-    };
+    const handleNextDate = () => {
+        const tommorow = new Date(nowDate.setDate(nowDate.getDate() + 1));
+        setNowDate(tommorow);
+    }
 
     return(
         <S.MainWrapper>
-            <S.GroupNameTxt>양파시 광산동</S.GroupNameTxt>
-            <S.CalendarWrapper>
-                <S.CalendarBox>
-                    <MyCalendar value={value} onChange={onChange} setNowDate={setNowDate}/>
-                </S.CalendarBox>
-                {nowDate !== "" && 
-                (<>
-                    <S.DateTxt style={{'color': '#fff'}}>{nowDate}</S.DateTxt>
-                    <S.ScheduleWrapper style={{'color': '#fff'}}>
-                    <S.ScheduleUl>
-                        <S.ScheduleLi><S.ScheduleLine></S.ScheduleLine><S.ScheduleTxt onClick={handlePage}>UI 회의</S.ScheduleTxt></S.ScheduleLi>
-                        <S.ScheduleLi><S.ScheduleLine></S.ScheduleLine><S.ScheduleTxt onClick={handlePage}>백엔드 모임</S.ScheduleTxt></S.ScheduleLi>
-                        <S.ScheduleLi><S.ScheduleLine></S.ScheduleLine><S.ScheduleTxt onClick={handlePage}>와이어 프레임 작성 회의</S.ScheduleTxt></S.ScheduleLi>
-                    </S.ScheduleUl>
-                    </S.ScheduleWrapper>
-                </>
-                )}
-            </S.CalendarWrapper>
-            <S.AddBtnWrapper><S.AddBtn onClick={(e) => navigate("/register", {
-                state: nowDate
-            })}><img width='20px' height='20px' src={register} alt="register"/></S.AddBtn></S.AddBtnWrapper>
+            <S.TitleWrapper>
+                <S.TitleTxt>나의 모임</S.TitleTxt>
+                <S.GroupWrapper><S.GroupName>양파시 광산동</S.GroupName><S.GroupRole>관리자</S.GroupRole></S.GroupWrapper>
+            </S.TitleWrapper>
+            <S.ContentWrapper>
+                <S.ContentDateWrapper>
+                    <S.ContentDateTxt>오늘의 일정</S.ContentDateTxt>
+                    <S.DateBox>
+                        <S.PrevDay onClick={handlePrevDate}>전</S.PrevDay>
+                        <S.NowDateTxt>{moment(nowDate).format("YYYY년 MM월 DD일")}</S.NowDateTxt>
+                        <S.Nextday onClick={handleNextDate}>후</S.Nextday>
+                    </S.DateBox>
+                    <S.ScheduleBox>
+                        <S.ScheduleWrapper style={{'color': '#fff'}}>
+                        <S.ScheduleUl>
+                            <S.ScheduleLi><S.ScheduleLine></S.ScheduleLine><S.ScheduleTxt>UI 회의</S.ScheduleTxt></S.ScheduleLi>
+                            <S.ScheduleLi><S.ScheduleLine></S.ScheduleLine><S.ScheduleTxt>백엔드 모임</S.ScheduleTxt></S.ScheduleLi>
+                            <S.ScheduleLi><S.ScheduleLine></S.ScheduleLine><S.ScheduleTxt>와이어 프레임 작성 회의</S.ScheduleTxt></S.ScheduleLi>
+                        </S.ScheduleUl>
+                        </S.ScheduleWrapper>
+                    </S.ScheduleBox>
+                </S.ContentDateWrapper>
+            </S.ContentWrapper>
         </S.MainWrapper>
     )
 }

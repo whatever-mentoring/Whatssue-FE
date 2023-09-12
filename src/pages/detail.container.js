@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import * as S from './detail.styles.js';
 import close from "../assets/close.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Detail (){
     const navigate = useNavigate();
+    const location = useLocation();
+
     return(
         <S.MainWrapper>
             <S.CloseBtn onClick={(e) => navigate("/")}><S.CloseImg src={close}/></S.CloseBtn>
@@ -16,7 +18,7 @@ function Detail (){
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <S.ScheduleFirstTd><S.Circle></S.Circle></S.ScheduleFirstTd>
-                        <S.ScheduleTd><S.DateTxt>9월 3일 월요일</S.DateTxt></S.ScheduleTd>
+                        <S.ScheduleTd><S.DateTxt>{location.state}</S.DateTxt></S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <td><S.Circle></S.Circle></td>
