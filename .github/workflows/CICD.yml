@@ -46,7 +46,7 @@ jobs:
 
       # 개발서버 SSH접속 및 배포
       - name: Deploy
-        uses: appleboy/ssh-action@v0.4.2
+        uses: appleboy/ssh-action@master
         if: contains(github.ref, 'main') || contains(github.ref, 'develop')
         with:
           host: ${{ secrets.NCP_DEV_SERVER_IP }}
