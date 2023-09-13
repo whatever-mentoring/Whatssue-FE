@@ -8,28 +8,22 @@ import './MyCalendar.css';
 import nextIcon from "../../assets/nextIcon.png";
 import prevIcon from "../../assets/prevIcon.png";
 
-export default function MyCalendar ({value, onChange, setNowDate}){
-  // const [nowDate, setNowDate] = useState("날짜");
+export default function MyCalendar ({mark, findSchedule, value, onChange, setNowDate}){
   const day = moment(value).format('YYYY-MM-DD');
   const currDate = new Date();
   const currDateTime = moment(currDate).format('MM-DD');
 
-  const mark = ['2023-09-09', '2023-09-01', '2023-09-05'];
-
-
   const handleDateChange = (selectedDate) => {
     onChange(selectedDate);
     setNowDate(moment(selectedDate).format("YYYY년 MM월 DD일"));
+    findSchedule(selectedDate);
   };
 
   return (
-      // <div className="calendar-container">
         <Calendar 
           onChange={handleDateChange} 
           value={value}
           formatDay={(local, date) => moment(date).format("D")}
-          // nextLabel={nextIcon}
-          // prevLabel={prevIcon}
           next2Label={null}
           prev2Label={null}
           tileContent={({ date, view }) => {

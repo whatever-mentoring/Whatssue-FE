@@ -2,27 +2,47 @@ import { useEffect, useState } from "react";
 import * as S from './detail.styles.js';
 import close from "../assets/close.png";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 function Detail (){
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [data, setData] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            console.log(location.state);
+            const response = await axios.get(`http://115.85.183.74:8090/api/schedule/${parseInt(location.state)}`)
+            console.log(response);
+            setData(response.data);
+        }
+        fetchData();
+    }, []);
+
+    function formatDate(inputDate) {
+        if(inputDate){
+            const parts = inputDate.split('-');
+            return `${parts[0]}년 ${parts[1]}월 ${parts[2]}일`;
+        }
+    }
+
     return(
         <S.MainWrapper>
-            <S.CloseBtn onClick={(e) => navigate("/")}><S.CloseImg src={close}/></S.CloseBtn>
+            <S.CloseBtn onClick={(e) => navigate("/calendar")}><S.CloseImg src={close}/></S.CloseBtn>
             <S.ContentWrapper>
                 <S.ScheduleTable>
                     <S.ScheduleTr>
                         <S.ScheduleFirstTd><S.Circle></S.Circle></S.ScheduleFirstTd>
-                        <S.ScheduleTd><S.TitleTxt>와이어 프레임 작성 회의</S.TitleTxt></S.ScheduleTd>
+                        <S.ScheduleTd><S.TitleTxt>{data.scheduleTitle}</S.TitleTxt></S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <S.ScheduleFirstTd><S.Circle></S.Circle></S.ScheduleFirstTd>
-                        <S.ScheduleTd><S.DateTxt>{location.state}</S.DateTxt></S.ScheduleTd>
+                        <S.ScheduleTd><S.DateTxt>{formatDate(data.scheduleDate)} {data.scheduleTime}</S.DateTxt></S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <td><S.Circle></S.Circle></td>
-                        <S.ScheduleTd><S.ContentTxt>유저 플로우 기반으로 와이어프레임 작성하겠습니다. 테블릿 PC 지참해주세요.</S.ContentTxt></S.ScheduleTd>
+                        <S.ScheduleTd><S.ContentTxt>{data.scheduleContent}</S.ContentTxt></S.ScheduleTd>
                     </S.ScheduleTr>
                 </S.ScheduleTable>
             </S.ContentWrapper>
