@@ -11,7 +11,7 @@ function Schedule(){
     const [value, onChange] = useState(new Date());
     const [nowDate, setNowDate] = useState(moment(value).format('YYYY년 MM월 DD일'));
     const [nowMonth, setNowMonth] = useState(new Date());
-    const weekDay = ['월', '화', '수', '목', '금', '토', '일'];
+    const weekDay = ['일', '월', '화', '수', '목', '금', '토'];
 
     const [response, setResponse] = useState([]);
     const [filteredRes, setFilteredRes] = useState([]);
