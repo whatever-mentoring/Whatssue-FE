@@ -4,6 +4,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import close from "../assets/close.png";
+import clock from "../assets/clock.png";
+import pencil from "../assets/pencil.png";
 
 function Register (){
     const navigate = useNavigate();
@@ -30,12 +32,12 @@ function Register (){
 
     const handleRegister = async () => {
         console.log(requestData);
-        // const response = await axios.post(
-        //     `http://115.85.183.74:8090/api/schedule`,
-        //     requestData,
-        //     {"Content-Type": "application/json"}
-        // )
-        // console.log(response);
+        const response = await axios.post(
+            `http://115.85.183.74:8090/api/schedule`,
+            requestData,
+            {"Content-Type": "application/json"}
+        )
+        console.log(response);
     };
 
     return(
@@ -54,11 +56,11 @@ function Register (){
                         </S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
-                        <S.ScheduleFirstTd><S.Circle></S.Circle></S.ScheduleFirstTd>
+                        <S.ScheduleFirstTd><img src={clock}/></S.ScheduleFirstTd>
                         <S.ScheduleTd><S.DateTxt>{location.state}</S.DateTxt></S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
-                        <td><S.Circle></S.Circle></td>
+                        <td><img src={pencil}/></td>
                         <S.ScheduleTd>
                             <S.ContentInput 
                                 placeholder="설명" 

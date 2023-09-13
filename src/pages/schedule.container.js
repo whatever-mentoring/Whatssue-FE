@@ -10,6 +10,7 @@ import register from "../assets/register.png";
 function Schedule(){
     const [value, onChange] = useState(new Date());
     const [nowDate, setNowDate] = useState(moment(value).format('YYYY년 MM월 DD일'));
+    const [nowMonth, setNowMonth] = useState(new Date());
     const weekDay = ['월', '화', '수', '목', '금', '토', '일'];
 
     const [response, setResponse] = useState([]);
@@ -40,17 +41,51 @@ function Schedule(){
         fetchData();
     }, []);
 
+    // 달을 변경할 때마다 데이터 불러오기
+    const findMonthSchdule = async (e) => {
+        setMarkedDate([]);
+        const currentDate = nowMonth;
+
+        if(e === "p"){
+            currentDate.setMonth(nowMonth.getMonth() - 1);
+        } else {
+            currentDate.setMonth(nowMonth.getMonth() + 1);
+        }
+
+        setNowMonth(new Date(currentDate));
+
+        const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/month:${moment(nowMonth).format("YYYY-MM")}`)
+        console.log(response);
+        setResponse(response.data);
+
+        response.data.map((e) => {
+            if(!markedDate.find((el) => e.scheduleDate === el)){
+                setMarkedDate((prev) => [...prev, e.scheduleDate])
+            }
+        });
+    }
+
     // 해당 날짜 스케줄 찾기
     const findSchedule = (e) => {
         setFilteredRes(response.filter((es) => es.scheduleDate === moment(e).format("YYYY-MM-DD")));
     };
+
+    // PM & AM 형식으로 변경
+    const formatTime = (getTime) => {
+        const [hour, minute] = getTime.split(":");
+        const formattedHour = parseInt(hour) >= 12 ? parseInt(hour) - 12 : parseInt(hour);
+        const period = parseInt(hour) >= 12 ? "PM" : "AM";
+
+        return `${formattedHour < 10 ? `0${formattedHour}` : formattedHour}:${minute} ${period}`;
+    }
+
 
     return(
         <S.MainWrapper>
             <S.GroupNameTxt>양파시 광산동</S.GroupNameTxt>
             <S.CalendarWrapper>
                 <S.CalendarBox>
-                    <MyCalendar mark={markedDate} findSchedule={findSchedule} value={value} onChange={onChange} setNowDate={setNowDate}/>
+                    <MyCalendar mark={markedDate} findSchedule={findSchedule} findMonthSchdule={findMonthSchdule} value={value} onChange={onChange} setNowDate={setNowDate}/>
                 </S.CalendarBox>
                 {nowDate !== "" && 
                 (<>
@@ -64,7 +99,7 @@ function Schedule(){
                                     <S.ScheduleTxt id={e.scheduleId} onClick={handlePage}>{e.scheduleTitle}</S.ScheduleTxt>
                                 </S.ScheduleLeftSide>
                                 <S.ScheduleRightSide>
-                                    {parseInt(e.scheduleTime.split(":")[0]) >= 12 ? `${parseInt(e.scheduleTime.split(":")[0]) - 12}:${e.scheduleTime.split(":")[1]}` : `${parseInt(e.scheduleTime.split(":")[0])}:${e.scheduleTime.split(":")[1]}`} {parseInt(e.scheduleTime.split(":")[0]) >= 12 ? `PM` : `AM`}
+                                    {formatTime(e.scheduleTime)}
                                 </S.ScheduleRightSide>
                             </S.ScheduleLi>
                         )))}
