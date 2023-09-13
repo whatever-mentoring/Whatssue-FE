@@ -40,20 +40,30 @@ export const DateTxt = styled.div`
 export const ScheduleWrapper = styled.div`
     background-color: #282828;
     border-radius: 10px;
-    // padding: 0.1em 0.5em 1em 0.5em ;
     padding: 0 5px;
     margin: 1em 0;
 `;
 
 export const ScheduleUl = styled.ul`
-    padding-left: 10px;
+    padding-inline-start: 0;
     overflow-y: scroll;
 `;
 
 export const ScheduleLi = styled.li`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin: 1em 0;
+    padding: 0 1.5em 0 1em;
+`;
+
+export const ScheduleLeftSide = styled.div`
+    display: flex;
+    flex-direction: row;
+`;
+
+export const ScheduleRightSide = styled.div`
+    color: #fff;
 `;
 
 export const ScheduleLine = styled.div`
