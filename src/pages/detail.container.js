@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import * as S from './detail.styles.js';
-import close from "../assets/close.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+
+import close from "../assets/close.png";
+import clock from "../assets/clock.png";
+import pencil from "../assets/pencil.png";
 
 function Detail (){
     const navigate = useNavigate();
@@ -37,11 +40,11 @@ function Detail (){
                         <S.ScheduleTd><S.TitleTxt>{data.scheduleTitle}</S.TitleTxt></S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
-                        <S.ScheduleFirstTd><S.Circle></S.Circle></S.ScheduleFirstTd>
+                        <S.ScheduleFirstTd><img src={clock}/></S.ScheduleFirstTd>
                         <S.ScheduleTd><S.DateTxt>{formatDate(data.scheduleDate)} {data.scheduleTime}</S.DateTxt></S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
-                        <td><S.Circle></S.Circle></td>
+                        <td><img src={pencil}/></td>
                         <S.ScheduleTd><S.ContentTxt>{data.scheduleContent}</S.ContentTxt></S.ScheduleTd>
                     </S.ScheduleTr>
                 </S.ScheduleTable>
