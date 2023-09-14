@@ -61,7 +61,7 @@ function Main (){
                     <S.ScheduleBox>
                         <S.ScheduleWrapper style={{'color': '#fff'}}>
                         <S.ScheduleUl>
-                            {response.map((e) => (<S.ScheduleLi><S.ScheduleLine></S.ScheduleLine><S.ScheduleTxt>{e.scheduleTitle}</S.ScheduleTxt></S.ScheduleLi>))}
+                            {response.map((e) => (<S.ScheduleLi key={e.scheduleId}><S.ScheduleLine></S.ScheduleLine><S.ScheduleTxt>{e.scheduleTitle}</S.ScheduleTxt></S.ScheduleLi>))}
                         </S.ScheduleUl>
                         </S.ScheduleWrapper>
                     </S.ScheduleBox>

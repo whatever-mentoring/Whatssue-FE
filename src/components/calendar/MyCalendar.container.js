@@ -8,27 +8,37 @@ import './MyCalendar.css';
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PrevIcon";
 
-export default function MyCalendar ({mark, findSchedule, findMonthSchdule, value, onChange, setNowDate}){
+export default function MyCalendar ({mark, findSchedule, findMonthSchdule, fetchData, value, onChange, setNowMonth, setNowDate}){
   const day = moment(value).format('YYYY-MM-DD');
   const currDate = new Date();
   const currDateTime = moment(currDate).format('MM-DD');
 
   // 일 변경
   const handleDateChange = (selectedDate) => {
+    console.log(selectedDate);
     onChange(selectedDate);
     setNowDate(moment(selectedDate).format("YYYY년 MM월 DD일"));
     findSchedule(selectedDate);
   };
 
-  // 달 변경
+  // 아이콘으로 달 변경
   const handleDate = (e) => {
     findMonthSchdule(e.target.id);
   };
 
+  // 일정 클릭으로 달 변경
+  const handleMonthChange = (e) => {
+    console.log(e);
+    onChange(e.activeStartDate);
+    setNowDate(moment(e.activeStartDate).format("YYYY년 MM월 DD일"));
+    setNowMonth(e.activeStartDate);
+    fetchData(e.activeStartDate);
+  }
 
   return (
         <Calendar 
           onChange={handleDateChange} 
+          onDrillDown={handleMonthChange}
           value={value}
           formatDay={(local, date) => moment(date).format("D")}
           nextLabel={<NextIcon handleDate={handleDate}/>}
