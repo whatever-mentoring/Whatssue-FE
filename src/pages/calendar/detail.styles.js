@@ -55,7 +55,7 @@ export const ScheduleFirstTd = styled.td`
 export const ScheduleTd = styled.td`
 display: flex;
 width: 100%;
-justify-content: space-between;
+// justify-content: space-between;
 `;
 
 export const TitleTxt = styled.div`
@@ -72,6 +72,11 @@ color: #51F8C4;
 export const DateTxt = styled.div`
     font-size: 18px;
     font-weight: bold;
+`;
+
+export const TimeTxt = styled.div`
+    font-size: 17px;
+    margin-left: 1em;
 `;
 
 export const ContentTxt = styled.div`

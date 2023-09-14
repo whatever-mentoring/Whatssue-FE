@@ -3,9 +3,9 @@ import * as S from "./register.styles";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-import close from "../assets/close.png";
-import clock from "../assets/clock.png";
-import pencil from "../assets/pencil.png";
+import close from "../../assets/close.png";
+import clock from "../../assets/clock.png";
+import pencil from "../../assets/pencil.png";
 
 function Register (){
     const navigate = useNavigate();
@@ -57,7 +57,7 @@ function Register (){
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <S.ScheduleFirstTd><img src={clock}/></S.ScheduleFirstTd>
-                        <S.ScheduleTd><S.DateTxt>{location.state}</S.DateTxt></S.ScheduleTd>
+                        <S.ScheduleTd><S.DateTxt>{location.state}</S.DateTxt><S.TimeTxt>시간 선택</S.TimeTxt></S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <td><img src={pencil}/></td>

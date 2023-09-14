@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as S from './schedule.styles.js';
 import moment from 'moment';
-import MyCalendar from '../components/calendar/MyCalendar.container.js';
+import MyCalendar from '../../components/calendar/MyCalendar.container.js';
 
-import register from "../assets/register.png";
+import register from "../../assets/register.png";
 
 function Schedule(){
     const [value, onChange] = useState(new Date());
@@ -26,20 +26,20 @@ function Schedule(){
         })
     };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/month:${moment(value).format("YYYY-MM")}`)
-            console.log(response);
-            setResponse(response.data);
+    const fetchData = async (getDate) => {
+        console.log(getDate);
+        const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/month:${moment(getDate).format("YYYY-MM")}`)
+        console.log(response);
+        setResponse(response.data);
 
-            response.data.map((e) => {
-                if(!markedDate.find((el) => e.scheduleDate === el)){
-                    setMarkedDate((prev) => [...prev, e.scheduleDate])
-                }
-            });
-        }
-        fetchData();
-    }, []);
+        response.data.map((e) => {
+            if(!markedDate.find((el) => e.scheduleDate === el)){
+                setMarkedDate((prev) => [...prev, e.scheduleDate])
+            }
+        });
+    }
+
+    useEffect(() => {fetchData(value)}, []);
 
     // 달을 변경할 때마다 데이터 불러오기
     const findMonthSchdule = async (e) => {
@@ -85,7 +85,7 @@ function Schedule(){
             <S.GroupNameTxt>양파시 광산동</S.GroupNameTxt>
             <S.CalendarWrapper>
                 <S.CalendarBox>
-                    <MyCalendar mark={markedDate} findSchedule={findSchedule} findMonthSchdule={findMonthSchdule} value={value} onChange={onChange} setNowDate={setNowDate}/>
+                    <MyCalendar mark={markedDate} findSchedule={findSchedule} findMonthSchdule={findMonthSchdule} fetchData={fetchData} value={value} onChange={onChange} setNowMonth={setNowMonth} setNowDate={setNowDate}/>
                 </S.CalendarBox>
                 {nowDate !== "" && 
                 (<>

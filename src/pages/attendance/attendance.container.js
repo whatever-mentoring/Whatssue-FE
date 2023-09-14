@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import moment from "moment";
 import axios from "axios";
-import * as S from "./main.styles";
+import * as S from "./attendance.styles";
 
-import prev from "../assets/prevIcon.png";
-import next from "../assets/nextIcon.png";
-import back from "../assets/back.png";
-import status from "../assets/status.png";
+import prev from "../../assets/prevIcon.png";
+import next from "../../assets/nextIcon.png";
+import back from "../../assets/back.png";
+import status from "../../assets/status.png";
 
-function Main (){
+function Attendance (){
     const [nowDate, setNowDate] = useState(new Date);
     const weekDay = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -71,4 +71,4 @@ function Main (){
     )
 }
 
-export default Main;
+export default Attendance;

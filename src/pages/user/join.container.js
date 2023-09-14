@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import * as S from './join.styles.js';
 
-import FirstMaster from "../components/master/FirstMaster.container";
-import SecondMaster from "../components/master/SecondMaster.container";
-import ThirdMaster from "../components/master/ThirdMaster.container.js"
+import FirstMaster from "../../components/master/FirstMaster.container.js";
+import SecondMaster from "../../components/master/SecondMaster.container.js";
+import ThirdMaster from "../../components/master/ThirdMaster.container.js"
 
 function Join (){
     const [page, setPage] = useState(1);

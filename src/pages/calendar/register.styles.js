@@ -53,9 +53,9 @@ export const ScheduleFirstTd = styled.td`
 `;
 
 export const ScheduleTd = styled.td`
-display: flex;
-width: 100%;
-justify-content: space-between;
+    display: flex;
+    width: 100%;
+    // justify-content: space-between;
 `;
 
 export const TitleInput = styled.input`
@@ -83,6 +83,15 @@ color: #51F8C4;
 export const DateTxt = styled.div`
     font-size: 18px;
     font-weight: bold;
+`;
+
+export const TimeTxt = styled.div`
+    margin-left: 1em;
+    font-size: 17px;
+`;
+
+export const TimeInput = styled.input`
+    background-color: #282828;
 `;
 
 export const ContentInput = styled.input`
