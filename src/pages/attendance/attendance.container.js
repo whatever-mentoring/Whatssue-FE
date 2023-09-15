@@ -156,7 +156,7 @@ function Attendance (){
                     (<S.ModalBox>
                         <S.ModalTxt>출석을 시작하시겠습니까?</S.ModalTxt>
                         <S.BtnWrapper>
-                            <S.CancleBtn onClick={(e) => setIsModal(false)}>취소</S.CancleBtn>
+                            <S.CancleBtn onClick={(e) => {setIsModal(false); setScheduleId(0);}}>취소</S.CancleBtn>
                             <S.CheckdBtn onClick={startAttendance}>확인</S.CheckdBtn>
                         </S.BtnWrapper>
                     </S.ModalBox>)

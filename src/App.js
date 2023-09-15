@@ -9,6 +9,8 @@ import Schedule from './pages/calendar/schedule.container';
 import Detail from './pages/calendar/detail.container';
 import Register from './pages/calendar/register.container';
 
+import Member from './pages/member/member.container';
+
 import Attendance from './pages/attendance/attendance.container';
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route path='/register' element={<Register/>}></Route>
 
           <Route path='/attendance' element={<Attendance/>}></Route>
+
+          <Route path='/member' element={<Member/>}></Route>
 
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/join' element={<Join/>}></Route>
