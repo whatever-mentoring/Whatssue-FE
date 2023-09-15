@@ -149,6 +149,165 @@ export const ScheduleLine = styled.div`
     margin-right: 15px;
 `;
 
+export const ScheduleImg = styled.img`
+    margin-top: 2px;
+`;
+
 export const ScheduleTxt = styled.div`
     padding: 0.1em 0;
+    margin-left: 0.5em;
+`;
+
+export const AttendanceWrapper = styled.div`
+
+`;
+
+export const AttendanceNav = styled.div`
+    width: 100%;
+`;
+
+export const AttendanceUl = styled.ul`
+    display: flex;
+    flex-direction: row;
+
+    padding-inline-start: 0;
+    border-bottom: 0.7px solid #282828;
+`;
+
+export const AttendanceLi = styled.li`
+    list-style: none;
+    width: 33%;
+`;
+
+export const AttendanceBox = styled.div`
+    width: 50%;
+    margin: 0 25%;
+    padding: 0.5em 0;
+
+    border-bottom: ${(props) => 
+        props.clicked ? `2px solid #51F8C4` : `none`
+    };
+
+    color: ${(props) => 
+        props.clicked ? `#51F8C4` : `#fff`
+    };
+`;
+
+export const AttendanceNameWrapper = styled.div`
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const AttendanceName = styled.div`
+    color: #fff;
+    width: 18vw;
+    margin: 0.5em 0;
+    text-align: center;
+`;
+
+// 모달창
+export const ModalWrapper = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ModalBox = styled.div`
+    background-color: #fff;
+    border-radius: 10px;
+    width: 90vw;
+    height: 20vh;
+    z-index: 101;
+
+    position: absolute;
+    top: 40vh;
+    left: 5vw;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ModalTxt = styled.div`
+    font-size: 20px;
+    font-weight: bold;
+    color: #171717;
+    margin-top: 2vh;
+`;
+
+export const BtnWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 4vh;
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const DoneBtnWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    margin: 1vh 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const CancleBtn = styled.div`
+    background-color: #e7e7e7;
+    height: 40%;
+    color: #5F5F5F;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 7px;
+    padding: 4% 13%; 
+    margin: 0 5vw;
+`;
+
+export const CheckdBtn = styled.div`
+    background-color: #51F8C4;
+    height: 40%;
+    color: #171717;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 7px;
+    padding: 4% 13%; 
+    margin: 0 5vw;
+`;
+
+export const AttendanceNum = styled.div`
+    font-size: 40px;
+    font-weight: bold;
+    color: #171717;
+`;
+
+export const AttendanceTimer = styled.div`
+    font-size: 20px;
+    color: #5f5f5f;
+`;
+
+export const DoneBtn = styled.div`
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 7px;
+    background-color: #e7e7e7;
+    color: #FF4444;
 `;
