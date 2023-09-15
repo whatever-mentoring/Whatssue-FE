@@ -12,7 +12,9 @@ function Detail (){
     const location = useLocation();
 
     const [data, setData] = useState({});
+    const [isModify, setIsModify] = useState(false);
 
+    // 상세 정보 받아오기
     useEffect(() => {
         const fetchData = async () => {
             console.log(location.state);
@@ -22,6 +24,33 @@ function Detail (){
         }
         fetchData();
     }, []);
+
+    // 상세 정보 수정
+    const modifyData = async (e) => {
+        const requestData = {
+            "scheduleTitle": data.scheduleTitle,
+            "scheduleContent": data.scheduleContent,
+            "scheduleDate": data.scheduleDate,
+            "scheduleTime": `${data.scheduleTime.split(":")[0]}:${data.scheduleTime.split(":")[1]}`
+        }
+        console.log(requestData);
+        const response = await axios.patch(
+            `http://115.85.183.74:8090/api/schedule/${parseInt(location.state)}`,
+            requestData
+        )
+        console.log(response);
+        setIsModify(false);
+        // setData(response.data);
+    }
+
+    // 일정 삭제
+    const deleteSchedule = async (e) => {
+        const response = await axios.delete(
+            `http://115.85.183.74:8090/api/schedule/${parseInt(location.state)}`
+        )
+        console.log(response);
+        navigate("/calendar");
+    }
 
     // YYYY-MM-DD => YYYY년 MM월 DD일
     function formatDate(inputDate) {
@@ -44,12 +73,19 @@ function Detail (){
 
     return(
         <S.MainWrapper>
-            <S.CloseBtn onClick={(e) => navigate("/calendar")}><S.CloseImg src={close}/></S.CloseBtn>
+            <S.CloseBtn><S.CloseImg src={close} onClick={(e) => navigate("/calendar")}/></S.CloseBtn>
             <S.ContentWrapper>
-                <S.ScheduleTable>
+                {isModify ? (
+                    <S.ScheduleTable>
                     <S.ScheduleTr>
                         <S.ScheduleFirstTd><S.Circle></S.Circle></S.ScheduleFirstTd>
-                        <S.ScheduleTd><S.TitleTxt>{data.scheduleTitle}</S.TitleTxt></S.ScheduleTd>
+                        <S.ScheduleTd>
+                            <S.TitleInput 
+                                placeholder="제목" 
+                                value={data.scheduleTitle} 
+                                onChange={(e) => setData((prev) => ({...prev, "scheduleTitle": e.target.value}))}
+                            />
+                        </S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <S.ScheduleFirstTd><img src={clock}/></S.ScheduleFirstTd>
@@ -57,14 +93,42 @@ function Detail (){
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <td><img src={pencil}/></td>
-                        <S.ScheduleTd><S.ContentTxt>{data.scheduleContent}</S.ContentTxt></S.ScheduleTd>
+                        <S.ScheduleTd>
+                            <S.ContentInput 
+                                placeholder="설명" 
+                                value={data.scheduleContent}
+                                onChange={(e) => setData((prev) => ({...prev, "scheduleContent": e.target.value}))}
+                            />
+                        </S.ScheduleTd>
                     </S.ScheduleTr>
                 </S.ScheduleTable>
+                ): (
+                    <S.ScheduleTable>
+                        <S.ScheduleTr>
+                            <S.ScheduleFirstTd><S.Circle></S.Circle></S.ScheduleFirstTd>
+                            <S.ScheduleTd><S.TitleTxt>{data.scheduleTitle}</S.TitleTxt></S.ScheduleTd>
+                        </S.ScheduleTr>
+                        <S.ScheduleTr>
+                            <S.ScheduleFirstTd><img src={clock}/></S.ScheduleFirstTd>
+                            <S.ScheduleTd><S.DateTxt>{formatDate(data.scheduleDate)}</S.DateTxt><S.TimeTxt>{formatTime(data.scheduleTime)}</S.TimeTxt></S.ScheduleTd>
+                        </S.ScheduleTr>
+                        <S.ScheduleTr>
+                            <td><img src={pencil}/></td>
+                            <S.ScheduleTd><S.ContentTxt>{data.scheduleContent}</S.ContentTxt></S.ScheduleTd>
+                        </S.ScheduleTr>
+                    </S.ScheduleTable>
+                )}
             </S.ContentWrapper>
-            <S.BtnWrapper>
-                <S.ModifyBtn>수정하기</S.ModifyBtn>
-                <S.DeleteBtn>삭제하기</S.DeleteBtn>
-            </S.BtnWrapper>
+            {isModify ? (
+                <S.BtnWrapper>
+                    <S.ModifyBtn onClick={modifyData}>수정 완료</S.ModifyBtn>
+                </S.BtnWrapper>
+            ) : (
+                <S.BtnWrapper>
+                    <S.ModifyBtn onClick={() => setIsModify(true)}>수정하기</S.ModifyBtn>
+                    <S.DeleteBtn onClick={deleteSchedule}>삭제하기</S.DeleteBtn>
+                </S.BtnWrapper>
+            )}
         </S.MainWrapper>
     )
 }

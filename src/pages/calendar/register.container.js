@@ -42,7 +42,7 @@ function Register (){
 
     return(
         <S.MainWrapper>
-            <S.CloseBtn onClick={(e) => navigate("/calendar")}><S.CloseImg src={close}/></S.CloseBtn>
+            <S.CloseBtn><S.CloseImg src={close} onClick={(e) => navigate("/calendar")}/></S.CloseBtn>
             <S.ContentWrapper>
                 <S.ScheduleTable>
                     <S.ScheduleTr>
