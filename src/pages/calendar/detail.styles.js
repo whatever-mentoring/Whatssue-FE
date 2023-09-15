@@ -58,6 +58,25 @@ width: 100%;
 // justify-content: space-between;
 `;
 
+
+export const TitleInput = styled.input`
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    background-color: #171717;
+    font-size: 20px;
+    font-weight: bold;
+
+    &:focus{
+        outline: none;
+    }
+
+    &:placeholder{
+        color: #5F5F5F;
+    }
+`;
+
+
 export const TitleTxt = styled.div`
     color: #fff;
     font-size: 20px;
@@ -68,6 +87,27 @@ export const TitleLenTxt = styled.div`
 font-size: 12px;
 color: #51F8C4;
 `;
+
+export const TimeInput = styled.input`
+    background-color: #282828;
+`;
+
+export const ContentInput = styled.input`
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    background-color: #171717;
+    font-size: 15px;
+    
+
+    &:focus{
+        outline: none;
+    }
+
+    &:placeholder{
+        color: #5F5F5F;
+    }
+`
 
 export const DateTxt = styled.div`
     font-size: 18px;
