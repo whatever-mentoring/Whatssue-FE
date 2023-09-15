@@ -39,7 +39,7 @@ function Schedule(){
         });
     }
 
-    useEffect(() => {fetchData(value)}, []);
+    useEffect(() => {fetchData(value);}, []);
 
     // 달을 변경할 때마다 데이터 불러오기
     const findMonthSchdule = async (e) => {
@@ -87,12 +87,13 @@ function Schedule(){
                 <S.CalendarBox>
                     <MyCalendar mark={markedDate} findSchedule={findSchedule} findMonthSchdule={findMonthSchdule} fetchData={fetchData} value={value} onChange={onChange} setNowMonth={setNowMonth} setNowDate={setNowDate}/>
                 </S.CalendarBox>
-                {nowDate !== "" && 
-                (<>
+                {/* {nowDate !== "" && 
+                (<> */}
                     <S.DateTxt style={{'color': '#fff'}}>{nowDate} {`${weekDay[moment(value).format("e")]}요일`}</S.DateTxt>
                     <S.ScheduleWrapper style={{'color': '#fff'}}>
                     <S.ScheduleUl>
-                        {filteredRes.length !== 0 && (filteredRes.map((e, i) => (
+                        {response.filter((es) => es.scheduleDate === moment(value).format("YYYY-MM-DD")).length !== 0 && 
+                        (response.filter((es) => es.scheduleDate === moment(value).format("YYYY-MM-DD")).map((e, i) => (
                             <S.ScheduleLi key={e.scheduleId}>
                                 <S.ScheduleLeftSide>
                                     <S.ScheduleLine></S.ScheduleLine>
@@ -105,8 +106,8 @@ function Schedule(){
                         )))}
                     </S.ScheduleUl>
                     </S.ScheduleWrapper>
-                </>
-                )}
+                {/* </>
+                )} */}
             </S.CalendarWrapper>
             <S.AddBtnWrapper><S.AddBtn onClick={(e) => navigate("/register", {
                 state: nowDate
