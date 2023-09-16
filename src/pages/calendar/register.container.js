@@ -11,6 +11,17 @@ function Register (){
     const navigate = useNavigate();
     const location = useLocation();
 
+    const hourList = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+    const minuteList = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55'];
+
+    const [scheduleTitle, setScheduleTitle] = useState("");
+    const [scheduleContent, setScheduleContent] = useState("");
+    const [time, setTime] = useState({
+        hour: '01',
+        minute: '00',
+        zone: 'AM'
+    })
+
     // YYYY년 MM월 DD일 => YYYY-MM-DD
     function formatDate(inputDate) {
         const year = inputDate.substring(0, 4);
@@ -22,15 +33,30 @@ function Register (){
         return formattedDate;
     };
 
-    const [requestData, setRequestData] = useState({
-        "scheduleTitle": "",
-        "scheduleContent": "",
-        "scheduleDate": formatDate(location.state),
-        "scheduleTime": "10:00"
-    })
+    // HH:MM AM | PM => HH:MM
+    function formatTime (getTime){
+        let newHour = getTime.hour;
+        if(getTime.zone === 'PM' && parseInt(getTime.hour) !== 12){
+            newHour = `${parseInt(getTime.hour) + 12}`;
+        } else if(getTime.zone === 'AM' && parseInt(getTime.hour) === 12){
+            newHour = '00';
+        } else if(getTime.zone === 'AM' && parseInt(getTime.hour) < 10){
+            newHour = `0${parseInt(getTime.hour)}`;
+        }
+        setTime((prev) => ({...prev, hour: newHour}));
 
+        return `${newHour}:${time.minute}`;
+    }
 
+    
     const handleRegister = async () => {
+        const requestData = {
+            "scheduleTitle": scheduleTitle,
+            "scheduleContent": scheduleContent,
+            "scheduleDate": formatDate(location.state),
+            "scheduleTime": formatTime(time)
+        };
+
         console.log(requestData);
         const response = await axios.post(
             `http://115.85.183.74:8090/api/schedule`,
@@ -54,22 +80,36 @@ function Register (){
                         <S.ScheduleTd>
                             <S.TitleInput 
                                 placeholder="제목" 
-                                value={requestData.scheduleTitle} 
-                                onChange={(e) => setRequestData((prev) => ({...prev, "scheduleTitle": e.target.value}))}
+                                value={scheduleTitle} 
+                                onChange={(e) => setScheduleTitle(e.target.value)}
                             />
                         </S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <S.ScheduleFirstTd><img src={clock}/></S.ScheduleFirstTd>
-                        <S.ScheduleTd><S.DateTxt>{location.state}</S.DateTxt><S.TimeTxt>시간 선택</S.TimeTxt></S.ScheduleTd>
+                        <S.ScheduleTd>
+                            <S.DateTxt>{location.state}</S.DateTxt>
+                            <S.TimeTxt>
+                                <S.TimeSelect onChange={(e) => setTime((prev) => ({...prev, hour: e.target.value}))}>
+                                    {hourList.map((e) => <option value={e}>{e}</option>)}
+                                </S.TimeSelect>
+                                <S.TimeSelect onChange={(e) => setTime((prev) => ({...prev, minute: e.target.value}))}>
+                                    {minuteList.map((e) => <option value={e}>{e}</option>)}
+                                </S.TimeSelect>
+                                <S.TimeSelect onChange={(e) => setTime((prev) => ({...prev, zone: e.target.value}))}>
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                                </S.TimeSelect>
+                            </S.TimeTxt>
+                        </S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <td><img src={pencil}/></td>
                         <S.ScheduleTd>
                             <S.ContentInput 
                                 placeholder="설명" 
-                                value={requestData.scheduleContent}
-                                onChange={(e) => setRequestData((prev) => ({...prev, "scheduleContent": e.target.value}))}
+                                value={scheduleContent}
+                                onChange={(e) => setScheduleContent(e.target.value)}
                             />
                         </S.ScheduleTd>
                     </S.ScheduleTr>
