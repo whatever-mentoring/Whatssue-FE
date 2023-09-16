@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import * as S from "./attendance.styles";
@@ -12,6 +13,7 @@ import checked from "../../assets/checked.png";
 import notChecked from "../../assets/notChecked.png";
 
 function Attendance (){
+    const navigate = useNavigate();
     const baseUrl = "http://115.85.183.74:8090";
     const T = 10;
 
@@ -79,10 +81,15 @@ function Attendance (){
     };
 
     // 출석 종료
-    const endAttendance = async(e) => {
+    const endAttendance = async() => {
+        setIsModal(false);
         console.log("출석 종료");
-        setIsModal(false); 
         setModalPage(1);
+        const res = await axios.delete(baseUrl + `/api/schedule/${scheduleId}/attendance`);
+        console.log(res);
+        if(res.status === 200){
+            fetchData(nowDate);
+        }
     }
 
     return(
@@ -169,7 +176,7 @@ function Attendance (){
                     : 
                     (<S.ModalBox>
                         <S.AttendanceNum>{attendanceCode}</S.AttendanceNum>
-                        <S.AttendanceTimer><Timer setIsModal={setIsModal} scheduleId={scheduleId}/></S.AttendanceTimer>
+                        <S.AttendanceTimer><Timer endAttendance={endAttendance}/></S.AttendanceTimer>
                         <S.DoneBtnWrapper>
                             <S.DoneBtn onClick={endAttendance}>종료</S.DoneBtn>
                         </S.DoneBtnWrapper>
