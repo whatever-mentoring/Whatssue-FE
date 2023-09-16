@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const getSeconds = (time) => {
@@ -9,8 +10,10 @@ const getSeconds = (time) => {
     }
 }
 
-const Timer = () => {
-    const [time, setTime] = useState(300); // 남은 시간 (단위: 초)
+const Timer = ({setIsModal, scheduleId}) => {
+    const [time, setTime] = useState(500); // 남은 시간 (단위: 초)
+    const baseUrl = "http://115.85.183.74:8090";
+
     useEffect(() => {
         const timer = setInterval(() => {
             setTime((prev) => prev - 1);
@@ -19,9 +22,14 @@ const Timer = () => {
     }, [time]);
 
     useEffect(() => {
-        if(time < 0) {
-            alert("Time OVER!");
+        const fetchData = async () => {
+            if(time < 0) {
+                setIsModal(false);
+                const response = await axios.delete(baseUrl + `/api/schedule/${scheduleId}/attendance`);
+                console.log(response);
+            }
         }
+        fetchData();
     }, [time]);
 
     return (
