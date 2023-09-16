@@ -83,11 +83,24 @@ color: #51F8C4;
 export const DateTxt = styled.div`
     font-size: 18px;
     font-weight: bold;
+
 `;
 
 export const TimeTxt = styled.div`
     margin-left: 1em;
     font-size: 17px;
+`;
+
+export const TimeSelect = styled.select`
+    background-color: #171717;
+    border: 1px solid #171717;
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+
+    &:focus{
+        outline: none;
+    }
 `;
 
 export const TimeInput = styled.input`

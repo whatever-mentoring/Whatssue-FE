@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as S from "./member.styles";
+import * as S from "./manage.styles";
 
 import JoinComponent from "../../components/member/JoinComponent";
 import AbsentComponent from "../../components/member/AbsentComponent";

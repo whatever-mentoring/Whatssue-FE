@@ -87,8 +87,7 @@ function Schedule(){
                 <S.CalendarBox>
                     <MyCalendar mark={markedDate} findSchedule={findSchedule} findMonthSchdule={findMonthSchdule} fetchData={fetchData} value={value} onChange={onChange} setNowMonth={setNowMonth} setNowDate={setNowDate}/>
                 </S.CalendarBox>
-                {/* {nowDate !== "" && 
-                (<> */}
+
                     <S.DateTxt style={{'color': '#fff'}}>{nowDate} {`${weekDay[moment(value).format("e")]}요일`}</S.DateTxt>
                     <S.ScheduleWrapper style={{'color': '#fff'}}>
                     <S.ScheduleUl>
@@ -97,7 +96,7 @@ function Schedule(){
                             <S.ScheduleLi key={e.scheduleId}>
                                 <S.ScheduleLeftSide>
                                     <S.ScheduleLine></S.ScheduleLine>
-                                    <S.ScheduleTxt id={e.scheduleId} onClick={handlePage}>{e.scheduleTitle}</S.ScheduleTxt>
+                                    <S.ScheduleTxt key={e.scheduleId} id={e.scheduleId} onClick={handlePage}>{e.scheduleTitle}</S.ScheduleTxt>
                                 </S.ScheduleLeftSide>
                                 <S.ScheduleRightSide>
                                     {formatTime(e.scheduleTime)}
@@ -106,8 +105,7 @@ function Schedule(){
                         )))}
                     </S.ScheduleUl>
                     </S.ScheduleWrapper>
-                {/* </>
-                )} */}
+
             </S.CalendarWrapper>
             <S.AddBtnWrapper><S.AddBtn onClick={(e) => navigate("/register", {
                 state: nowDate
