@@ -20,6 +20,7 @@ function Attendance (){
 
     const [category, setCategory] = useState(1);
     const [modalPage, setModalPage] = useState(1);
+    const [attendanceCode, setAttendanceCode] = useState('');
     const [isModal, setIsModal] = useState(false);
     const [scheduleId, setScheduleId] = useState(0);
 
@@ -41,18 +42,21 @@ function Attendance (){
     const handlePrevDate = () => {
         const yesterday = new Date(nowDate.setDate(nowDate.getDate() - 1));
         setNowDate(yesterday);
+        setScheduleId(0);
         fetchData(yesterday);
     }
 
     const handleNextDate = () => {
         const tommorow = new Date(nowDate.setDate(nowDate.getDate() + 1));
         setNowDate(tommorow);
+        setScheduleId(0);
         fetchData(tommorow);
     }
 
     const backToday = () => {
         const today = new Date();
         setNowDate(today); 
+        setScheduleId(0);
         fetchData(today);
     }
 
@@ -63,13 +67,15 @@ function Attendance (){
 
     // 출석 시작
     const startAttendance = async(e) => {
-        console.log("출석 시작");
         setModalPage(2);
         // 출석 시작 api
-        // const atten = await axios.post(
-        //     baseUrl + `/api/schedule/${scheduleId}/attendance/start`
-        // )
-        // console.log(atten);
+        const atten = await axios.post(
+            baseUrl + `/api/schedule/${scheduleId}/attendance/start`
+        )
+        if(atten.status === 200){
+            console.log(atten.data);
+            setAttendanceCode(atten.data);
+        }
     };
 
     // 출석 종료
@@ -162,8 +168,8 @@ function Attendance (){
                     </S.ModalBox>)
                     : 
                     (<S.ModalBox>
-                        <S.AttendanceNum>345</S.AttendanceNum>
-                        <S.AttendanceTimer><Timer/></S.AttendanceTimer>
+                        <S.AttendanceNum>{attendanceCode}</S.AttendanceNum>
+                        <S.AttendanceTimer><Timer setIsModal={setIsModal} scheduleId={scheduleId}/></S.AttendanceTimer>
                         <S.DoneBtnWrapper>
                             <S.DoneBtn onClick={endAttendance}>종료</S.DoneBtn>
                         </S.DoneBtnWrapper>
