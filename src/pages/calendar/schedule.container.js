@@ -63,8 +63,8 @@ function Schedule(){
                 setMarkedDate((prev) => [...prev, e.scheduleDate])
             }
         });
-    }
-
+    };
+    
     // 해당 날짜 스케줄 찾기
     const findSchedule = (e) => {
         setFilteredRes(response.filter((es) => es.scheduleDate === moment(e).format("YYYY-MM-DD")));
@@ -77,7 +77,7 @@ function Schedule(){
         const period = parseInt(hour) >= 12 ? "PM" : "AM";
 
         return `${formattedHour < 10 ? `0${formattedHour}` : formattedHour}:${minute} ${period}`;
-    }
+    };
 
 
     return(

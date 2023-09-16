@@ -39,6 +39,10 @@ function Detail (){
             requestData
         )
         console.log(response);
+        if(response.status === 200){
+            alert('일정 수정되었습니다.');
+            navigate("/calendar");
+        }
         setIsModify(false);
         // setData(response.data);
     }
@@ -49,7 +53,10 @@ function Detail (){
             `http://115.85.183.74:8090/api/schedule/${parseInt(location.state)}`
         )
         console.log(response);
-        navigate("/calendar");
+        if(response.status === 200){
+            alert('일정 삭제되었습니다');
+            navigate("/calendar");
+        }
     }
 
     // YYYY-MM-DD => YYYY년 MM월 DD일
