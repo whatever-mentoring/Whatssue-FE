@@ -128,7 +128,7 @@ function Detail (){
             </S.ContentWrapper>
             {isModify ? (
                 <S.BtnWrapper>
-                    <S.ModifyBtn onClick={modifyData}>수정 완료</S.ModifyBtn>
+                    <S.ModifyBtn onClick={modifyData}>수정완료</S.ModifyBtn>
                 </S.BtnWrapper>
             ) : (
                 <S.BtnWrapper>
