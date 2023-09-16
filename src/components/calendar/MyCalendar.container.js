@@ -15,7 +15,10 @@ export default function MyCalendar ({mark, findSchedule, findMonthSchdule, fetch
 
   // 일 변경
   const handleDateChange = (selectedDate) => {
-    console.log(selectedDate);
+    // 전, 후 달의 일정을 선택 시
+    if(moment(value).format("MM") !== moment(selectedDate).format("MM")){
+      fetchData(selectedDate);
+    }
     onChange(selectedDate);
     setNowDate(moment(selectedDate).format("YYYY년 MM월 DD일"));
     findSchedule(selectedDate);

@@ -38,6 +38,10 @@ function Register (){
             {"Content-Type": "application/json"}
         )
         console.log(response);
+        if(response.status === 200){
+            alert("일정 등록되었습니다.");
+            navigate("/calendar");
+        }
     };
 
     return(

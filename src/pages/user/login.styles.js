@@ -41,18 +41,18 @@ export const ContentId = styled.input`
     height: 50px;
     color: #fff;
     background-color: #171717;
-    border: 1px solid #51F8C4;
+    border: 1px solid #5F5F5F;
     border-radius: 10px;
     padding: 0 10px;
     margin: 5px 0;
     
     &::-webkit-input-placeholder{
-        color: #51F8C4
+        color: #5F5F5F
     }
     
     &:focus{
-        outline: none
-        
+        outline-color: #51F8C4;
+        color: #51F8C4;
     }
 
 `;
@@ -62,22 +62,22 @@ export const ContentPw = styled.input`
     height: 50px;
     color: #fff;
     background-color: #171717;
-    border: 1px solid #51F8C4;
+    border: 1px solid #5F5F5F;
     border-radius: 10px;
     padding: 0 10px;
     margin: 5px 0;
 
     &::-webkit-input-placeholder{
-        color: #51F8C4
+        color: #5F5F5F
     }
 
     &::-ms-input-placeholder{
-        color: #51F8C4
+        color: #5F5F5F
     }
 
     &:focus{
-        outline: none
-        
+        outline-color: #51F8C4;
+        color: #51F8C4;
     }
 `;
 
