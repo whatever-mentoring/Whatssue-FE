@@ -8,7 +8,7 @@ import './MyCalendar.css';
 import NextIcon from "./NextIcon";
 import PreviousIcon from "./PrevIcon";
 
-export default function MyCalendar ({mark, findSchedule, findMonthSchdule, fetchData, value, onChange, setNowMonth, setNowDate}){
+export default function MyCalendar ({setMarkedDate, mark, findSchedule, findMonthSchdule, fetchData, value, onChange, setNowMonth, setNowDate}){
   const day = moment(value).format('YYYY-MM-DD');
   const currDate = new Date();
   const currDateTime = moment(currDate).format('MM-DD');
@@ -17,6 +17,7 @@ export default function MyCalendar ({mark, findSchedule, findMonthSchdule, fetch
   const handleDateChange = (selectedDate) => {
     // 전, 후 달의 일정을 선택 시
     if(moment(value).format("MM") !== moment(selectedDate).format("MM")){
+      setMarkedDate([]);
       fetchData(selectedDate);
     }
     onChange(selectedDate);
@@ -26,17 +27,21 @@ export default function MyCalendar ({mark, findSchedule, findMonthSchdule, fetch
 
   // 아이콘으로 달 변경
   const handleDate = (e) => {
+    setMarkedDate([]);
     findMonthSchdule(e.target.id);
   };
 
   // 일정 클릭으로 달 변경
   const handleMonthChange = (e) => {
     console.log(e);
+    setMarkedDate([]);
     onChange(e.activeStartDate);
     setNowDate(moment(e.activeStartDate).format("YYYY년 MM월 DD일"));
     setNowMonth(e.activeStartDate);
     fetchData(e.activeStartDate);
   }
+
+  useEffect(() => {if(mark.length > 0) {console.log(mark);}}, [mark]);
 
   return (
         <Calendar 
