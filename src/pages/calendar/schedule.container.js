@@ -48,6 +48,18 @@ function Schedule(){
     }, [response]);
 
 
+    useEffect(() => {
+        console.log(markedDate);
+        if(markedDate.length === 0 && response.length !== 0){
+            response.map((e) => {
+                if(markedDate.findIndex((el) => e.scheduleDate === el) === -1){
+                    setMarkedDate((prev) => [...prev, e.scheduleDate])
+                }
+            });
+        }
+    }, [response]);
+
+
     // 달을 변경할 때마다 데이터 불러오기
     const findMonthSchdule = async (e) => {
         setMarkedDate([]);

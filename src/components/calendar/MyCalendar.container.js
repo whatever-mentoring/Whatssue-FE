@@ -27,6 +27,7 @@ export default function MyCalendar ({setMarkedDate, mark, findSchedule, findMont
 
   // 아이콘으로 달 변경
   const handleDate = (e) => {
+    setMarkedDate([]);
     findMonthSchdule(e.target.id);
   };
 
