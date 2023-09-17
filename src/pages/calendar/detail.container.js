@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import * as S from './detail.styles.js';
 import { useNavigate, useLocation } from "react-router-dom";
+import moment from "moment";
+import 'react-datepicker/dist/react-datepicker.css';
+import './customDatePicker.css';
+import { StyledDatePicker } from "./detail.styles.js";
 import axios from "axios";
 
 import close from "../../assets/close.png";
@@ -11,7 +15,16 @@ function Detail (){
     const navigate = useNavigate();
     const location = useLocation();
 
+    const hourList = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+    const minuteList = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55'];
+
+    const [time, setTime] = useState({
+        hour: '01',
+        minute: '00',
+        zone: 'AM'
+    })
     const [data, setData] = useState({});
+    const [startDate, setStartDate] = useState(new Date());
     const [isModify, setIsModify] = useState(false);
 
     // 상세 정보 받아오기
@@ -21,6 +34,7 @@ function Detail (){
             const response = await axios.get(`http://115.85.183.74:8090/api/schedule/${parseInt(location.state)}`)
             console.log(response);
             setData(response.data);
+            setStartDate(new Date(response.data.scheduleDate));
         }
         fetchData();
     }, []);
@@ -30,8 +44,8 @@ function Detail (){
         const requestData = {
             "scheduleTitle": data.scheduleTitle,
             "scheduleContent": data.scheduleContent,
-            "scheduleDate": data.scheduleDate,
-            "scheduleTime": `${data.scheduleTime.split(":")[0]}:${data.scheduleTime.split(":")[1]}`
+            "scheduleDate": moment(startDate).format("YYYY-MM-DD"),
+            "scheduleTime": formatShortTime(time)
         }
         console.log(requestData);
         const response = await axios.patch(
@@ -71,11 +85,26 @@ function Detail (){
     const formatTime = (getTime) => {
         if(getTime){
             const [hour, minute] = getTime.split(":");
-            const formattedHour = parseInt(hour) >= 12 ? parseInt(hour) - 12 : parseInt(hour);
+            const formattedHour = parseInt(hour) > 12 ? parseInt(hour) - 12 : parseInt(hour);
             const period = parseInt(hour) >= 12 ? "PM" : "AM";
 
             return `${formattedHour < 10 ? `0${formattedHour}` : formattedHour}:${minute} ${period}`;
         }
+    }
+
+    // HH:MM AM | PM => HH:MM
+    function formatShortTime (getTime){
+        let newHour = getTime.hour;
+        if(getTime.zone === 'PM' && parseInt(getTime.hour) !== 12){
+            newHour = `${parseInt(getTime.hour) + 12}`;
+        } else if(getTime.zone === 'AM' && parseInt(getTime.hour) === 12){
+            newHour = '00';
+        } else if(getTime.zone === 'AM' && parseInt(getTime.hour) < 10){
+            newHour = `0${parseInt(getTime.hour)}`;
+        }
+        setTime((prev) => ({...prev, hour: newHour}));
+
+        return `${newHour}:${time.minute}`;
     }
 
     return(
@@ -96,7 +125,32 @@ function Detail (){
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <S.ScheduleFirstTd><img src={clock}/></S.ScheduleFirstTd>
-                        <S.ScheduleTd><S.DateTxt>{formatDate(data.scheduleDate)}</S.DateTxt><S.TimeTxt>{formatTime(data.scheduleTime)}</S.TimeTxt></S.ScheduleTd>
+                        <S.ScheduleTd>
+                            <S.DateTxt>
+                                <StyledDatePicker
+                                    formatWeekDay={(nameOfDay) => nameOfDay.substring(0, 1)}
+                                    showYearDropdown
+                                    scrollableYearDropdown
+                                    yearDropdownItemNumber={100}
+                                    dateFormat="yyyy년 MM월 dd일"
+                                    shouldCloseOnSelect
+                                    selected={startDate}
+                                    onChange={date => setStartDate(date)}
+                                />
+                            </S.DateTxt>
+                            <S.TimeTxt>
+                                <S.TimeSelect onChange={(e) => setTime((prev) => ({...prev, hour: e.target.value}))}>
+                                    {hourList.map((e) => <option value={e}>{e}</option>)}
+                                </S.TimeSelect>
+                                <S.TimeSelect onChange={(e) => setTime((prev) => ({...prev, minute: e.target.value}))}>
+                                    {minuteList.map((e) => <option value={e}>{e}</option>)}
+                                </S.TimeSelect>
+                                <S.TimeSelect onChange={(e) => setTime((prev) => ({...prev, zone: e.target.value}))}>
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                                </S.TimeSelect>
+                            </S.TimeTxt>
+                        </S.ScheduleTd>
                     </S.ScheduleTr>
                     <S.ScheduleTr>
                         <td><img src={pencil}/></td>
