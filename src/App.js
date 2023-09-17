@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import Menu from "./components/nav/Nav";
+
 import Main from "./pages/main.container";
 import Login from "./pages/user/login.container";
 import Join from './pages/user/join.container';
@@ -17,6 +19,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Menu/>
         <Routes>
           <Route path='/' element={<Main/>}></Route>
 
