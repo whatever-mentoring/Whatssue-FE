@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import DatePicker from "react-datepicker";
 
 export const MainWrapper = styled.div`
     width: 100%;
@@ -83,6 +84,18 @@ export const TitleTxt = styled.div`
     font-weight: bold;
 `;
 
+export const TimeSelect = styled.select`
+    background-color: #171717;
+    border: 1px solid #171717;
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+
+    &:focus{
+        outline: none;
+    }
+`;
+
 export const TitleLenTxt = styled.div`
 font-size: 12px;
 color: #51F8C4;
@@ -152,4 +165,23 @@ export const DeleteBtn = styled.div`
     text-align: center;
     font-size: 15px;
     font-weight: bold;
+`;
+
+export const StyledDatePicker = styled(DatePicker)`
+    display: flex;
+    align-items: center;
+    border: 1px solid colors.$GRAY6;
+    border-radius: 4px;
+    background-color: #171717;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+
+    &:focus {
+    border: 2px solid #171717;
+    }
 `;
