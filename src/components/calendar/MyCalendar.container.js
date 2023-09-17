@@ -27,13 +27,11 @@ export default function MyCalendar ({setMarkedDate, mark, findSchedule, findMont
 
   // 아이콘으로 달 변경
   const handleDate = (e) => {
-    setMarkedDate([]);
     findMonthSchdule(e.target.id);
   };
 
   // 일정 클릭으로 달 변경
   const handleMonthChange = (e) => {
-    console.log(e);
     setMarkedDate([]);
     onChange(e.activeStartDate);
     setNowDate(moment(e.activeStartDate).format("YYYY년 MM월 DD일"));

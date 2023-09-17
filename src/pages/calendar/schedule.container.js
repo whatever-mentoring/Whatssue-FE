@@ -34,6 +34,7 @@ function Schedule(){
     }
 
     useEffect(() => {fetchData(value);}, []);
+    useEffect(() => {setMarkedDate([]); fetchData(nowMonth);}, [nowMonth]);
 
     useEffect(() => {
         console.log(markedDate);
@@ -50,17 +51,17 @@ function Schedule(){
     // 달을 변경할 때마다 데이터 불러오기
     const findMonthSchdule = async (e) => {
         setMarkedDate([]);
-        const currentDate = nowMonth;
+        let currentDate = value;
 
         if(e === "p"){
-            currentDate.setMonth(nowMonth.getMonth() - 1);
+            currentDate.setMonth(value.getMonth() - 1);
         } else {
-            currentDate.setMonth(nowMonth.getMonth() + 1);
+            currentDate.setMonth(value.getMonth() + 1);
         }
 
         setNowMonth(new Date(currentDate));
 
-        fetchData(new Date(currentDate));
+        // fetchData(new Date(currentDate));
         // const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/month:${moment(nowMonth).format("YYYY-MM")}`)
         // console.log(response);
         // setResponse(response.data);
