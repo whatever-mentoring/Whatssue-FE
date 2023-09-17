@@ -108,3 +108,80 @@ export const Txt = styled.div`
     color: #fff;
     text-align: center;
 `;
+
+
+// 모달창
+export const ModalWrapper = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ModalBox = styled.div`
+    background-color: #fff;
+    border-radius: 10px;
+    width: 90vw;
+    height: 20vh;
+    z-index: 101;
+
+    position: absolute;
+    top: 40vh;
+    left: 5vw;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ModalCloseBtn = styled.div`
+    position: relative;
+`;
+
+export const ModalCloseImg = styled.img`
+    position: absolute;
+    // bottom: 3vh;
+    left: 35vw;
+`;
+
+export const ModalTxt = styled.div`
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const ModalLine = styled.div`
+    width: 3px;
+    height: 29px;
+    background-color: #51F8C4;
+`;
+
+export const ModalTitle = styled.div`
+    font-size: 20px;
+    font-weight: bold;
+    color: #171717;
+    margin: 0 2vw;
+`;
+
+export const ModalReasonTxt = styled.div`
+    font-size: 11px;
+    color: #5f5f5f;
+    height: 15%;
+`;
+
+export const ModalReasonContent = styled.div`
+    font-size: 13px;
+    color: #000;
+    height: 20%;
+`;

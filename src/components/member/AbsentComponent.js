@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function JoinComponent () {
+export default function AbsentComponent ({setIsModal}) {
     return(
-        <MemberContent>
+        <MemberContent onClick={(e) => setIsModal(true)}>
             <MemberBox>
                 <MemberLeftBox>
                     <MemberName>문해빈</MemberName>
