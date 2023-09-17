@@ -31,15 +31,21 @@ function Schedule(){
         const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/month:${moment(getDate).format("YYYY-MM")}`)
         console.log(response);
         setResponse(response.data);
-
-        response.data.map((e) => {
-            if(!markedDate.find((el) => e.scheduleDate === el)){
-                setMarkedDate((prev) => [...prev, e.scheduleDate])
-            }
-        });
     }
 
     useEffect(() => {fetchData(value);}, []);
+
+    useEffect(() => {
+        console.log(markedDate);
+        if(markedDate.length === 0 && response.length !== 0){
+            response.map((e) => {
+                if(markedDate.findIndex((el) => e.scheduleDate === el) === -1){
+                    setMarkedDate((prev) => [...prev, e.scheduleDate])
+                }
+            });
+        }
+    }, [response]);
+
 
     // 달을 변경할 때마다 데이터 불러오기
     const findMonthSchdule = async (e) => {
@@ -54,15 +60,17 @@ function Schedule(){
 
         setNowMonth(new Date(currentDate));
 
-        const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/month:${moment(nowMonth).format("YYYY-MM")}`)
-        console.log(response);
-        setResponse(response.data);
+        fetchData(new Date(currentDate));
+        // const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/month:${moment(nowMonth).format("YYYY-MM")}`)
+        // console.log(response);
+        // setResponse(response.data);
 
-        response.data.map((e) => {
-            if(!markedDate.find((el) => e.scheduleDate === el)){
-                setMarkedDate((prev) => [...prev, e.scheduleDate])
-            }
-        });
+        // response.data.map((e) => {
+        //     console.log(e.scheduleDate, markedDate);
+        //     if(!markedDate.find((el) => e.scheduleDate === el)){
+        //         setMarkedDate((prev) => [...prev, e.scheduleDate])
+        //     }
+        // });
     };
     
     // 해당 날짜 스케줄 찾기
@@ -73,7 +81,7 @@ function Schedule(){
     // PM & AM 형식으로 변경
     const formatTime = (getTime) => {
         const [hour, minute] = getTime.split(":");
-        const formattedHour = parseInt(hour) >= 12 ? parseInt(hour) - 12 : parseInt(hour);
+        const formattedHour = parseInt(hour) > 12 ? parseInt(hour) - 12 : parseInt(hour);
         const period = parseInt(hour) >= 12 ? "PM" : "AM";
 
         return `${formattedHour < 10 ? `0${formattedHour}` : formattedHour}:${minute} ${period}`;
@@ -85,7 +93,7 @@ function Schedule(){
             <S.GroupNameTxt>양파시 광산동</S.GroupNameTxt>
             <S.CalendarWrapper>
                 <S.CalendarBox>
-                    <MyCalendar mark={markedDate} findSchedule={findSchedule} findMonthSchdule={findMonthSchdule} fetchData={fetchData} value={value} onChange={onChange} setNowMonth={setNowMonth} setNowDate={setNowDate}/>
+                    <MyCalendar setMarkedDate={setMarkedDate} mark={markedDate} findSchedule={findSchedule} findMonthSchdule={findMonthSchdule} fetchData={fetchData} value={value} onChange={onChange} setNowMonth={setNowMonth} setNowDate={setNowDate}/>
                 </S.CalendarBox>
 
                     <S.DateTxt style={{'color': '#fff'}}>{nowDate} {`${weekDay[moment(value).format("e")]}요일`}</S.DateTxt>
