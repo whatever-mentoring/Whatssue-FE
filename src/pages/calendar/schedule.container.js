@@ -59,7 +59,6 @@ function Schedule(){
         }
     }, [response]);
 
-
     // 달을 변경할 때마다 데이터 불러오기
     const findMonthSchdule = async (e) => {
         setMarkedDate([]);
