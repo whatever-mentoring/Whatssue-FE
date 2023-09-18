@@ -68,7 +68,5 @@ export default function MyCalendar ({setMarkedDate, mark, findSchedule, findMont
         }}
         ></Calendar>
         
-      // </div>
-
   );
 }
