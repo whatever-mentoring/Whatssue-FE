@@ -15,6 +15,8 @@ import Manage from './pages/manage/manage.container';
 
 import Attendance from './pages/attendance/attendance.container';
 
+import Setting from './pages/setting/setting.container';
+
 function App() {
   return (
     <div className="App">
@@ -30,6 +32,8 @@ function App() {
           <Route path='/attendance' element={<Attendance/>}></Route>
 
           <Route path='/manage' element={<Manage/>}></Route>
+
+          <Route path='/setting' element={<Setting/>}></Route>
 
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/join' element={<Join/>}></Route>
