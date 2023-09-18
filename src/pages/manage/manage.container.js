@@ -12,15 +12,33 @@ import status from "../../assets/status.png";
 function Member () {
     const baseUrl = "http://115.85.183.74:8090";
     const [category, setCategory] = useState(1);
+
+    const [joinList, setJoinList] = useState([]);
     const [abssentList, setAbssentList] = useState([]);
-    const [isModal, setIsModal] = useState(false);
+    const [memberList, setMemberList] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(baseUrl + "/api/schedule/absent/list")
-            console.log(response);
-            if(response.status){
-                setAbssentList(response.data);
+            if(joinList.length === 0){
+                const response = await axios.get(baseUrl + "/api/member/join-list")
+                console.log(response);
+                if(response.status){
+                    setJoinList(response.data);
+                }
+            }
+            if(abssentList.length === 0){
+                const response2 = await axios.get(baseUrl + "/api/schedule/absent/list")
+                console.log(response2);
+                if(response2.status){
+                    setAbssentList(response2.data);
+                }
+            }
+            if(memberList.length === 0){
+                const response3 = await axios.get(baseUrl + "/api/member/manage")
+                console.log(response3);
+                if(response3.status){
+                    setMemberList(response3.data);
+                }
             }
         };
         fetchData();
@@ -35,16 +53,20 @@ function Member () {
             <S.AttendanceWrapper>
                 <S.AttendanceNav>
                     <S.AttendanceUl style={{'color': '#fff'}}>
-                        <S.AttendanceLi onClick={(e) => setCategory(1)}><S.AttendanceBox clicked={category === 1}>가입 요청(5)</S.AttendanceBox></S.AttendanceLi>
+                        <S.AttendanceLi onClick={(e) => setCategory(1)}><S.AttendanceBox clicked={category === 1}>가입 요청({joinList.length})</S.AttendanceBox></S.AttendanceLi>
                         <S.AttendanceLi onClick={(e) => setCategory(2)}><S.AttendanceBox clicked={category === 2}>공결({abssentList.length})</S.AttendanceBox></S.AttendanceLi>
                         <S.AttendanceLi onClick={(e) => setCategory(3)}><S.AttendanceBox clicked={category === 3}>멤버 목록</S.AttendanceBox></S.AttendanceLi>
                     </S.AttendanceUl>
                 </S.AttendanceNav>
                 {category === 1 ? (
-                    <JoinComponent/>
+                    joinList.length > 0 && (
+                        joinList.map((e, i) => (<JoinComponent joinList={e}/>))
+                    )
                 ) : (
                     category === 2 ? (
-                        <AbsentComponent setIsModal={setIsModal}/>
+                        abssentList.length > 0 && (
+                            abssentList.map((e, i) => (<AbsentComponent abssentList={e}/>))
+                        )
                     ) : (
                         <>
                             <S.MemberTitle>
@@ -58,18 +80,7 @@ function Member () {
                     )
                 )}
             </S.AttendanceWrapper>
-
-            {/* 모달창 */}
-            {isModal &&
-                (<S.ModalWrapper>
-                    <S.ModalBox>
-                        <S.ModalCloseBtn><S.ModalCloseImg onClick={(e) => setIsModal(false)} src={close} width="18px" height="18px"/></S.ModalCloseBtn>
-                        <S.ModalTxt><S.ModalLine></S.ModalLine><S.ModalTitle>와이어 프레임 작성 회의</S.ModalTitle></S.ModalTxt>
-                        <S.ModalReasonTxt>공결 신청 사유</S.ModalReasonTxt>
-                        <S.ModalReasonContent>긴히 쓸 일이 있어어용~ 제성합니당~</S.ModalReasonContent>
-                    </S.ModalBox>
-                </S.ModalWrapper>)
-            }
+            
         </S.MainWrapper>
     )
 }

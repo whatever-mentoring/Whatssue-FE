@@ -10,7 +10,7 @@ export default function Nav (){
     const [isOpen, setIsOpen] = useState(false);
 
     return(
-        <NavWrapper>
+        <NavWrapper> 
             <MenuImg onClick={(e) => setIsOpen(true)} src={menu} width="20px" height="20px"/>
 
             {
