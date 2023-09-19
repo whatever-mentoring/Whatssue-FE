@@ -12,15 +12,13 @@ import checkSquare from '../../../assets/checkSquare.png'
 
 
 function Attendance (){
-   
 
     return(
         <S.MainWrapper>
             <S.CheckIcon src={checkSquare}></S.CheckIcon>
-            <S.TitleTxt>와이어프레임 작성 회의</S.TitleTxt>
+            <S.TitleTxt>와이어 프레임 작성 회의</S.TitleTxt>
             <S.AttendanceNum/>
-            <S.AttendanceBtn>출석하기</S.AttendanceBtn>
-
+            <S.AttendanceBtn> 출석하기</S.AttendanceBtn>
         </S.MainWrapper>
     ) 
 }
