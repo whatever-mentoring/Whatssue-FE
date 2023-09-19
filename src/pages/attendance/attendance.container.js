@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import * as S from "./attendance.styles";
+import Menu from "../../components/nav/Nav"
 import Timer from "../../components/timer/Timer";
 
 import prev from "../../assets/prevIcon.png";
@@ -94,6 +95,7 @@ function Attendance (){
 
     return(
         <S.MainWrapper>
+            <Menu />
             <S.TitleWrapper>
                 <S.TitleTxt>나의 모임</S.TitleTxt>
                 <S.GroupWrapper><S.GroupName>양파시 광산동</S.GroupName><S.GroupRole><S.RoleBox><img width="20px" height="20px" src={status}/><S.RoleTxt>참여 상태</S.RoleTxt></S.RoleBox>관리자</S.GroupRole></S.GroupWrapper>

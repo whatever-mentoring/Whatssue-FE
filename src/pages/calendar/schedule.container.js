@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as S from './schedule.styles.js';
 import moment from 'moment';
+import Menu from "../../components/nav/Nav"
 import MyCalendar from '../../components/calendar/MyCalendar.container.js';
 
 import register from "../../assets/register.png";
@@ -35,18 +36,6 @@ function Schedule(){
 
     useEffect(() => {fetchData(value);}, []);
     useEffect(() => {setMarkedDate([]); fetchData(nowMonth);}, [nowMonth]);
-
-    useEffect(() => {
-        console.log(markedDate);
-        if(markedDate.length === 0 && response.length !== 0){
-            response.map((e) => {
-                if(markedDate.findIndex((el) => e.scheduleDate === el) === -1){
-                    setMarkedDate((prev) => [...prev, e.scheduleDate])
-                }
-            });
-        }
-    }, [response]);
-
 
     useEffect(() => {
         console.log(markedDate);
@@ -102,6 +91,7 @@ function Schedule(){
 
     return(
         <S.MainWrapper>
+            <Menu />
             <S.GroupNameTxt>양파시 광산동</S.GroupNameTxt>
             <S.CalendarWrapper>
                 <S.CalendarBox>

@@ -21,22 +21,18 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Menu/>
         <Routes>
           <Route path='/' element={<Main/>}></Route>
-
           <Route path='/calendar' element={<Schedule/>}></Route>
-          <Route path='/detail' element={<Detail/>}></Route>
-          <Route path='/register' element={<Register/>}></Route>
-
           <Route path='/attendance' element={<Attendance/>}></Route>
-
           <Route path='/manage' element={<Manage/>}></Route>
-
           <Route path='/setting' element={<Setting/>}></Route>
 
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/join' element={<Join/>}></Route>
+
+          <Route path='/detail' element={<Detail/>}></Route>
+          <Route path='/register' element={<Register/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
