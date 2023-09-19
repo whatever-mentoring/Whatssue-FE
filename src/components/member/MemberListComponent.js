@@ -1,30 +1,38 @@
 import styled from "styled-components";
+import axios from "axios";
 
 import close from "../../assets/close.png";
 
-export default function JoinComponent () {
+export default function JoinComponent ({memberList, deleteMember}) {
+    const totalNum = memberList.checkedCount + memberList.officialAbsentCount + memberList.absentCount;
+
+    // const deleteMember = async (e) => {
+    //     const response = await axios.delete(`http://115.85.183.74:8090/api/member/delete/${memberList.memberId}`);
+    //     console.log(response);
+    // }
+
     return(
         <MemberContent>
             <MemberBox>
                 <MemberLeftBox>
-                    <MemberName>문해빈</MemberName>
+                    <MemberName>{memberList.memberName}</MemberName>
                     <MemberAttendanceWrapper>
                         <MemberAttendanceBox>
                             <MemberCircle></MemberCircle>
-                            <MemberNum>11/19</MemberNum>
+                            <MemberNum>{memberList.checkedCount}/{totalNum}</MemberNum>
                         </MemberAttendanceBox>
                         <MemberAttendanceBox>
                             <MemberCircle2></MemberCircle2>
-                            <MemberNum>1/19</MemberNum>
+                            <MemberNum>{memberList.officialAbsentCount}/{totalNum}</MemberNum>
                         </MemberAttendanceBox>
                         <MemberAttendanceBox>
                             <MemberCircle3></MemberCircle3>
-                            <MemberNum>1/19</MemberNum>
+                            <MemberNum>{memberList.absentCount}/{totalNum}</MemberNum>
                         </MemberAttendanceBox>
                     </MemberAttendanceWrapper>
                 </MemberLeftBox>
                 <MemberBtnBox>
-                    <img width="17px" height="17px" src={close}/>
+                    <img width="17px" height="17px" src={close} onClick={deleteMember(memberList.memberId)}/>
                 </MemberBtnBox>
             </MemberBox>
         </MemberContent>
