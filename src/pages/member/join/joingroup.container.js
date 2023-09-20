@@ -14,7 +14,7 @@ function CreateGroup (){
             <S.ContentTxt color={"#FFFFFF"}>해당 계정으로</S.ContentTxt>
             <S.ContentTxt color={"#51F8C4"}>양파시 광산동</S.ContentTxt>
             <S.ContentTxt color={"#FFFFFF"}>모임에 가입 신청하시겠습니까?</S.ContentTxt>
-            <S.EmailInput placeholder="whatssue@gmail.com"/>
+            <S.EmailInput placeholder="ex) whatssue@gmail.com"/>
             <S.CreateBtn >모임 가입하기</S.CreateBtn>
         </S.MainWrapper>
     ) 

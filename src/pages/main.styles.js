@@ -20,6 +20,11 @@ export const TitleWrapper = styled.div`
 export const TitleTxt = styled.div`
     color: #fff;
     font-size: 13px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    
 `;
 
 export const GroupWrapper = styled.div`
@@ -30,7 +35,7 @@ export const GroupWrapper = styled.div`
 export const GroupName = styled.div`
     color: #51F8C4;
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 550;
 `;
 
 export const GroupRole = styled.div`
@@ -46,16 +51,29 @@ export const RoleBox = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    width:90px;
+    heigth:27px;
     margin: 0 1em;
     padding: 0.5em;
     background-color: #282828;
+    
     border-radius: 15px;
+    font-size: 13px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    
 `;
 
 export const RoleTxt = styled.div`
     white-space: nowrap;
     margin-left: 5px;
+    font-family: Noto Sans;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 `;
 
 export const ContentWrapper = styled.div`
@@ -76,6 +94,11 @@ export const ContentDateWrapper = styled.div`
 export const ContentDateTxt = styled.div`
     color: #fff;
     font-size: 13px;
+    font-family: Noto Sans;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
     `;
     
 export const DateBox = styled.div`
@@ -85,7 +108,7 @@ export const DateBox = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    margin: 2vh 0;
+    margin: 1vh 0;
 `;
 
 export const PrevDay = styled.div`
@@ -95,7 +118,7 @@ export const PrevDay = styled.div`
 export const NowDateTxt = styled.div`
     color: #fff;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 550;
 `;
 
 export const Nextday = styled.div`
@@ -104,10 +127,10 @@ export const Nextday = styled.div`
 
 export const TodayBtn = styled.div`
     color: #fff;
-    font-size: 15px;
+    font-size: 11px;
     background-color: #282828;
     border-radius: 30px;
-    padding: 0.3em 0;
+    padding: 0.5em 0;
     width: 18vw;
     margin: 0 36vw;
     white-space: nowrap;
@@ -118,9 +141,14 @@ export const TodayBtn = styled.div`
     text-align: center;
     justify-content: center;
 `;
+export const TodayImg = styled.img`
+    
+    height:9px;
+    margin-right:5px;
+`;
 
 export const ScheduleBox = styled.div`
-    margin: 1vh 0;
+    margin: 0vh 0;
 `;
 
 export const ScheduleWrapper = styled.div`
@@ -150,5 +178,10 @@ export const ScheduleLine = styled.div`
 `;
 
 export const ScheduleTxt = styled.div`
-    padding: 0.1em 0;
+    padding: 0.3em 0;
+    font-family: Noto Sans;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 `;

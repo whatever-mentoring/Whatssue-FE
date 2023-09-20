@@ -7,6 +7,7 @@ import prev from "../../assets/prevIcon.png";
 import next from "../../assets/nextIcon.png";
 import back from "../../assets/back.png";
 import status from "../../assets/status.png";
+import Menu from "../../components/nav/MemberNav.js"
 
 function Main (){
     const [nowDate, setNowDate] = useState(new Date);
@@ -45,6 +46,7 @@ function Main (){
 
     return(
         <S.MainWrapper>
+            <Menu />
             <S.TitleWrapper>
                 <S.TitleTxt>나의 모임</S.TitleTxt>
                 <S.GroupWrapper><S.GroupName>양파시 광산동</S.GroupName><S.GroupRole><S.RoleBox><img width="20px" height="20px" src={status}/><S.RoleTxt>참여 상태</S.RoleTxt></S.RoleBox>멤버</S.GroupRole></S.GroupWrapper>
@@ -53,11 +55,11 @@ function Main (){
                 <S.ContentDateWrapper>
                     <S.ContentDateTxt>오늘의 일정</S.ContentDateTxt>
                     <S.DateBox>
-                        <S.PrevDay onClick={handlePrevDate}><img width="20px" height="20px" src={prev}/></S.PrevDay>
+                        <S.PrevDay onClick={handlePrevDate}><img width="24px" height="24px" src={prev}/></S.PrevDay>
                         <S.NowDateTxt>{moment(nowDate).format("YYYY.MM.DD ")} {`${weekDay[moment(nowDate).format("e")]}요일`}</S.NowDateTxt>
-                        <S.Nextday onClick={handleNextDate}><img width="20px" height="20px" src={next}/></S.Nextday>
+                        <S.Nextday onClick={handleNextDate}><img width="24px" height="24px" src={next}/></S.Nextday>
                     </S.DateBox>
-                    <S.TodayBtn onClick={backToday}><img src={back}/><div>오늘</div></S.TodayBtn>
+                    <S.TodayBtn onClick={backToday}><S.TodayImg src={back}></S.TodayImg><div>오늘</div></S.TodayBtn>
                     <S.ScheduleBox>
                         <S.ScheduleWrapper style={{'color': '#fff'}}>
                         <S.ScheduleUl>
