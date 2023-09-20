@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import * as S from './detail.styles.js';
 import { useNavigate, useLocation } from "react-router-dom";
+import moment from "moment";
 import 'react-datepicker/dist/react-datepicker.css';
 import './customDatePicker.css';
+import { StyledDatePicker } from "./detail.styles.js";
 import axios from "axios";
 
 import close from "../../../assets/close.png";
