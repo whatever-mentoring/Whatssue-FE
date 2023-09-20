@@ -25,10 +25,6 @@ import Memberabsent from './pages/member/calendar/absent.container';
 import Nonregister from './pages/nonregister.container';
 import JoinGroup from './pages/member/join/joingroup.container'
 
-import Memberabsent from './pages/member/calendar/absent.container';
-
-import Nonregister from './pages/nonregister.container';
-import JoinGroup from './pages/member/join/joingroup.container'
 
 
 function App() {
