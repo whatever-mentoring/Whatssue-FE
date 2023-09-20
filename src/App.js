@@ -21,6 +21,12 @@ import Membercalendar from './pages/member/calendar/schedule.container';
 import Memberdetail from './pages/member/calendar/detail.container';
 import Memberattendance from './pages/member/calendar/attendance.container';
 
+import Memberabsent from './pages/member/calendar/absent.container';
+
+import Nonregister from './pages/nonregister.container';
+import JoinGroup from './pages/member/join/joingroup.container'
+
+
 function App() {
   return (
     <div className="App">
@@ -37,13 +43,21 @@ function App() {
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/join' element={<Join/>}></Route>
 
+
           <Route path='/detail' element={<Detail/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
+
           
           <Route path='/Membermain' element={<Membermain/>}></Route>
           <Route path='/Membercalendar' element={<Membercalendar/>}></Route>
           <Route path='/Memberdetail' element={<Memberdetail/>}></Route>
           <Route path='/Memberattendance' element={<Memberattendance/>}></Route>
+
+          <Route path='/Memberabsent' element={<Memberabsent/>}></Route>
+
+          <Route path='/Nonregister' element={<Nonregister/>}></Route>
+          <Route path='/JoinGroup' element={<JoinGroup/>}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>
