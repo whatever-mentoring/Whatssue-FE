@@ -31,6 +31,10 @@ function Attendance (){
     const [time, setTime] = useState(0); // 남은 시간 (단위: 초)
 
     const [response, setResponse] = useState([]);
+    const [nowSchedule, setNowSchedule] = useState({});
+    const [attendanceList, setAttendanceList] = useState([]);
+    const [officialAbsentList, setOfficialAbsentList] = useState([]);
+    const [absentList, setAbsentList] = useState([]);
 
     const fetchData = async (date) => {
         const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/date:${moment(date).format("YYYY-MM-DD")}`)
@@ -66,32 +70,53 @@ function Attendance (){
     useEffect(() => {
         console.log(scheduleId);
         // 출석 상세 조회
+        const fetchAttendanceList = async () => {
+            const list = await axios.get(baseUrl + `/api/schedule/${scheduleId}/attendance/result`)
+            if(list.status === 200){
+                console.log(list);
+                setAttendanceList(list.data.filter((e) => e.attendanceType === "출석"));
+                setOfficialAbsentList(list.data.filter((e) => e.attendanceType === "공결"));
+                setAbsentList(list.data.filter((e) => e.attendanceType === "결석"));
+            }
+        }
+        fetchAttendanceList();
     }, [scheduleId]);
 
-    // 출석 시작
     const startAttendance = async(e) => {
         setModalPage(2);
-        // 출석 시작 api
-        const atten = await axios.post(
-            baseUrl + `/api/schedule/${scheduleId}/attendance/start`
-        )
-        if(atten.status === 200){
-            console.log(atten.data);
-            setAttendanceCode(atten.data);
+
+        if(nowSchedule.checked){
+            // 출석 재시작 api
+            const atten = await axios.patch(
+                baseUrl + `/api/schedule/${scheduleId}/attendance/start`
+            )
+            if(atten.status === 200){
+                console.log(atten.data);
+                setAttendanceCode(atten.data);
+            }
+        }
+        else{
+            // 출석 시작 api
+            const atten2 = await axios.post(
+                baseUrl + `/api/schedule/${scheduleId}/attendance/start`
+            )
+            if(atten2.status === 200){
+                console.log(atten2.data);
+                setAttendanceCode(atten2.data);
+            }
         }
     };
 
     // 출석 종료
     const endAttendance = async() => {
         setIsModal(false);
-        console.log("출석 종료");
         setModalPage(1);
         const res = await axios.delete(baseUrl + `/api/schedule/${scheduleId}/attendance`);
         console.log(res);
         if(res.status === 200){
             fetchData(nowDate);
         }
-    }
+    };
 
     return(
         <S.MainWrapper>
@@ -115,12 +140,14 @@ function Attendance (){
                             {response.map((e) => (
                                 <S.ScheduleLi key={e.scheduleId} id={e.scheduleId} onClick={() => {
                                     if (!e.checked) {
-                                      setIsModal(true);
-                                      setScheduleId(e.scheduleId); // 이건 출석 종료됐을 때 하기
+                                        setIsModal(true);
+                                        setScheduleId(e.scheduleId);
+                                        setNowSchedule(e);
                                     } else {
-                                      setScheduleId(e.scheduleId);
+                                        setScheduleId(e.scheduleId);
+                                        setNowSchedule(e);
                                     }
-                                  }}>
+                                }}>
                                     {e.checked ? (<S.ScheduleImg width="20px" height="20px" src={checked}/>) : (<S.ScheduleImg width="20px" height="20px" src={notChecked}/>)}
                                     <S.ScheduleTxt>{e.scheduleTitle}</S.ScheduleTxt>
                                 </S.ScheduleLi>
@@ -129,6 +156,7 @@ function Attendance (){
                         </S.ScheduleWrapper>
                     </S.ScheduleBox>
                     {(scheduleId !== 0 && !isModal) && (
+                        <>
                         <S.AttendanceWrapper>
                         <S.AttendanceNav>
                             <S.AttendanceUl style={{'color': '#fff'}}>
@@ -138,28 +166,32 @@ function Attendance (){
                             </S.AttendanceUl>
                         </S.AttendanceNav>
                         <S.AttendanceNameWrapper>
-                            <S.AttendanceName>김준영</S.AttendanceName>
-                            <S.AttendanceName>김예진</S.AttendanceName>
-                            <S.AttendanceName>문해빈</S.AttendanceName>
-                            <S.AttendanceName>이해송</S.AttendanceName>
-                            <S.AttendanceName>지민혁</S.AttendanceName>
-                            <S.AttendanceName>김준영</S.AttendanceName>
-                            <S.AttendanceName>김예진</S.AttendanceName>
-                            <S.AttendanceName>문해빈</S.AttendanceName>
-                            <S.AttendanceName>이해송</S.AttendanceName>
-                            <S.AttendanceName>지민혁</S.AttendanceName>
-                            <S.AttendanceName>김준영</S.AttendanceName>
-                            <S.AttendanceName>김예진</S.AttendanceName>
-                            <S.AttendanceName>문해빈</S.AttendanceName>
-                            <S.AttendanceName>이해송</S.AttendanceName>
-                            <S.AttendanceName>지민혁</S.AttendanceName>
-                            <S.AttendanceName>김준영</S.AttendanceName>
-                            <S.AttendanceName>김예진</S.AttendanceName>
-                            <S.AttendanceName>문해빈</S.AttendanceName>
-                            <S.AttendanceName>이해송</S.AttendanceName>
-                            <S.AttendanceName>지민혁</S.AttendanceName>
+                            {
+                                category === 1 ? (
+                                    attendanceList.map((e, i) => (<S.AttendanceName key={i} >{e.memberName}</S.AttendanceName>))
+                                ) : (
+                                    category === 2 ? (
+                                        officialAbsentList.map((e, i) => (<S.AttendanceName key={i}>{e.memberName}</S.AttendanceName>))
+                                    ) : (
+                                        absentList.map((e, i) => (<S.AttendanceName key={i}>{e.memberName}</S.AttendanceName>))
+                                    )
+                                )
+                            }
                         </S.AttendanceNameWrapper>
                     </S.AttendanceWrapper>
+                    {
+                        category === 1 ? (
+                            <S.AttendanceMemberNum>{attendanceList.length} / {attendanceList.length + officialAbsentList.length + absentList.length}</S.AttendanceMemberNum>
+                        ) : (
+                            category === 2 ? (
+                                <S.AttendanceMemberNum>{officialAbsentList.length} / {attendanceList.length + officialAbsentList.length + absentList.length}</S.AttendanceMemberNum>
+                            ) : (
+                                <S.AttendanceMemberNum>{absentList.length} / {attendanceList.length + officialAbsentList.length + absentList.length}</S.AttendanceMemberNum>
+                            )
+                        )
+                    }
+                    <S.AttendanceRestart onClick={() => setIsModal(true)}>출석 재시작</S.AttendanceRestart>
+                    </>
                     )}
                 </S.ContentDateWrapper>
             </S.ContentWrapper>
@@ -169,19 +201,23 @@ function Attendance (){
                 (<S.ModalWrapper>
                     {modalPage === 1 ? 
                     (<S.ModalBox>
-                        <S.ModalTxt>출석을 시작하시겠습니까?</S.ModalTxt>
-                        <S.BtnWrapper>
-                            <S.CancleBtn onClick={(e) => {setIsModal(false); setScheduleId(0);}}>취소</S.CancleBtn>
-                            <S.CheckdBtn onClick={startAttendance}>확인</S.CheckdBtn>
-                        </S.BtnWrapper>
+                        <S.ModalInnerBox>
+                            <S.ModalTxt>출석을 시작하시겠습니까?</S.ModalTxt>
+                            <S.BtnWrapper>
+                                <S.CancleBtn onClick={(e) => {setIsModal(false); setScheduleId(0);}}>취소</S.CancleBtn>
+                                <S.CheckdBtn onClick={startAttendance}>확인</S.CheckdBtn>
+                            </S.BtnWrapper>
+                        </S.ModalInnerBox>
                     </S.ModalBox>)
                     : 
                     (<S.ModalBox>
-                        <S.AttendanceNum>{attendanceCode}</S.AttendanceNum>
-                        <S.AttendanceTimer><Timer endAttendance={endAttendance}/></S.AttendanceTimer>
-                        <S.DoneBtnWrapper>
-                            <S.DoneBtn onClick={endAttendance}>종료</S.DoneBtn>
-                        </S.DoneBtnWrapper>
+                        <S.ModalInnerBox>
+                            <S.AttendanceNum>{attendanceCode}</S.AttendanceNum>
+                            <S.AttendanceTimer><Timer endAttendance={endAttendance}/></S.AttendanceTimer>
+                            <S.DoneBtnWrapper>
+                                <S.DoneBtn onClick={endAttendance}>종료</S.DoneBtn>
+                            </S.DoneBtnWrapper>
+                        </S.ModalInnerBox>
                     </S.ModalBox>)}
                 </S.ModalWrapper>)
             }

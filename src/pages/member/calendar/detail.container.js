@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import * as S from './detail.styles.js';
 import { useNavigate, useLocation } from "react-router-dom";
+
+import 'react-datepicker/dist/react-datepicker.css';
+import './customDatePicker.css';
+
 import moment from "moment";
 import 'react-datepicker/dist/react-datepicker.css';
 import './customDatePicker.css';
 import { StyledDatePicker } from "./detail.styles.js";
+
 import axios from "axios";
 
 import close from "../../../assets/close.png";
@@ -77,6 +82,7 @@ function Detail (){
             <S.BtnWrapper>
                 <S.AttendanceBtn onClick={(e) => navigate("/Memberattendance")}>출석하기</S.AttendanceBtn>
                 <S.AbsentBtn onClick={(e) => navigate("/Memberabsent")}>공결 신청 하기</S.AbsentBtn>
+                <S.AbsentBtn >공결 신청 하기</S.AbsentBtn>
             </S.BtnWrapper>
         </S.MainWrapper>
     )

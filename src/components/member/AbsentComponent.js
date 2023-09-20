@@ -43,7 +43,7 @@ const MemberContent = styled.div`
 
 const MemberBox = styled.div`
     width: 100%;
-    height: 7vh;
+    height: 8vh;
     background-color: #282828;
     border-radius: 10px;
 
@@ -75,7 +75,7 @@ const MemberSchedule = styled.div`
     font-size: 11px;
     // margin: 0 2vw;
     white-space: nowrap;
-    width: 40%;
+    width: 30%;
 `;
 
 const MemberDate = styled.div`
@@ -83,7 +83,7 @@ const MemberDate = styled.div`
     // margin: 0 2vw;
     color: #51F8C4;
     white-space: nowrap;
-    width: 30%;
+    width: 40%;
     text-align: center;
 `
 
@@ -101,25 +101,25 @@ const MemberBtnBox = styled.div`
 `;
 
 const MemberAcceptBtn = styled.div`
-    height: calc(7vh * 0.6);
-    line-height: calc(7vh * 0.6);;
-    width: 15vw;
-    background-color: #51F8C4;
-    color: #171717;
-    margin: 0 1vw;
-    border-radius: 7px;
-    font-size: 11px;
+height: calc(7vh * 0.7);
+line-height: calc(7vh * 0.7);
+width: 17vw;
+background-color: #51F8C4;
+color: #171717;
+margin: 0 1vw;
+border-radius: 7px;
+font-size: 11px;
 `;
 
 const MemberDenyBtn = styled.div`
-    height: calc(7vh * 0.6);;
-    line-height: calc(7vh * 0.6);;
-    width: 15vw;
-    background-color: #FF4444;
-    color: #171717;
-    margin: 0 1vw;
-    border-radius: 7px;
-    font-size: 11px;
+height: calc(7vh * 0.7);
+line-height: calc(7vh * 0.7);
+width: 17vw;
+background-color: #FF4444;
+color: #171717;
+margin: 0 1vw;
+border-radius: 7px;
+font-size: 11px;
 `;
 
 
