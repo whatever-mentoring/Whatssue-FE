@@ -10,6 +10,18 @@ export const MainWrapper = styled.div`
     align-items: center;
 `;
 
+export const CloseBtn = styled.div`
+    color: #fff;
+    width: 100%;
+`;
+
+export const CloseImg = styled.img`
+    position: absolute;
+    top: 6.5vh;
+    right: 5%;
+    width: 1rem;
+    height: 1rem;
+`;
 
 export const CheckIcon = styled.img`
     height: 42px;
@@ -38,16 +50,21 @@ export const ReasonTxt = styled.div`
 `;
 
 export const ReasonInput = styled.textarea`
-    width: 97%;
+    width: 90%;
     height: 176px;
-    color: #51F8C4;
+    color: #FFFFFF;
     border-radius: 10px;
     border: 1px solid #FFF;
     background: #171717;
     text-align:left;
     font-size: 15px;
-    padding : 17px 12px 17px 12px; 
+    padding : 5vw 5vw 5vw 5vw; 
     font-weight: 500;
+    font-family: 'Noto Sans KR', sans-serif;
+
+    &:focus{
+        outline:none;
+    }
 `;
 
 export const AbsentBtn = styled.button`

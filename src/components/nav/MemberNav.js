@@ -20,12 +20,9 @@ export default function Nav (){
                             <ImgWrapper><CloseImg onClick={(e) => setIsOpen(false)} src={close} width="20px" height="20px"/></ImgWrapper>
                             <ListWrapper>
                                 <ListUl>
-                                    <ListLi onClick={() => {navigate("/"); setIsOpen(false);}}>홈</ListLi>
-                                    <ListLi onClick={() => {navigate("/calendar"); setIsOpen(false);}}>캘린더</ListLi>
-                                    <ListLi onClick={() => {navigate("/attendance"); setIsOpen(false);}}>출석</ListLi>
+                                    <ListLi onClick={() => {navigate("/Membermain"); setIsOpen(false);}}>홈</ListLi>
+                                    <ListLi onClick={() => {navigate("/Membercalendar"); setIsOpen(false);}}>캘린더</ListLi>
                                     <ListLi onClick={() => {navigate("/"); setIsOpen(false);}}>회계</ListLi>
-                                    <ListLi onClick={() => {navigate("/manage"); setIsOpen(false);}}>멤버 관리</ListLi>
-                                    <ListLi onClick={() => {navigate("/setting"); setIsOpen(false);}}>설정</ListLi>
                                 </ListUl>
                             </ListWrapper>
                         </ModalBox>
