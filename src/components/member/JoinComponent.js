@@ -1,7 +1,27 @@
+import axios from "axios";
 import { useEffect } from "react";
 import styled from "styled-components";
 
 export default function JoinComponent (props) {
+    const baseUrl = "http://115.85.183.74:8090"
+
+    const acceptJoin = async (e) => {
+        const response = await axios.post(baseUrl + `/api/member/join-accept/${props.joinList.clubJoinRequestId}`)
+        if(response.status === 200){
+            console.log(response);
+            props.fetchData();
+            alert("수락되었습니다");
+        }
+    };
+
+    const denyJoin = async (e) => {
+        const response = await axios.post(baseUrl + `/api/member/join-refuse/${props.joinList.clubJoinRequestId}`)
+        if(response.status === 200){
+            console.log(response);
+            props.fetchData();
+            alert("거절되었습니다");
+        }
+    }
 
     return(
         <MemberContent key={props.joinList.clubJoinRequestId}>
@@ -11,8 +31,8 @@ export default function JoinComponent (props) {
                     <MemberDate>{props.joinList.requestDate}</MemberDate>
                 </MemberLeftBox>
                 <MemberBtnBox>
-                    <MemberAcceptBtn>수락</MemberAcceptBtn>
-                    <MemberDenyBtn>거절</MemberDenyBtn>
+                    <MemberAcceptBtn onClick={acceptJoin}>수락</MemberAcceptBtn>
+                    <MemberDenyBtn onClick={denyJoin}>거절</MemberDenyBtn>
                 </MemberBtnBox>
             </MemberBox>
         </MemberContent>
@@ -26,7 +46,7 @@ const MemberContent = styled.div`
 
 const MemberBox = styled.div`
     width: 100%;
-    height: 7vh;
+    height: 8vh;
     background-color: #282828;
     border-radius: 10px;
     margin: 2vh 0;
@@ -52,13 +72,13 @@ const MemberLeftBox = styled.div`
 
 const MemberName = styled.div`
     font-size: 17px;
-    width: 35%;
+    width: 40%;
 `;
 
 const MemberDate = styled.div`
     font-size: 11px;
     // margin: 0 2vw;
-    width: 65%;
+    width: 60%;
 `;
 
 const MemberBtnBox = styled.div`
@@ -75,9 +95,9 @@ const MemberBtnBox = styled.div`
 `;
 
 const MemberAcceptBtn = styled.div`
-    height: calc(7vh * 0.6);
-    line-height: calc(7vh * 0.6);;
-    width: 15vw;
+    height: calc(7vh * 0.7);
+    line-height: calc(7vh * 0.7);
+    width: 17vw;
     background-color: #51F8C4;
     color: #171717;
     margin: 0 1vw;
@@ -86,9 +106,9 @@ const MemberAcceptBtn = styled.div`
 `;
 
 const MemberDenyBtn = styled.div`
-    height: calc(7vh * 0.6);;
-    line-height: calc(7vh * 0.6);;
-    width: 15vw;
+    height: calc(7vh * 0.7);
+    line-height: calc(7vh * 0.7);
+    width: 17vw;
     background-color: #FF4444;
     color: #171717;
     margin: 0 1vw;

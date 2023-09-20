@@ -18,32 +18,31 @@ function Member () {
     const [abssentList, setAbssentList] = useState([]);
     const [memberList, setMemberList] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            if(joinList.length === 0){
-                const response = await axios.get(baseUrl + "/api/member/join-list")
-                console.log(response);
-                if(response.status){
-                    setJoinList(response.data);
-                }
+    const fetchData = async () => {
+        if(joinList.length === 0){
+            const response = await axios.get(baseUrl + "/api/member/join-list")
+            console.log(response);
+            if(response.status){
+                setJoinList(response.data);
             }
-            if(abssentList.length === 0){
-                const response2 = await axios.get(baseUrl + "/api/schedule/absent/list")
-                console.log(response2);
-                if(response2.status){
-                    setAbssentList(response2.data);
-                }
+        }
+        if(abssentList.length === 0){
+            const response2 = await axios.get(baseUrl + "/api/schedule/absent/list")
+            console.log(response2);
+            if(response2.status){
+                setAbssentList(response2.data);
             }
-            if(memberList.length === 0){
-                const response3 = await axios.get(baseUrl + "/api/member/manage")
-                console.log(response3);
-                if(response3.status){
-                    setMemberList(response3.data);
-                }
+        }
+        if(memberList.length === 0){
+            const response3 = await axios.get(baseUrl + "/api/member/manage")
+            console.log(response3);
+            if(response3.status){
+                setMemberList(response3.data);
             }
-        };
-        fetchData();
-    }, []);
+        }
+    };
+
+    useEffect(() => {fetchData()}, []);
 
     const deleteMember = async (e) => {
         const response = await axios.delete(`http://115.85.183.74:8090/api/member/delete/${e}`);
@@ -75,7 +74,7 @@ function Member () {
                 </S.AttendanceNav>
                 {category === 1 ? (
                     joinList.length > 0 && (
-                        joinList.map((e, i) => (<JoinComponent joinList={e}/>))
+                        joinList.map((e, i) => (<JoinComponent fetchData={fetchData} joinList={e}/>))
                     )
                 ) : (
                     category === 2 ? (
