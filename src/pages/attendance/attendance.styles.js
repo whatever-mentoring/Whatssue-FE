@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MainWrapper = styled.div`
     width: 100%;
-    height: 100vh;
+    // height: 100vh;
     background-color: #171717;
 
 `;
@@ -159,7 +159,7 @@ export const ScheduleTxt = styled.div`
 `;
 
 export const AttendanceWrapper = styled.div`
-
+    height: 35vh;
 `;
 
 export const AttendanceNav = styled.div`
@@ -194,15 +194,37 @@ export const AttendanceBox = styled.div`
 `;
 
 export const AttendanceNameWrapper = styled.div`
-    height: 100%;
+    // height: 100%;
 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 
     text-align: center;
-    align-items: center;
+    // align-items: center;
     justify-content: center;
+`;
+
+export const AttendanceMemberNum= styled.div`
+    width: 100%;
+    height: 8vh;
+    line-height: 8vh;
+
+    color: #51F8C4;
+    font-size: 15px;
+
+`;
+
+export const AttendanceRestart= styled.div`
+    width: 100%;
+    height: 8vh;
+    line-height: 8vh;
+    
+    background-color: #51F8C4;
+    border-radius: 10px;
+    color: #171717;
+    font-weight: bold;
+    font-size: 15px;
 `;
 
 export const AttendanceName = styled.div`
@@ -228,37 +250,51 @@ export const ModalWrapper = styled.div`
 export const ModalBox = styled.div`
     background-color: #fff;
     border-radius: 10px;
-    width: 90vw;
-    height: 20vh;
+    width: 80vw;
+    height: 25vh;
     z-index: 101;
 
     position: absolute;
-    top: 40vh;
-    left: 5vw;
+    top: 35vh;
+    left: 10vw;
+
+    // display: flex;
+    // flex-direction: column;
+    // text-align: center;
+    // justify-content: center;
+    // align-items: center;
+`;
+
+export const ModalInnerBox = styled.div`
+    height: 100%;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
-    text-align: center;
     justify-content: center;
     align-items: center;
 `;
 
 export const ModalTxt = styled.div`
-    font-size: 20px;
+    font-size: 5vw;
     font-weight: bold;
     color: #171717;
-    margin-top: 2vh;
+    width: 100%;
+    height: 15vh;
+    line-height: 15vh;
+    text-align: center;
 `;
 
 export const BtnWrapper = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin-top: 4vh;
+    height: 10vh;
+    // margin-top: 4vh;
 
     text-align: center;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 `;
 
 export const DoneBtnWrapper = styled.div`
@@ -272,23 +308,23 @@ export const DoneBtnWrapper = styled.div`
 
 export const CancleBtn = styled.div`
     background-color: #e7e7e7;
-    height: 40%;
     color: #5F5F5F;
     font-size: 15px;
     font-weight: bold;
     border-radius: 7px;
-    padding: 4% 13%; 
+    padding: 2vh 11vw; 
+    white-space: nowrap;
     margin: 0 5vw;
 `;
 
 export const CheckdBtn = styled.div`
     background-color: #51F8C4;
-    height: 40%;
     color: #171717;
     font-size: 15px;
     font-weight: bold;
     border-radius: 7px;
-    padding: 4% 13%; 
+    padding: 2vh 11vw; 
+    white-space: nowrap;
     margin: 0 5vw;
 `;
 
