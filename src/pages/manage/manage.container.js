@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as S from "./manage.styles";
 import axios from "axios";
+import Menu from "../../components/nav/Nav"
 
 import JoinComponent from "../../components/member/JoinComponent";
 import AbsentComponent from "../../components/member/AbsentComponent";
@@ -43,9 +44,23 @@ function Member () {
         };
         fetchData();
     }, []);
+
+    const deleteMember = async (e) => {
+        const response = await axios.delete(`http://115.85.183.74:8090/api/member/delete/${e}`);
+        if(response.status === 200){
+            const newMember = await axios.get(baseUrl + "/api/member/manage")
+            console.log(newMember);
+            if(newMember.status){
+                setMemberList(newMember.data);
+            }
+            alert('삭제 완료되었습니다');
+        }
+        console.log(response);
+    }
     
     return(
         <S.MainWrapper>
+            <Menu />
             <S.TitleWrapper>
                 <S.TitleTxt>나의 모임</S.TitleTxt>
                 <S.GroupWrapper><S.GroupName>양파시 광산동</S.GroupName><S.GroupRole><S.RoleBox><img width="20px" height="20px" src={status}/><S.RoleTxt>참여 상태</S.RoleTxt></S.RoleBox>관리자</S.GroupRole></S.GroupWrapper>
@@ -75,7 +90,9 @@ function Member () {
                                 <S.Txt>공결</S.Txt>
                                 <S.Txt>결석</S.Txt>
                             </S.MemberTitle>
-                            <MemberListComponent/>
+                            {memberList.length > 0 && (
+                                memberList.map((e, i) => <MemberListComponent memberList={e} deleteMember={deleteMember}/>)
+                            )}
                         </>
                     )
                 )}

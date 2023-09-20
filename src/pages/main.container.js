@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import axios from "axios";
 import * as S from "./main.styles";
+import Menu from "../components/nav/Nav"
 
 import prev from "../assets/prevIcon.png";
 import next from "../assets/nextIcon.png";
@@ -45,6 +46,7 @@ function Main (){
 
     return(
         <S.MainWrapper>
+            <Menu />
             <S.TitleWrapper>
                 <S.TitleTxt>나의 모임</S.TitleTxt>
                 <S.GroupWrapper><S.GroupName>양파시 광산동</S.GroupName><S.GroupRole><S.RoleBox><img width="20px" height="20px" src={status}/><S.RoleTxt>참여 상태</S.RoleTxt></S.RoleBox>관리자</S.GroupRole></S.GroupWrapper>

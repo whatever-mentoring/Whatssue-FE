@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Menu from "../../components/nav/Nav"
 import * as S from "./setting.styles";
 
 import pencil from "../../assets/pencil.png";
@@ -15,6 +16,7 @@ function Setting (){
 
     return(
         <S.MainWrapper>
+            <Menu />
             <S.SettingWrapper>
                 <S.GroupWrapper>
                     <S.GroupTitle>모임 정보</S.GroupTitle>
