@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Menu from "./components/nav/Nav";
@@ -10,6 +10,10 @@ import Join from './pages/user/join.container';
 import Schedule from './pages/calendar/schedule.container';
 import Detail from './pages/calendar/detail.container';
 import Register from './pages/calendar/register.container';
+
+import Accounting from './pages/accounting/accounting.container';
+import AccountingRegister from './pages/accounting/accountingRegister.container';
+import ChargedRegister from './pages/accounting/chargedRegister.container';
 
 import Manage from './pages/manage/manage.container';
 
@@ -28,6 +32,13 @@ import JoinGroup from './pages/member/join/joingroup.container'
 
 
 function App() {
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+  useEffect(() => {
+    setScreenSize();
+  });
   return (
     <div className="App">
       <BrowserRouter>
@@ -39,6 +50,10 @@ function App() {
           <Route path='/setting' element={<Setting/>}></Route>
 
           <Route path='/setting' element={<Setting/>}></Route>
+
+          <Route path='/accounting' element={<Accounting/>}></Route>
+          <Route path='/accounting/register' element={<AccountingRegister/>}></Route>
+          <Route path='/charge/register' element={<ChargedRegister/>}></Route>
 
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/join' element={<Join/>}></Route>

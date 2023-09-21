@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import DatePicker from "react-datepicker";
 
 export const MainWrapper = styled.div`
     width: 100%;
@@ -24,10 +23,29 @@ export const CloseImg = styled.img`
 `;
 
 export const ContentWrapper = styled.div`
-    height: 70vh;
+    height: 78vh;
     width: 90%;
     margin: 0 5%;
 `;
+
+export const RegisterWrapper = styled.div`
+    width: 100%;
+    height: 25%;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const RegisterTitle = styled.div`
+    text-align: center;
+    font-size: 25px;
+    font-weight: 550;
+    color: #fff;
+    margin-top: 2vh;
+`
 
 export const Circle = styled.div`
 width: 10px;
@@ -55,11 +73,11 @@ export const ScheduleFirstTd = styled.td`
 `;
 
 export const ScheduleTd = styled.td`
-display: flex;
-width: 100%;
-// justify-content: space-between;
+    display: flex;
+    width: 100%;
+    // justify-content: space-between;
+    align-items: center;
 `;
-
 
 export const TitleInput = styled.input`
     width: 100%;
@@ -78,11 +96,21 @@ export const TitleInput = styled.input`
     }
 `;
 
+export const TitleLenTxt = styled.div`
+font-size: 12px;
+color: #51F8C4;
+`;
 
-export const TitleTxt = styled.div`
-    color: #fff;
-    font-size: 20px;
+export const DateTxt = styled.div`
+    font-size: 18px;
     font-weight: bold;
+
+`;
+
+export const TimeTxt = styled.div`
+    font-size: 18px;
+    font-weight: bold;
+
 `;
 
 export const TimeSelect = styled.select`
@@ -97,17 +125,12 @@ export const TimeSelect = styled.select`
     }
 `;
 
-export const TitleLenTxt = styled.div`
-font-size: 12px;
-color: #51F8C4;
-`;
-
 export const TimeInput = styled.input`
     background-color: #282828;
 `;
 
 export const ContentInput = styled.input`
-    width: 100%;
+    width: 50%;
     padding: 10px;
     color: #fff;
     background-color: #171717;
@@ -123,23 +146,13 @@ export const ContentInput = styled.input`
     }
 `
 
-export const DateTxt = styled.div`
-    font-size: 18px;
-    font-weight: bold;
-`;
-
-export const TimeTxt = styled.div`
-    font-size: 17px;
-    margin-left: 1em;
-`;
-
-export const ContentTxt = styled.div`
+export const ContentWon = styled.div`
     font-size: 15px;
-    color: #fff;
+    margin-left: 2vw;
 `;
 
 export const BtnWrapper = styled.div`
-    height: 20vh;
+    height: 12vh;
 `;
 
 export const ModifyBtn = styled.div`
@@ -166,23 +179,4 @@ export const DeleteBtn = styled.div`
     text-align: center;
     font-size: 15px;
     font-weight: bold;
-`;
-
-export const StyledDatePicker = styled(DatePicker)`
-    display: flex;
-    align-items: center;
-    border: 1px solid colors.$GRAY6;
-    border-radius: 4px;
-    background-color: #171717;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px;
-    color: #fff;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-
-    &:focus {
-    border: 2px solid #171717;
-    }
 `;
