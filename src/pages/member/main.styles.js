@@ -105,7 +105,7 @@ export const Nextday = styled.div`
 
 export const TodayBtn = styled.div`
     color: #fff;
-    font-size: 11px;
+    font-size: 12px;
     background-color: #282828;
     border-radius: 30px;
     padding: 0.5em 0;
@@ -120,13 +120,12 @@ export const TodayBtn = styled.div`
     justify-content: center;
 `;
 export const TodayImg = styled.img`
-    
-    height:9px;
-    margin-right:5px;
+    height: 9px;
+    margin-right: 5px;
 `;
 
 export const ScheduleBox = styled.div`
-    margin: 0vh 0;
+    margin: 1vh 0;
 `;
 
 export const ScheduleWrapper = styled.div`
