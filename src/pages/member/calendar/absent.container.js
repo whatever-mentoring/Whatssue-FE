@@ -7,13 +7,14 @@ import axios from "axios";
 import checkSquare from '../../../assets/absent.png'
 import { useNavigate } from "react-router-dom";
 
-
+import close from "../../../assets/close.png";
 
 function Absent (){
     const navigate = useNavigate();
 
     return(
         <S.MainWrapper>
+            <S.CloseBtn><S.CloseImg src={close} onClick={(e) => navigate("/Membercalendar")}/></S.CloseBtn>
             <S.CheckIcon src={checkSquare}></S.CheckIcon>
             <S.TitleTxt>와이어 프레임 작성 회의</S.TitleTxt>
             <S.TextWrapper>

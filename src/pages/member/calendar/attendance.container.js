@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react";
 import * as S from './attendance.style.js';
-
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import moment from "moment";
 
 import 'react-datepicker/dist/react-datepicker.css';
 import './customDatePicker.css';
 
 import axios from "axios";
-import checkSquare from '../../../assets/checkSquare.png'
+import checkSquare from '../../../assets/checkSquare.png';
+import close from "../../../assets/close.png";
 
 
 
 
 function Attendance (){
+    const navigate = useNavigate();
 
     return(
         <S.MainWrapper>
+            <S.CloseBtn><S.CloseImg src={close} onClick={(e) => navigate("/Membercalendar")}/></S.CloseBtn>
             <S.CheckIcon src={checkSquare}></S.CheckIcon>
             <S.TitleTxt>와이어 프레임 작성 회의</S.TitleTxt>
             <S.AttendanceNum/>

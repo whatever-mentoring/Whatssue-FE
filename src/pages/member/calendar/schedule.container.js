@@ -4,7 +4,7 @@ import axios from "axios";
 import * as S from './schedule.styles.js';
 import moment from 'moment';
 import MyCalendar from '../../../components/calendar/MyCalendar.container.js';
-
+import Menu from "../../../components/nav/MemberNav.js"
 
 
 function Schedule(){
@@ -102,6 +102,7 @@ function Schedule(){
 
     return(
         <S.MainWrapper>
+            <Menu />
             <S.GroupNameTxt>양파시 광산동</S.GroupNameTxt>
             <S.CalendarWrapper>
                 <S.CalendarBox>

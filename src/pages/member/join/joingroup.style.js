@@ -38,9 +38,13 @@ export const EmailInput = styled.input`
     border: 1px solid #51F8C4;
     background-color: #171717;
 
-    &::placeholder {
-        color: #51F8C4;
+    &:placeholder {
+        color: #5F5F5F;
       }
+
+    &:focus{
+        outline:none;
+    }
 `;
 export const CreateBtn = styled.button`
     width: 90%;

@@ -10,6 +10,19 @@ export const MainWrapper = styled.div`
     align-items: center;
 `;
 
+export const CloseBtn = styled.div`
+    color: #fff;
+    height: 10vh;
+    width: 100%;
+`;
+
+export const CloseImg = styled.img`
+    position: absolute;
+    top: 6.5vh;
+    right: 5%;
+    width: 1rem;
+    height: 1rem;
+`;
 
 export const CheckIcon = styled.img`
     height: 42px;
