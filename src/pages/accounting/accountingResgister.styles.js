@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const MainWrapper = styled.div`
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
     overflow: auto;
     background-color: #171717;
 

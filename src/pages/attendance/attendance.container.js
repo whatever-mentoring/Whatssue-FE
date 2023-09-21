@@ -129,11 +129,11 @@ function Attendance (){
                 <S.ContentDateWrapper>
                     <S.ContentDateTxt>오늘의 일정</S.ContentDateTxt>
                     <S.DateBox>
-                        <S.PrevDay onClick={handlePrevDate}><img width="20px" height="20px" src={prev}/></S.PrevDay>
+                        <S.PrevDay onClick={handlePrevDate}><img width="24px" height="24px" src={prev}/></S.PrevDay>
                         <S.NowDateTxt>{moment(nowDate).format("YYYY.MM.DD ")} {`${ weekDay[moment(nowDate).format("e")]}요일`}</S.NowDateTxt>
-                        <S.Nextday onClick={handleNextDate}><img width="20px" height="20px" src={next}/></S.Nextday>
+                        <S.Nextday onClick={handleNextDate}><img width="24px" height="24px" src={next}/></S.Nextday>
                     </S.DateBox>
-                    <S.TodayBtn onClick={backToday}><img src={back}/><div>오늘</div></S.TodayBtn>
+                    <S.TodayBtn onClick={backToday}><S.TodayImg src={back}/><div>오늘</div></S.TodayBtn>
                     <S.ScheduleBox>
                         <S.ScheduleWrapper style={{'color': '#fff'}}>
                         <S.ScheduleUl>
