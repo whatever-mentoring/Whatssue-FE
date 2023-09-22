@@ -62,6 +62,7 @@ export const RoleTxt = styled.div`
 
 export const AttendanceWrapper = styled.div`
     width: 90%;
+    height: 85vh;
     margin: 0 5%;
 `;
 

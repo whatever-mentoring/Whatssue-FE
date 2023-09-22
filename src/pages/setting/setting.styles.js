@@ -78,7 +78,7 @@ export const GroupModifyIcon = styled.img`
 
 export const InviteLinkWrapper = styled.div`
     width: 100%;
-    height: 25vh;
+    height: 75vh;
 `;
 
 export const LinkTitle = styled.div`

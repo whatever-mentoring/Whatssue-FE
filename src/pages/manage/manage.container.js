@@ -19,6 +19,7 @@ function Member () {
     const [memberList, setMemberList] = useState([]);
 
     const fetchData = async () => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
         if(joinList.length === 0){
             const response = await axios.get(baseUrl + "/api/member/join-list")
             console.log(response);
@@ -45,8 +46,10 @@ function Member () {
     useEffect(() => {fetchData()}, []);
 
     const deleteMember = async (e) => {
-        const response = await axios.delete(`http://115.85.183.74:8090/api/member/delete/${e}`);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+        const response = await axios.delete(baseUrl + `/api/member/delete/${e}`);
         if(response.status === 200){
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
             const newMember = await axios.get(baseUrl + "/api/member/manage")
             console.log(newMember);
             if(newMember.status){

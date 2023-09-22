@@ -51,15 +51,7 @@ function Accounting () {
                             <S.MoneyHistoryTitle>입/출금 내역</S.MoneyHistoryTitle>
                             <S.MoneyHistoryContent>
                                 <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
+                                
                             </S.MoneyHistoryContent>
                         </S.MoneyHistoryWrapper>
                     </S.ContentWrapper>
