@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import * as S from "./attendance.styles";
-import Menu from "../../components/nav/Nav"
-import Timer from "../../components/timer/Timer";
+import Menu from "../../../components/nav/Nav"
+import Timer from "../../../components/timer/Timer";
 
-import prev from "../../assets/prevIcon.png";
-import next from "../../assets/nextIcon.png";
-import back from "../../assets/back.png";
-import status from "../../assets/status.png";
-import checked from "../../assets/checked.png";
-import notChecked from "../../assets/notChecked.png";
+import prev from "../../../assets/prevIcon.png";
+import next from "../../../assets/nextIcon.png";
+import back from "../../../assets/back.png";
+import status from "../../../assets/status.png";
+import checked from "../../../assets/checked.png";
+import notChecked from "../../../assets/notChecked.png";
 
 function Attendance (){
     const navigate = useNavigate();

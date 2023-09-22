@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Menu from "../../components/nav/Nav"
+import Menu from "../../../components/nav/Nav"
 import * as S from "./setting.styles";
 
-import pencil from "../../assets/pencil.png";
-import link from "../../assets/link.png";
-import linkPlus from "../../assets/linkPlus.png";
+import pencil from "../../../assets/pencil.png";
+import link from "../../../assets/link.png";
+import linkPlus from "../../../assets/linkPlus.png";
 
 function Setting (){
     const [isModal, setIsModal] = useState(false);

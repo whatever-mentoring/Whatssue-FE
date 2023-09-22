@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import axios from "axios";
 import * as S from "./main.styles";
-import Menu from "../components/nav/Nav"
+import Menu from "../../components/nav/Nav"
 
-import prev from "../assets/prevIcon.png";
-import next from "../assets/nextIcon.png";
-import back from "../assets/back.png";
-import status from "../assets/status.png";
+import prev from "../../assets/prevIcon.png";
+import next from "../../assets/nextIcon.png";
+import back from "../../assets/back.png";
+import status from "../../assets/status.png";
 
 function Main (){
     const [nowDate, setNowDate] = useState(new Date);

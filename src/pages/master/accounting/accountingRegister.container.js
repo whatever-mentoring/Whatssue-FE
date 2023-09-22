@@ -4,11 +4,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 
-import close from "../../assets/close.png";
-import clock from "../../assets/clock.png";
-import exchange from "../../assets/exchange.png";
-import whiteMoneyCircle from "../../assets/whiteMoneyCircle.png";
-import moneyCircle from "../../assets/moneyCircle.png";
+import close from "../../../assets/close.png";
+import clock from "../../../assets/clock.png";
+import exchange from "../../../assets/exchange.png";
+import whiteMoneyCircle from "../../../assets/whiteMoneyCircle.png";
+import moneyCircle from "../../../assets/moneyCircle.png";
 
 function AccountingRegister (){
     const navigate = useNavigate();

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import * as S from "./manage.styles";
 import axios from "axios";
-import Menu from "../../components/nav/Nav"
+import Menu from "../../../components/nav/Nav"
 
-import JoinComponent from "../../components/member/JoinComponent";
-import AbsentComponent from "../../components/member/AbsentComponent";
-import MemberListComponent from "../../components/member/MemberListComponent";
+import JoinComponent from "../../../components/member/JoinComponent";
+import AbsentComponent from "../../../components/member/AbsentComponent";
+import MemberListComponent from "../../../components/member/MemberListComponent";
 
-import close from "../../assets/blackClose.png"
-import status from "../../assets/status.png";
+import close from "../../../assets/blackClose.png"
+import status from "../../../assets/status.png";
 
 function Member () {
     const baseUrl = "http://115.85.183.74:8090";
