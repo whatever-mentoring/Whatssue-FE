@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as S from './schedule.styles.js';
 import moment from 'moment';
-import Menu from "../../components/nav/Nav"
-import MyCalendar from '../../components/calendar/MyCalendar.container.js';
+import Menu from "../../../components/nav/Nav"
+import MyCalendar from '../../../components/calendar/MyCalendar.container.js';
 
-import register from "../../assets/register.png";
+import register from "../../../assets/register.png";
 
 function Schedule(){
     const [value, onChange] = useState(new Date());

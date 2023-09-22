@@ -2,15 +2,13 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "./accounting.styles";
 import axios from "axios";
-import Menu from "../../components/nav/Nav";
-import AccountingComponent from "../../components/accounting/AccountingComponent";
-import ChargedComponent from "../../components/accounting/ChargedComponent";
-import ChargedDetailComponent from "../../components/accounting/ChargedDetailComponent";
+import Menu from "../../../components/nav/Nav";
+import AccountingComponent from "../../../components/accounting/AccountingComponent";
+import ChargedComponent from "../../../components/accounting/ChargedComponent";
+import ChargedDetailComponent from "../../../components/accounting/ChargedDetailComponent";
 
-import status from "../../assets/status.png";
-import register from "../../assets/register.png";
-import moneyPlus from "../../assets/moneyPlus.png";
-import moneyMinus from "../../assets/moneyMinus.png";
+import status from "../../../assets/status.png";
+import register from "../../../assets/register.png";
 
 function Accounting () {
     const navigate = useNavigate();
@@ -51,15 +49,7 @@ function Accounting () {
                             <S.MoneyHistoryTitle>입/출금 내역</S.MoneyHistoryTitle>
                             <S.MoneyHistoryContent>
                                 <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
-                                <AccountingComponent/>
+                                
                             </S.MoneyHistoryContent>
                         </S.MoneyHistoryWrapper>
                     </S.ContentWrapper>

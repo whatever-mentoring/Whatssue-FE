@@ -10,14 +10,14 @@ export const MainWrapper = styled.div`
 export const TitleWrapper = styled.div`
     color: #fff;
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 550;
     height: 15vh;
     text-align: center;
     line-height: 18vh;
 `;
     
 export const MainBox = styled.div`
-    height: 80vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -102,7 +102,7 @@ export const IdCheckBtn = styled.div`
 export const NextBtn = styled.button`
     width: 100%;
     height: 8vh;
-    margin-top: 5vh;
+    margin: 5vh 0;
     border-radius: 10px;
     border: none;
     font-size: 15px;

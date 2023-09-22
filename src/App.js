@@ -3,23 +3,22 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Menu from "./components/nav/Nav";
 
-import Main from "./pages/main.container";
+import Main from "./pages/master/main.container";
 import Login from "./pages/user/login.container";
 import Join from './pages/user/join.container';
 
-import Schedule from './pages/calendar/schedule.container';
-import Detail from './pages/calendar/detail.container';
-import Register from './pages/calendar/register.container';
+import Schedule from './pages/master/calendar/schedule.container';
+import Detail from './pages/master/calendar/detail.container';
+import Register from './pages/master/calendar/register.container';
 
-import Accounting from './pages/accounting/accounting.container';
-import AccountingRegister from './pages/accounting/accountingRegister.container';
-import ChargedRegister from './pages/accounting/chargedRegister.container';
+import Accounting from './pages/master/accounting/accounting.container';
+import AccountingRegister from './pages/master/accounting/accountingRegister.container';
+import ChargedRegister from './pages/master/accounting/chargedRegister.container';
 
-import Manage from './pages/manage/manage.container';
+import Manage from './pages/master/manage/manage.container';
+import Attendance from './pages/master/attendance/attendance.container';
+import Setting from './pages/master/setting/setting.container';
 
-import Attendance from './pages/attendance/attendance.container';
-
-import Setting from './pages/setting/setting.container';
 import Membermain from './pages/member/main.container';
 import Membercalendar from './pages/member/calendar/schedule.container';
 import Memberdetail from './pages/member/calendar/detail.container';

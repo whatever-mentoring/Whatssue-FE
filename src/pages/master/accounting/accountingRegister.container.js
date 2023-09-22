@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import * as S from "./chargedRegister.styles";
+import * as S from "./accountingResgister.styles";
 import { useNavigate, useLocation } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 
-import close from "../../assets/close.png";
-import clock from "../../assets/clock.png";
-import whiteMoneyCircle from "../../assets/whiteMoneyCircle.png";
-import moneyCircle from "../../assets/moneyCircle.png";
+import close from "../../../assets/close.png";
+import clock from "../../../assets/clock.png";
+import exchange from "../../../assets/exchange.png";
+import whiteMoneyCircle from "../../../assets/whiteMoneyCircle.png";
+import moneyCircle from "../../../assets/moneyCircle.png";
 
-function ChargedRegister (){
+function AccountingRegister (){
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -17,13 +18,15 @@ function ChargedRegister (){
     const [accountingTitle, setAccountingTitle] = useState("");
     const [price, setPrice] = useState(0);
     const date = new Date();
+
+
     return(
         <S.MainWrapper>
-            <S.CloseBtn><S.CloseImg src={close} onClick={(e) => navigate("/accounting", {state: 2})}/></S.CloseBtn>
+            <S.CloseBtn><S.CloseImg src={close} onClick={(e) => navigate("/accounting", {state: 1})}/></S.CloseBtn>
             <S.ContentWrapper>
                 <S.RegisterWrapper>
                     <img src={moneyCircle} width="35px" height="35px"/>
-                    <S.RegisterTitle>청구 등록</S.RegisterTitle>
+                    <S.RegisterTitle>내역 등록</S.RegisterTitle>
                 </S.RegisterWrapper>
                 <S.ScheduleTable>
                     <S.ScheduleTr>
@@ -39,9 +42,23 @@ function ChargedRegister (){
                     <S.ScheduleTr>
                         <S.ScheduleFirstTd><img src={clock}/></S.ScheduleFirstTd>
                         <S.ScheduleTd>
-                            <S.DateTxt>{location.state}</S.DateTxt>
                             <S.TimeTxt>
                                 {moment(date).format("YYYY년 M월 D일 ")}{day[moment(date).format("e")]}요일
+                            </S.TimeTxt>
+                        </S.ScheduleTd>
+                    </S.ScheduleTr>
+                    <S.ScheduleTr>
+                        <S.ScheduleFirstTd><img width="18px" height="18px" src={exchange}/></S.ScheduleFirstTd>
+                        <S.ScheduleTd>
+                            <S.TimeTxt>
+                                <S.AccountingLabel>
+                                    <S.AccountingInput type="radio" name="입금"/>
+                                    <S.AccountingSpan>입금</S.AccountingSpan>
+                                </S.AccountingLabel>
+                                <S.AccountingLabel>
+                                    <S.AccountingInput type="radio" name="출금"/>
+                                    <S.AccountingSpan>출금</S.AccountingSpan>
+                                </S.AccountingLabel>
                             </S.TimeTxt>
                         </S.ScheduleTd>
                     </S.ScheduleTr>
@@ -69,4 +86,4 @@ function ChargedRegister (){
     );
 }
 
-export default ChargedRegister;
+export default AccountingRegister;

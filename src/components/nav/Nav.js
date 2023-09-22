@@ -27,6 +27,9 @@ export default function Nav (){
                                     <ListLi onClick={() => {navigate("/manage"); setIsOpen(false);}}>멤버 관리</ListLi>
                                     <ListLi onClick={() => {navigate("/setting"); setIsOpen(false);}}>설정</ListLi>
                                 </ListUl>
+                                <ListLoginWrapper onClick={() => {navigate("/login")}}>
+                                    로그인
+                                </ListLoginWrapper>
                             </ListWrapper>
                         </ModalBox>
                     </ModalWrapper>
@@ -85,8 +88,11 @@ const CloseImg = styled.img`
 `;
 
 const ListWrapper = styled.div`
-    height: 85vh;
+    height: 80vh;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 const ListUl = styled.ul`
@@ -103,4 +109,13 @@ const ListLi = styled.li`
     font-weight: 500;
     line-height: normal;
     height: 6vh;
+`;
+
+const ListLoginWrapper = styled.div`
+    color: #FFF;
+    font-family: Noto Sans;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    padding: 5vh 6vw;
 `;
