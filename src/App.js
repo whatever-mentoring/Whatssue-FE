@@ -61,7 +61,7 @@ function App() {
           <Route path='/detail' element={<Detail/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
           
-          <Route path='/Membermain' element={<Membermain/>}></Route>
+          <Route path='/Member' element={<Membermain/>}></Route>
           <Route path='/Membercalendar' element={<Membercalendar/>}></Route>
           <Route path='/Memberdetail' element={<Memberdetail/>}></Route>
           <Route path='/Memberattendance' element={<Memberattendance/>}></Route>

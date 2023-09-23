@@ -24,9 +24,17 @@ export default function Nav (){
                                     <ListLi onClick={() => {navigate("/Membercalendar"); setIsOpen(false);}}>캘린더</ListLi>
                                     <ListLi onClick={() => {navigate("/Memberaccounting"); setIsOpen(false);}}>회계</ListLi>
                                 </ListUl>
-                                <ListLoginWrapper onClick={() => {navigate("/login")}}>
-                                    로그인하기
-                                </ListLoginWrapper>
+                                {
+                                    !window.localStorage.getItem("token") ? (
+                                    <ListLoginWrapper onClick={() => {navigate("/login")}}>
+                                        로그인
+                                    </ListLoginWrapper>
+                                    ) : (
+                                    <ListLoginWrapper onClick={() => {window.localStorage.clear(); navigate("login")}}>
+                                        로그아웃
+                                    </ListLoginWrapper>
+                                    )
+                                }
                             </ListWrapper>
                         </ModalBox>
                     </ModalWrapper>

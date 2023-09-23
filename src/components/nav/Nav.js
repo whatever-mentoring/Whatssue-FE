@@ -27,11 +27,6 @@ export default function Nav (){
                                     <ListLi onClick={() => {navigate("/manage"); setIsOpen(false);}}>멤버 관리</ListLi>
                                     <ListLi onClick={() => {navigate("/setting"); setIsOpen(false);}}>설정</ListLi>
                                 </ListUl>
-<<<<<<< HEAD
-                                <ListLoginWrapper onClick={() => {navigate("/login")}}>
-                                    로그인하기
-                                </ListLoginWrapper>
-=======
                                 {
                                     !window.localStorage.getItem("token") ? (
                                     <ListLoginWrapper onClick={() => {navigate("/login")}}>
@@ -43,7 +38,6 @@ export default function Nav (){
                                     </ListLoginWrapper>
                                     )
                                 }
->>>>>>> 89df0c4aac7329612573f812ed3edebe319ebbca
                             </ListWrapper>
                         </ModalBox>
                     </ModalWrapper>
