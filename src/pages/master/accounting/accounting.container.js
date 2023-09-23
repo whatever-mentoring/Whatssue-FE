@@ -18,11 +18,18 @@ function Accounting () {
     const [category, setCategory] = useState(1);
     const [isDetail, setIsDetail] = useState(false);
 
+    const fetchData = async () => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+        const response = await axios.get(baseUrl + "/api/account/book/list");
+        console.log(response);
+    };
+
     useEffect(() => {
         console.log(location.state)
         if(location.state == 2){
             setCategory(2);
         }
+        fetchData();
     }, [])
     return(
         <S.MainWrapper>

@@ -100,8 +100,19 @@ export const LinkBox = styled.div`
     justify-content: center;
 `;
 
+export const LinkExistBox = styled(LinkBox)`
+    justify-content: space-between;
+`;
+
 export const LinkTxt = styled.div`
-    color: #fff;
+    color: #51F8C4;
+    font-weight: 550;
+    font-size: 15px;
+`;
+
+export const LinkLeftBox = styled.div`
+    display: flex;
+    flex-direction: row;
 `;
 
 export const LinkPlusIcon = styled.img`
