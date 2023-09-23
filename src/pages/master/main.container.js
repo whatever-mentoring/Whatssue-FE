@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import axios from "axios";
 import * as S from "./main.styles";
-import Menu from "../components/nav/Nav"
+import Menu from "../../components/nav/Nav"
 
-import prev from "../assets/prevIcon.png";
-import next from "../assets/nextIcon.png";
-import back from "../assets/back.png";
-import status from "../assets/status.png";
+import prev from "../../assets/prevIcon.png";
+import next from "../../assets/nextIcon.png";
+import back from "../../assets/back.png";
+import status from "../../assets/status.png";
 
 function Main (){
     const [nowDate, setNowDate] = useState(new Date);
@@ -16,6 +16,7 @@ function Main (){
     const [response, setResponse] = useState([]);
 
     const fetchData = async (date) => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
         const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/date:${moment(date).format("YYYY-MM-DD")}`)
         console.log(response);
         setResponse(response.data);

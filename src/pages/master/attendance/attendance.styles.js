@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MainWrapper = styled.div`
     width: 100%;
-    // height: 100vh;
+    overflow: auto;
     background-color: #171717;
 
 `;
@@ -85,7 +85,7 @@ export const DateBox = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    margin: 2vh 0;
+    margin: 1vh 0;
 `;
 
 export const PrevDay = styled.div`
@@ -95,7 +95,7 @@ export const PrevDay = styled.div`
 export const NowDateTxt = styled.div`
     color: #fff;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 550;
 `;
 
 export const Nextday = styled.div`
@@ -104,19 +104,25 @@ export const Nextday = styled.div`
 
 export const TodayBtn = styled.div`
     color: #fff;
-    font-size: 15px;
+    font-size: 12px;
     background-color: #282828;
     border-radius: 30px;
-    padding: 0.3em 0;
+    padding: 0.5em 0;
     width: 18vw;
     margin: 0 36vw;
     white-space: nowrap;
-    
+
     display: flex;
     flex-direction: row;
     align-items: center;
     text-align: center;
     justify-content: center;
+`;
+
+export const TodayImg = styled.img`
+    
+    height:9px;
+    margin-right:5px;
 `;
 
 export const ScheduleBox = styled.div`

@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import * as S from './join.styles.js';
 
 function Join (props) {
+    const baseUrl = "http://115.85.183.74:8090/"
+
     const [data, setData] = useState({
         name: "",
         id: "",
@@ -9,6 +12,12 @@ function Join (props) {
         email: "",
         phone: "",
     });
+
+    const checkId = async() => {
+        const response = await axios.post("api/user/sign-up/check-id", {"memberNickName": data.id})
+        console.log(response);
+        
+    }
 
     const handlePage = async (e) => {
         console.log(props);
@@ -33,7 +42,7 @@ function Join (props) {
                     <S.NameTxt>아이디 <span style={{'color': 'red'}}>*</span></S.NameTxt>
                     <S.IdContentWrapper>
                         <S.IdInput placeholder="아이디" value={data.id} onChange={(e) => setData((prev) => ({...prev, id: e.target.value}))}/>
-                        <S.IdCheckBtn active={data.id.length > 0}>중복 확인</S.IdCheckBtn>
+                        <S.IdCheckBtn active={data.id.length > 0} onClick={checkId}>중복 확인</S.IdCheckBtn>
                     </S.IdContentWrapper>
                 </S.NameWrapper>
                 <S.NameWrapper>

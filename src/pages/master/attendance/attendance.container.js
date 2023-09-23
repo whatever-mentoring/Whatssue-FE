@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import * as S from "./attendance.styles";
-import Menu from "../../components/nav/Nav"
-import Timer from "../../components/timer/Timer";
+import Menu from "../../../components/nav/Nav"
+import Timer from "../../../components/timer/Timer";
 
-import prev from "../../assets/prevIcon.png";
-import next from "../../assets/nextIcon.png";
-import back from "../../assets/back.png";
-import status from "../../assets/status.png";
-import checked from "../../assets/checked.png";
-import notChecked from "../../assets/notChecked.png";
+import prev from "../../../assets/prevIcon.png";
+import next from "../../../assets/nextIcon.png";
+import back from "../../../assets/back.png";
+import status from "../../../assets/status.png";
+import checked from "../../../assets/checked.png";
+import notChecked from "../../../assets/notChecked.png";
 
 function Attendance (){
     const navigate = useNavigate();
@@ -37,6 +37,7 @@ function Attendance (){
     const [absentList, setAbsentList] = useState([]);
 
     const fetchData = async (date) => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
         const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/date:${moment(date).format("YYYY-MM-DD")}`)
         console.log(response);
         setResponse(response.data);
@@ -129,11 +130,11 @@ function Attendance (){
                 <S.ContentDateWrapper>
                     <S.ContentDateTxt>오늘의 일정</S.ContentDateTxt>
                     <S.DateBox>
-                        <S.PrevDay onClick={handlePrevDate}><img width="20px" height="20px" src={prev}/></S.PrevDay>
+                        <S.PrevDay onClick={handlePrevDate}><img width="24px" height="24px" src={prev}/></S.PrevDay>
                         <S.NowDateTxt>{moment(nowDate).format("YYYY.MM.DD ")} {`${ weekDay[moment(nowDate).format("e")]}요일`}</S.NowDateTxt>
-                        <S.Nextday onClick={handleNextDate}><img width="20px" height="20px" src={next}/></S.Nextday>
+                        <S.Nextday onClick={handleNextDate}><img width="24px" height="24px" src={next}/></S.Nextday>
                     </S.DateBox>
-                    <S.TodayBtn onClick={backToday}><img src={back}/><div>오늘</div></S.TodayBtn>
+                    <S.TodayBtn onClick={backToday}><S.TodayImg src={back}/><div>오늘</div></S.TodayBtn>
                     <S.ScheduleBox>
                         <S.ScheduleWrapper style={{'color': '#fff'}}>
                         <S.ScheduleUl>

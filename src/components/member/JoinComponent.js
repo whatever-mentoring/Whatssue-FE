@@ -6,6 +6,7 @@ export default function JoinComponent (props) {
     const baseUrl = "http://115.85.183.74:8090"
 
     const acceptJoin = async (e) => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
         const response = await axios.post(baseUrl + `/api/member/join-accept/${props.joinList.clubJoinRequestId}`)
         if(response.status === 200){
             console.log(response);
@@ -15,6 +16,7 @@ export default function JoinComponent (props) {
     };
 
     const denyJoin = async (e) => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
         const response = await axios.post(baseUrl + `/api/member/join-refuse/${props.joinList.clubJoinRequestId}`)
         if(response.status === 200){
             console.log(response);

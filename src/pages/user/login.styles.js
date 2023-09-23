@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const MainWrapper = styled.div`
     width: 100%;
-    height: 100vh;
+    overflow: auto;
     background-color: #171717;
 
     display: flex;
@@ -13,19 +13,20 @@ export const MainWrapper = styled.div`
 
 export const TitleWrapper = styled.div`
     text-align: center;
-    margin: 50px 0;
+    height: 50vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `;
 
 export const TitleTxt = styled.div`
     color: #fff;
     font-size: 15px;
-    margin: 1.5em;
+    margin: 1em;
 `;
 
 export const LogoTxt = styled.i`
-    color: #51F8C4;
-    font-size: 40px;
-    font-weight: bold;
 `;
 
 export const ContentWrapper = styled.div`
@@ -33,7 +34,7 @@ export const ContentWrapper = styled.div`
     flex-direction: column;
     text-align: center;
     align-items: center;
-    margin: 100px 0;
+    height: 50vh;
 `;
 
 export const ContentId = styled.input`

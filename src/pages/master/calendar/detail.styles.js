@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import DatePicker from "react-datepicker";
 
 export const MainWrapper = styled.div`
     width: 100%;
-    height: 100vh;
+    overflow: auto;
     background-color: #171717;
 
 `;
@@ -22,7 +23,7 @@ export const CloseImg = styled.img`
 `;
 
 export const ContentWrapper = styled.div`
-    height: 78vh;
+    height: 70vh;
     width: 90%;
     margin: 0 5%;
 `;
@@ -53,10 +54,11 @@ export const ScheduleFirstTd = styled.td`
 `;
 
 export const ScheduleTd = styled.td`
-    display: flex;
-    width: 100%;
-    // justify-content: space-between;
+display: flex;
+width: 100%;
+// justify-content: space-between;
 `;
+
 
 export const TitleInput = styled.input`
     width: 100%;
@@ -75,20 +77,11 @@ export const TitleInput = styled.input`
     }
 `;
 
-export const TitleLenTxt = styled.div`
-font-size: 12px;
-color: #51F8C4;
-`;
 
-export const DateTxt = styled.div`
-    font-size: 18px;
+export const TitleTxt = styled.div`
+    color: #fff;
+    font-size: 20px;
     font-weight: bold;
-
-`;
-
-export const TimeTxt = styled.div`
-    margin-left: 1em;
-    font-size: 17px;
 `;
 
 export const TimeSelect = styled.select`
@@ -101,6 +94,11 @@ export const TimeSelect = styled.select`
     &:focus{
         outline: none;
     }
+`;
+
+export const TitleLenTxt = styled.div`
+font-size: 12px;
+color: #51F8C4;
 `;
 
 export const TimeInput = styled.input`
@@ -124,8 +122,23 @@ export const ContentInput = styled.input`
     }
 `
 
+export const DateTxt = styled.div`
+    font-size: 18px;
+    font-weight: bold;
+`;
+
+export const TimeTxt = styled.div`
+    font-size: 17px;
+    margin-left: 1em;
+`;
+
+export const ContentTxt = styled.div`
+    font-size: 15px;
+    color: #fff;
+`;
+
 export const BtnWrapper = styled.div`
-    height: 12vh;
+    height: 20vh;
 `;
 
 export const ModifyBtn = styled.div`
@@ -152,4 +165,23 @@ export const DeleteBtn = styled.div`
     text-align: center;
     font-size: 15px;
     font-weight: bold;
+`;
+
+export const StyledDatePicker = styled(DatePicker)`
+    display: flex;
+    align-items: center;
+    border: 1px solid colors.$GRAY6;
+    border-radius: 4px;
+    background-color: #171717;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+
+    &:focus {
+    border: 2px solid #171717;
+    }
 `;

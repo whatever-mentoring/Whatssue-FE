@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MainWrapper = styled.div`
     width: 100%;
-    height: 100vh;
+    overflow: auto;
     background-color: #171717;
 
 `;
@@ -61,6 +61,7 @@ export const RoleTxt = styled.div`
 
 export const AttendanceWrapper = styled.div`
     width: 90%;
+    height: 85vh;
     margin: 0 5%;
 `;
 
