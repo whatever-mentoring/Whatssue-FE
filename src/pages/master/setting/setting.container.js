@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Menu from "../../../components/nav/Nav"
 import * as S from "./setting.styles";
@@ -6,6 +6,8 @@ import * as S from "./setting.styles";
 import pencil from "../../../assets/pencil.png";
 import link from "../../../assets/link.png";
 import linkPlus from "../../../assets/linkPlus.png";
+import copy from "../../../assets/copy.png";
+import close from "../../../assets/greenClose.png";
 
 function Setting (){
     const baseUrl = "http://115.85.183.74:8090/";
@@ -33,6 +35,21 @@ function Setting (){
             window.localStorage.setItem("link", response.data.linkUrl);
         }
     };
+
+    const fetchLink = async () => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+        const response = await axios.get(baseUrl + "api/admin/link");
+        console.log(response);
+        setClubLink(response.data[0].linkUrl);
+    };
+
+    useEffect(() => {
+        fetchLink();
+    }, []);
+
+    // const deleteLink = async (e) => {
+    //     const response = await axios.delete(baseUrl + `api/admin/link/${}`)
+    // };
 
     return(
         <S.MainWrapper>
@@ -90,8 +107,8 @@ function Setting (){
                 </S.GroupWrapper>
                 <S.InviteLinkWrapper>
                     <S.LinkTitle>초대 링크 관리 <img width="17px" height="17px" src={link}/></S.LinkTitle>
-                    {window.localStorage.getItem("link") ? (
-                        <S.LinkBox onClick={() => setIsModal(true)}><S.LinkTxt>{clubLink}</S.LinkTxt></S.LinkBox>
+                    {clubLink ? (
+                        <S.LinkExistBox><S.LinkLeftBox><img style={{'margin': '0 3vw'}} width="18px" height="21px" src={copy}/><S.LinkTxt>{clubLink}</S.LinkTxt></S.LinkLeftBox><img style={{'marginRight': '3vw'}} width="15px" height="15px" src={close}/></S.LinkExistBox>
                     ) : (
                         <S.LinkBox onClick={() => setIsModal(true)}><S.LinkPlusIcon width="30px" height="30px" src={linkPlus}/></S.LinkBox>
                     )}
