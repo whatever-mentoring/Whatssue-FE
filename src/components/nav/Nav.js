@@ -28,7 +28,7 @@ export default function Nav (){
                                     <ListLi onClick={() => {navigate("/setting"); setIsOpen(false);}}>설정</ListLi>
                                 </ListUl>
                                 <ListLoginWrapper onClick={() => {navigate("/login")}}>
-                                    로그인
+                                    로그인하기
                                 </ListLoginWrapper>
                             </ListWrapper>
                         </ModalBox>
@@ -114,7 +114,7 @@ const ListLi = styled.li`
 const ListLoginWrapper = styled.div`
     color: #FFF;
     font-family: Noto Sans;
-    font-size: 17px;
+    font-size: 13px;
     font-style: normal;
     font-weight: 500;
     padding: 5vh 6vw;

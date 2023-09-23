@@ -24,6 +24,9 @@ export default function Nav (){
                                     <ListLi onClick={() => {navigate("/Membercalendar"); setIsOpen(false);}}>캘린더</ListLi>
                                     <ListLi onClick={() => {navigate("/Memberaccounting"); setIsOpen(false);}}>회계</ListLi>
                                 </ListUl>
+                                <ListLoginWrapper onClick={() => {navigate("/login")}}>
+                                    로그인하기
+                                </ListLoginWrapper>
                             </ListWrapper>
                         </ModalBox>
                     </ModalWrapper>
@@ -100,4 +103,13 @@ const ListLi = styled.li`
     font-weight: 500;
     line-height: normal;
     height: 6vh;
+`;
+
+const ListLoginWrapper = styled.div`
+    color: #FFF;
+    font-family: Noto Sans;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    padding: 30vh 6vw;
 `;
