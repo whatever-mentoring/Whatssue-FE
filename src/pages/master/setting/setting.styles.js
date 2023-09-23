@@ -113,7 +113,6 @@ export const LinkTxt = styled.div`
 export const LinkLeftBox = styled.div`
     display: flex;
     flex-direction: row;
-`;
 
 export const LinkPlusIcon = styled.img`
 
