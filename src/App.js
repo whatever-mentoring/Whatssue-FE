@@ -26,7 +26,6 @@ import Nonregister from './pages/nonregister.container';
 import JoinGroup from './pages/member/join/joingroup.container'
 
 
-
 function App() {
   return (
     <div className="App">
