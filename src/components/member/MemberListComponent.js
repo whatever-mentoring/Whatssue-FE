@@ -3,7 +3,7 @@ import axios from "axios";
 
 import close from "../../assets/close.png";
 
-export default function JoinComponent ({memberList, deleteMember}) {
+export default function MemberListComponent ({memberList, deleteMember}) {
     const totalNum = memberList.checkedCount + memberList.officialAbsentCount + memberList.absentCount;
 
     return(
