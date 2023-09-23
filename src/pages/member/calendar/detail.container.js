@@ -83,7 +83,6 @@ function Detail (){
             <S.BtnWrapper>
                 <S.AttendanceBtn onClick={(e) => navigate("/Memberattendance")}>출석하기</S.AttendanceBtn>
                 <S.AbsentBtn onClick={(e) => navigate("/Memberabsent")}>공결 신청 하기</S.AbsentBtn>
-                <S.AbsentBtn >공결 신청 하기</S.AbsentBtn>
             </S.BtnWrapper>
         </S.MainWrapper>
     )

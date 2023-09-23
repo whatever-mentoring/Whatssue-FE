@@ -122,7 +122,7 @@ const ListLi = styled.li`
 const ListLoginWrapper = styled.div`
     color: #FFF;
     font-family: Noto Sans;
-    font-size: 17px;
+    font-size: 13px;
     font-style: normal;
     font-weight: 500;
     padding: 5vh 6vw;

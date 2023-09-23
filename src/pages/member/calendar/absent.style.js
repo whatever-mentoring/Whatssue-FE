@@ -52,21 +52,14 @@ export const ReasonTxt = styled.div`
 `;
 
 export const ReasonInput = styled.textarea`
-<<<<<<< HEAD
     width: 90%;
     height: 176px;
     color: #FFFFFF;
-=======
-    width: 97%;
-    height: 176px;
-    color: #51F8C4;
->>>>>>> 058849c659e4a05367817a913c36577a8e9d9eb1
     border-radius: 10px;
     border: 1px solid #FFF;
     background: #171717;
     text-align:left;
     font-size: 15px;
-<<<<<<< HEAD
     padding : 5vw 5vw 5vw 5vw; 
     font-weight: 500;
     font-family: 'Noto Sans KR', sans-serif;
@@ -74,10 +67,6 @@ export const ReasonInput = styled.textarea`
     &:focus{
         outline:none;
     }
-=======
-    padding : 17px 12px 17px 12px; 
-    font-weight: 500;
->>>>>>> 058849c659e4a05367817a913c36577a8e9d9eb1
 `;
 
 export const AbsentBtn = styled.button`

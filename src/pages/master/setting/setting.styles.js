@@ -114,10 +114,11 @@ export const LinkLeftBox = styled.div`
     display: flex;
     flex-direction: row;
 
-export const LinkPlusIcon = styled.img`
+
 
 `;
-
+export const LinkPlusIcon = styled.img`
+`;
 
 // 모달창
 export const ModalWrapper = styled.div`
