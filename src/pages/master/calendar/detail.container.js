@@ -31,6 +31,7 @@ function Detail (){
     useEffect(() => {
         const fetchData = async () => {
             console.log(location.state);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
             const response = await axios.get(`http://115.85.183.74:8090/api/schedule/${parseInt(location.state)}`)
             console.log(response);
             setData(response.data);
@@ -48,6 +49,7 @@ function Detail (){
             "scheduleTime": formatShortTime(time)
         }
         console.log(requestData);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
         const response = await axios.patch(
             `http://115.85.183.74:8090/api/schedule/${parseInt(location.state)}`,
             requestData
@@ -63,6 +65,7 @@ function Detail (){
 
     // 일정 삭제
     const deleteSchedule = async (e) => {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
         const response = await axios.delete(
             `http://115.85.183.74:8090/api/schedule/${parseInt(location.state)}`
         )
