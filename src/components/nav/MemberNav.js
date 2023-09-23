@@ -22,7 +22,7 @@ export default function Nav (){
                                 <ListUl>
                                     <ListLi onClick={() => {navigate("/Membermain"); setIsOpen(false);}}>홈</ListLi>
                                     <ListLi onClick={() => {navigate("/Membercalendar"); setIsOpen(false);}}>캘린더</ListLi>
-                                    <ListLi onClick={() => {navigate("/"); setIsOpen(false);}}>회계</ListLi>
+                                    <ListLi onClick={() => {navigate("/Memberaccounting"); setIsOpen(false);}}>회계</ListLi>
                                 </ListUl>
                             </ListWrapper>
                         </ModalBox>

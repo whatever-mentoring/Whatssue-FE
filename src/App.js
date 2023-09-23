@@ -28,6 +28,7 @@ import Memberabsent from './pages/member/calendar/absent.container';
 import Nonregister from './pages/nonregister.container';
 import JoinGroup from './pages/member/join/joingroup.container'
 
+import Memberaccounting from './pages/member/accounting/accounting.container';
 
 
 function App() {
@@ -65,6 +66,8 @@ function App() {
           <Route path='/Memberdetail' element={<Memberdetail/>}></Route>
           <Route path='/Memberattendance' element={<Memberattendance/>}></Route>
           <Route path='/Memberabsent' element={<Memberabsent/>}></Route>
+
+          <Route path='/Memberaccounting' element={<Memberaccounting/>}></Route>
 
           <Route path='/Nonregister' element={<Nonregister/>}></Route>
           <Route path='/JoinGroup' element={<JoinGroup/>}></Route>
