@@ -1,10 +1,27 @@
 import { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 import close from "../../assets/blackClose.png";
 
 export default function AbsentComponent ({abssentList}) {
+    const baseUrl = "http://115.85.183.74:8090/";
     const [isModal, setIsModal] = useState(false);
+
+    const acceptAbsent = async (e) => {
+        setIsModal(false);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+        const response = await axios.get(baseUrl + `api/schedule/absent-accept/${abssentList.applyOfficialAbsentId}`)
+        console.log(response);
+    };
+
+    const denyAbsent = async (e) => {
+        setIsModal(false);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+        const response = await axios.get(baseUrl + `api/schedule/absent-refuse/${abssentList.applyOfficialAbsentId}`)
+        console.log(response);
+    };
+
     return(
         <>
         <MemberContent key={abssentList.applyOfficialAbsentId} onClick={(e) => setIsModal(true)}>
@@ -14,10 +31,6 @@ export default function AbsentComponent ({abssentList}) {
                     <MemberSchedule>{abssentList.scheduleTitle}</MemberSchedule>
                     <MemberDate>{abssentList.absentDate.split("-")[1]}월 {abssentList.absentDate.split("-")[2]}일</MemberDate>
                 </MemberLeftBox>
-                <MemberBtnBox>
-                    <MemberAcceptBtn>수락</MemberAcceptBtn>
-                    <MemberDenyBtn>거절</MemberDenyBtn>
-                </MemberBtnBox>
             </MemberBox>
         </MemberContent>
         
@@ -25,10 +38,16 @@ export default function AbsentComponent ({abssentList}) {
             {isModal &&
                 (<ModalWrapper>
                     <ModalBox>
-                        <ModalCloseBtn><ModalCloseImg onClick={(e) => setIsModal(false)} src={close} width="18px" height="18px"/></ModalCloseBtn>
-                        <ModalTxt><ModalLine></ModalLine><ModalTitle>{abssentList.scheduleTitle}</ModalTitle></ModalTxt>
-                        <ModalReasonTxt>공결 신청 사유</ModalReasonTxt>
-                        <ModalReasonContent>{abssentList.absentReason}</ModalReasonContent>
+                        <ModalEmptyWrapper></ModalEmptyWrapper>
+                        <ModalContentWrapper>
+                            <ModalTxt><ModalLine></ModalLine><ModalTitle>{abssentList.scheduleTitle}</ModalTitle></ModalTxt>
+                            <ModalReasonTxt>공결 신청 사유</ModalReasonTxt>
+                            <ModalReasonContent>{abssentList.absentReason}</ModalReasonContent>
+                        </ModalContentWrapper>
+                        <BtnWrapper>
+                            <CancleBtn onClick={denyAbsent}>거절</CancleBtn>
+                            <CheckdBtn onClick={acceptAbsent}>수락</CheckdBtn>
+                        </BtnWrapper>
                     </ModalBox>
                 </ModalWrapper>)
             }
@@ -58,11 +77,10 @@ const MemberLeftBox = styled.div`
     flex-direction: row;
     
     align-items: center;
-    // text-align:center;
 
-    margin-left: 3vw;
+    padding: 0 5vw;
     color: #fff;
-    width: 60%;
+    width: 100%;
 `;
 
 const MemberName = styled.div`
@@ -73,55 +91,18 @@ const MemberName = styled.div`
 
 const MemberSchedule = styled.div`
     font-size: 11px;
-    // margin: 0 2vw;
     white-space: nowrap;
     width: 30%;
+    text-align: center;
 `;
 
 const MemberDate = styled.div`
     font-size: 11px;
-    // margin: 0 2vw;
     color: #51F8C4;
     white-space: nowrap;
     width: 40%;
-    text-align: center;
+    text-align: right;
 `
-
-const MemberBtnBox = styled.div`
-    display: flex;
-    flex-direction: row;
-
-    align-items: center;
-    text-align:center;
-    justify-content: center;
-
-    margin-right: 3vw;
-    height: 100%;
-    width: 40%;
-`;
-
-const MemberAcceptBtn = styled.div`
-height: calc(7vh * 0.7);
-line-height: calc(7vh * 0.7);
-width: 17vw;
-background-color: #51F8C4;
-color: #171717;
-margin: 0 1vw;
-border-radius: 7px;
-font-size: 11px;
-`;
-
-const MemberDenyBtn = styled.div`
-height: calc(7vh * 0.7);
-line-height: calc(7vh * 0.7);
-width: 17vw;
-background-color: #FF4444;
-color: #171717;
-margin: 0 1vw;
-border-radius: 7px;
-font-size: 11px;
-`;
-
 
 // 모달창
 export const ModalWrapper = styled.div`
@@ -140,18 +121,29 @@ export const ModalBox = styled.div`
     background-color: #fff;
     border-radius: 10px;
     width: 90vw;
-    height: 20vh;
+    height: 25vh;
     z-index: 101;
 
     position: absolute;
-    top: 40vh;
+    top: 37.5vh;
     left: 5vw;
 
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+`;
+
+export const ModalEmptyWrapper = styled.div`
+    width: 100%;
+    height: 7%;
+`;
+
+export const ModalContentWrapper = styled.div`
+    width: 100%;
+    height: 53%;
+
 `;
 
 export const ModalCloseBtn = styled.div`
@@ -161,11 +153,12 @@ export const ModalCloseBtn = styled.div`
 export const ModalCloseImg = styled.img`
     position: absolute;
     // bottom: 3vh;
+    top: 3vh;
     left: 35vw;
 `;
 
 export const ModalTxt = styled.div`
-    height: 40%;
+    height: 50%;
     display: flex;
     flex-direction: row;
 
@@ -190,11 +183,48 @@ export const ModalTitle = styled.div`
 export const ModalReasonTxt = styled.div`
     font-size: 11px;
     color: #5f5f5f;
-    height: 15%;
+    height: 18%;
 `;
 
 export const ModalReasonContent = styled.div`
     font-size: 13px;
     color: #000;
-    height: 20%;
+    height: 32%;
+`;
+
+
+export const BtnWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40%;
+    // margin-top: 2vh;
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const CancleBtn = styled.div`
+    background-color: #e7e7e7;
+    height: 6vh;
+    line-height: 6vh;
+    color: #FF4444;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 7px;
+    padding: 0 13%; 
+    margin: 0 5vw;
+`;
+
+export const CheckdBtn = styled.div`
+    background-color: #51F8C4;
+    height: 6vh;
+    line-height: 6vh;
+    color: #171717;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 7px;
+    padding: 0 13%; 
+    margin: 0 5vw;
 `;

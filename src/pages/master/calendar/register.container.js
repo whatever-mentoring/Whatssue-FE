@@ -57,6 +57,7 @@ function Register (){
             "scheduleTime": formatTime(time)
         };
 
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
         console.log(requestData);
         const response = await axios.post(
             `http://115.85.183.74:8090/api/schedule`,

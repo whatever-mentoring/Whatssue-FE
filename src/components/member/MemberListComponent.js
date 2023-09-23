@@ -6,11 +6,6 @@ import close from "../../assets/close.png";
 export default function JoinComponent ({memberList, deleteMember}) {
     const totalNum = memberList.checkedCount + memberList.officialAbsentCount + memberList.absentCount;
 
-    // const deleteMember = async (e) => {
-    //     const response = await axios.delete(`http://115.85.183.74:8090/api/member/delete/${memberList.memberId}`);
-    //     console.log(response);
-    // }
-
     return(
         <MemberContent>
             <MemberBox>
