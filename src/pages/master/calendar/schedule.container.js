@@ -29,6 +29,7 @@ function Schedule(){
 
     const fetchData = async (getDate) => {
         console.log(getDate);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
         const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/month:${moment(getDate).format("YYYY-MM")}`)
         console.log(response);
         setResponse(response.data);

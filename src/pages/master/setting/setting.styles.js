@@ -100,6 +100,10 @@ export const LinkBox = styled.div`
     justify-content: center;
 `;
 
+export const LinkTxt = styled.div`
+    color: #fff;
+`;
+
 export const LinkPlusIcon = styled.img`
 
 `;
@@ -122,11 +126,11 @@ export const ModalBox = styled.div`
     background-color: #fff;
     border-radius: 10px;
     width: 90vw;
-    height: 20vh;
+    height: 25vh;
     z-index: 101;
 
     position: absolute;
-    top: 40vh;
+    top: 37.5vh;
     left: 5vw;
 
     display: flex;
@@ -137,6 +141,7 @@ export const ModalBox = styled.div`
 `;
 
 export const ModalTxt = styled.div`
+    margin-top: 2vh;
     font-size: 20px;
     font-weight: bold;
     color: #171717;
@@ -152,7 +157,8 @@ export const BtnWrapper = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin-top: 2vh;
+    height: 40%;
+    // margin-top: 2vh;
 
     text-align: center;
     justify-content: center;
@@ -161,7 +167,7 @@ export const BtnWrapper = styled.div`
 
 export const CancleBtn = styled.div`
     background-color: #e7e7e7;
-    height: 40%;
+    // height: 40%;
     color: #5F5F5F;
     font-size: 15px;
     font-weight: bold;
@@ -172,11 +178,69 @@ export const CancleBtn = styled.div`
 
 export const CheckdBtn = styled.div`
     background-color: #51F8C4;
-    height: 40%;
+    // height: 40%;
     color: #171717;
     font-size: 15px;
     font-weight: bold;
     border-radius: 7px;
     padding: 4% 13%; 
     margin: 0 5vw;
+`;
+
+
+// 모달창
+
+export const ModalLinkWrapper = styled(ModalBox)`
+    height: 20vh;
+    position: absolute;
+    top: 40vh;
+    left: 5vw;
+`;
+
+export const ModalContentWrapper = styled.div`
+    width: 90%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+`;
+
+export const ModalInput = styled.input`
+    width: 98%;
+    height: 4vh;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    color: #282828;
+    margin: 1vh 0;
+
+    &:focus{
+        outline: none;
+    }
+`;
+
+export const ModalLine = styled.div`
+    width: 3px;
+    height: 29px;
+    background-color: #51F8C4;
+`;
+
+export const ModalTitle = styled.div`
+    font-size: 20px;
+    font-weight: bold;
+    color: #171717;
+    margin: 1vh 2vw;
+`;
+
+export const ModalReasonTxt = styled.div`
+    font-size: 11px;
+    color: #5f5f5f;
+    height: 18%;
+`;
+
+export const ModalReasonContent = styled.div`
+    font-size: 13px;
+    color: #000;
+    height: 32%;
 `;

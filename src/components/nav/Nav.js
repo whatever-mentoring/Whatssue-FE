@@ -27,9 +27,17 @@ export default function Nav (){
                                     <ListLi onClick={() => {navigate("/manage"); setIsOpen(false);}}>멤버 관리</ListLi>
                                     <ListLi onClick={() => {navigate("/setting"); setIsOpen(false);}}>설정</ListLi>
                                 </ListUl>
-                                <ListLoginWrapper onClick={() => {navigate("/login")}}>
-                                    로그인
-                                </ListLoginWrapper>
+                                {
+                                    !window.localStorage.getItem("token") ? (
+                                    <ListLoginWrapper onClick={() => {navigate("/login")}}>
+                                        로그인
+                                    </ListLoginWrapper>
+                                    ) : (
+                                    <ListLoginWrapper onClick={() => {window.localStorage.clear(); navigate("login")}}>
+                                        로그아웃
+                                    </ListLoginWrapper>
+                                    )
+                                }
                             </ListWrapper>
                         </ModalBox>
                     </ModalWrapper>
