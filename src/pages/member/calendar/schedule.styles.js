@@ -13,7 +13,7 @@ export const GroupNameTxt = styled.div`
     line-height: 18vh;
     color: #51F8C4;
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 550;
     text-align: center;
     
 `;
