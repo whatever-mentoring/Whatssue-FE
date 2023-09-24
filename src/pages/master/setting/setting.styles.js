@@ -116,9 +116,7 @@ export const LinkLeftBox = styled.div`
 `;
 
 export const LinkPlusIcon = styled.img`
-
 `;
-
 
 // 모달창
 export const ModalWrapper = styled.div`

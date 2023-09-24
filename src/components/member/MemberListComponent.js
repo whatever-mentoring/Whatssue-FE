@@ -27,7 +27,7 @@ export default function MemberListComponent ({memberList, deleteMember}) {
                     </MemberAttendanceWrapper>
                 </MemberLeftBox>
                 <MemberBtnBox>
-                    <img width="17px" height="17px" src={close} onClick={deleteMember(memberList.memberId)}/>
+                    <img width="17px" height="17px" src={close}  onClick={() => deleteMember(memberList.memberId)}/>
                 </MemberBtnBox>
             </MemberBox>
         </MemberContent>
@@ -36,6 +36,7 @@ export default function MemberListComponent ({memberList, deleteMember}) {
 
 
 const MemberContent = styled.div`
+    
 
 `;
 

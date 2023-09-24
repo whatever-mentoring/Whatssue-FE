@@ -93,7 +93,7 @@ function Member () {
                                 <S.Txt>결석</S.Txt>
                             </S.MemberTitle>
                             {memberList.length > 0 && (
-                                memberList.map((e, i) => <MemberListComponent memberList={e} deleteMember={deleteMember}/>)
+                                memberList?.map((e, i) => <MemberListComponent memberList={e} deleteMember={deleteMember}/>)
                             )}
                         </>
                     )
