@@ -21,18 +21,21 @@ function Setting (){
     const [clubLink, setClubLink] = useState("");
 
     const handleLink = async() => {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
-        const response = await axios.post(baseUrl + "api/admin/link", {
-            "linkName": "opinion"
-        })
+        try{
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+            const response = await axios.post(baseUrl + "api/admin/link", {
+                "linkName": "opinion1"
+            })
 
-        // const response = await axios.get(baseUrl + "api/admin/link")
-        console.log(response);
-        if(response.status === 200){
-            alert("링크가 생성되었습니다");
-            setIsModal(false);
-            setClubLink(response.data.linkUrl);
-            window.localStorage.setItem("link", response.data.linkUrl);
+            console.log(response);
+            if(response.status === 200){
+                alert("링크가 생성되었습니다");
+                setIsModal(false);
+                setClubLink(response.data.linkUrl);
+                window.localStorage.setItem("link", response.data.linkUrl);
+            }
+        } catch(error){
+            console.log(error);
         }
     };
 
@@ -40,16 +43,36 @@ function Setting (){
         axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
         const response = await axios.get(baseUrl + "api/admin/link");
         console.log(response);
-        setClubLink(response.data[0].linkUrl);
+        if(response.data.length > 0){
+            setClubLink(response.data[0].linkUrl);
+            setName(response.data[0].clubName);
+            setExplain(response.data[0].clubInfo);
+        }
     };
 
     useEffect(() => {
         fetchLink();
     }, []);
 
-    // const deleteLink = async (e) => {
-    //     const response = await axios.delete(baseUrl + `api/admin/link/${}`)
-    // };
+    // 모임 이름 수정
+    const handleGroupName = async (e) => {
+        try{
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+            const response = await axios.patch(baseUrl + "api/admin/settings/club", {
+                "clubName": name,
+                "clubInfo": explain,
+                "clubCategory": "동아리"
+            })
+
+            console.log(response);
+            if(response.status === 200){
+                alert("수정되었습니다");
+                setModifyName(false);
+            }
+        } catch(error){
+            console.log(error);
+        }
+    }
 
     return(
         <S.MainWrapper>
@@ -75,7 +98,7 @@ function Setting (){
                                             </S.ModalContentWrapper>
                                             <S.BtnWrapper>
                                                 <S.CancleBtn onClick={() => setModifyName(false)}>취소</S.CancleBtn>
-                                                <S.CheckdBtn onClick={() => setModifyName(false)}>확인</S.CheckdBtn>
+                                                <S.CheckdBtn onClick={handleGroupName}>확인</S.CheckdBtn>
                                             </S.BtnWrapper>
                                         </S.ModalBox>
                                     </S.ModalWrapper>
@@ -92,14 +115,8 @@ function Setting (){
                         <S.GroupBox>
                             <S.GroupName>한 줄 소개</S.GroupName>
                             <S.GroupContentWrapper>
-                                {/* {modifyExplain ? ( */}
-                                    <S.GroupTxt>최고의 동아리</S.GroupTxt>
-                                {/* ) : (
-                                    <S.GroupInput 
-                                        value={explain}
-                                        onChange={(e) => setExplain(e.target.value)}
-                                    />
-                                )} */}
+                                    <S.GroupTxt>{explain}</S.GroupTxt>
+
                                 <S.GroupModifyIcon width="15px" height="15px" src={pencil} onClick={() => setModifyExplain(!modifyExplain)}/>
                             </S.GroupContentWrapper>
                         </S.GroupBox>

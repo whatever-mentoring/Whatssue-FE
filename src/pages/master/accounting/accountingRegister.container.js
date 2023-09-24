@@ -11,6 +11,7 @@ import whiteMoneyCircle from "../../../assets/whiteMoneyCircle.png";
 import moneyCircle from "../../../assets/moneyCircle.png";
 
 function AccountingRegister (){
+    const baseUrl = "http://115.85.183.74:8090/";
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -18,7 +19,33 @@ function AccountingRegister (){
     const [accountingTitle, setAccountingTitle] = useState("");
     const [price, setPrice] = useState(0);
     const date = new Date();
+    const [accountCategory, setAccountCategory] = useState("");
 
+    const handleAccounting = async (e) => {
+        try{
+            if(accountCategory === ""){
+                alert("필수 정보를 입력하셔야 합니다.");
+                return;
+            }
+
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+            const response = await axios.post(baseUrl + "api/account/book/create", {
+                "bookTitle": accountingTitle,
+                "bookAmount": `${accountCategory}${price.replace(/\D/g, '')}`,
+            })
+            console.log(response);
+            if(response.status === 200){
+                alert("내역이 등록되었습니다.");
+                navigate("/accounting");
+                setAccountingTitle("");
+                setPrice(0);
+                setAccountCategory("");
+            }
+        } catch(error){
+            console.log(error);
+
+        }
+    };
 
     return(
         <S.MainWrapper>
@@ -52,12 +79,12 @@ function AccountingRegister (){
                         <S.ScheduleTd>
                             <S.TimeTxt>
                                 <S.AccountingLabel>
-                                    <S.AccountingInput type="radio" name="입금"/>
-                                    <S.AccountingSpan>입금</S.AccountingSpan>
+                                    <S.AccountingInput type="radio" name="입금" onChange={() => setAccountCategory("+")}/>
+                                    <S.AccountingSpan onClick={() => setAccountCategory("+")}>입금</S.AccountingSpan>
                                 </S.AccountingLabel>
                                 <S.AccountingLabel>
-                                    <S.AccountingInput type="radio" name="출금"/>
-                                    <S.AccountingSpan>출금</S.AccountingSpan>
+                                    <S.AccountingInput type="radio" name="출금" onClick={() => setAccountCategory("-")}/>
+                                    <S.AccountingSpan onClick={() => setAccountCategory("-")}>출금</S.AccountingSpan>
                                 </S.AccountingLabel>
                             </S.TimeTxt>
                         </S.ScheduleTd>
@@ -80,7 +107,7 @@ function AccountingRegister (){
                 </S.ScheduleTable>
             </S.ContentWrapper>
             <S.BtnWrapper>
-                <S.ModifyBtn>등록하기</S.ModifyBtn>
+                <S.ModifyBtn onClick={handleAccounting}>등록하기</S.ModifyBtn>
             </S.BtnWrapper>
         </S.MainWrapper>
     );

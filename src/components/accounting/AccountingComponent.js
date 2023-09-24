@@ -3,16 +3,24 @@ import styled from "styled-components";
 import moneyPlus from "../../assets/moneyPlus.png";
 import moneyMinus from "../../assets/moneyMinus.png";
 
-export default function AccountingComponent (){
+export default function AccountingComponent ({data}){
     return(
         <MoneyBox>
-            <MoneyDate>23.09.10 (일) </MoneyDate>
-            <MoneyName>지민혁</MoneyName>
+            <MoneyDate>{data.createAt[0]}.{data.createAt[1]}.{data.createAt[2]}</MoneyDate>
+            <MoneyName>{data.bookTitle}</MoneyName>
             <MoneyNumBox>
                 <MoneyNowMoney>
-                    <img width="10px" height="10px" style={{'margin': '0.5vh 1vw 0.5vh 0'}} src={moneyPlus}/>50,000원
+                    {parseInt(data.bookAmount) >= 0 ? (
+                        <>
+                            <img width="10px" height="10px" style={{'margin': '0.5vh 1vw 0.5vh 0'}} src={moneyPlus}/>{data.bookAmount.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+                        </>
+                    ) : (
+                        <>
+                            <img width="10px" height="10px" style={{'margin': '0.5vh 1vw 0.5vh 0'}} src={moneyMinus}/>{data.bookAmount.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+                        </>
+                    )}
                 </MoneyNowMoney>
-                <MoneyTotal>200,000원</MoneyTotal>
+                <MoneyTotal>{data.totalPaidAmount.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</MoneyTotal>
             </MoneyNumBox>
         </MoneyBox>
     )
@@ -35,16 +43,17 @@ const MoneyDate = styled.div`
 `;
 
 const MoneyName = styled.div`
-    width: 50%;
+    width: 45%;
     color: #fff;
     font-size: 15px;
 `;
 
 const MoneyNumBox = styled.div`
-    width: 25%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    white-space: nowrap;
 `;
 
 const MoneyNowMoney = styled.div`

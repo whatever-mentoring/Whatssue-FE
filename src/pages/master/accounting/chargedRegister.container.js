@@ -10,6 +10,7 @@ import whiteMoneyCircle from "../../../assets/whiteMoneyCircle.png";
 import moneyCircle from "../../../assets/moneyCircle.png";
 
 function ChargedRegister (){
+    const baseUrl = "http://115.85.183.74:8090/";
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -17,6 +18,25 @@ function ChargedRegister (){
     const [accountingTitle, setAccountingTitle] = useState("");
     const [price, setPrice] = useState(0);
     const date = new Date();
+
+    const handleCharged = async () => {
+        try{
+            if(accountingTitle === "" || price === 0){
+                alert("필수 정보를 입력하셔야 합니다.");
+                return;
+            }
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+            const response = await axios.post(baseUrl + "api/account/claim", {
+                "claimDate": moment(date).format("YYYY-MM-DD"),
+                "claimAmount": `${price.replace(/\D/g, '')}`,
+                "claimName": accountingTitle
+            })
+            console.log(response);
+        } catch(error){
+            console.log(error);
+        }
+    };
+
     return(
         <S.MainWrapper>
             <S.CloseBtn><S.CloseImg src={close} onClick={(e) => navigate("/accounting", {state: 2})}/></S.CloseBtn>
@@ -63,7 +83,7 @@ function ChargedRegister (){
                 </S.ScheduleTable>
             </S.ContentWrapper>
             <S.BtnWrapper>
-                <S.ModifyBtn>등록하기</S.ModifyBtn>
+                <S.ModifyBtn onClick={handleCharged}>등록하기</S.ModifyBtn>
             </S.BtnWrapper>
         </S.MainWrapper>
     );

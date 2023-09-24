@@ -4,22 +4,38 @@ import axios from "axios";
 
 import close from "../../assets/blackClose.png";
 
-export default function AbsentComponent ({abssentList}) {
+export default function AbsentComponent ({fetchData, abssentList}) {
     const baseUrl = "http://115.85.183.74:8090/";
     const [isModal, setIsModal] = useState(false);
 
     const acceptAbsent = async (e) => {
         setIsModal(false);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
-        const response = await axios.get(baseUrl + `api/schedule/absent-accept/${abssentList.applyOfficialAbsentId}`)
-        console.log(response);
+        try{
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+            const response = await axios.post(baseUrl + `api/schedule/absent-accept/${abssentList.applyOfficialAbsentId}`)
+            console.log(response);
+            if(response.status === 200){
+                alert("수락되었습니다.");
+                fetchData();
+            }
+        }catch(error){
+
+        }
     };
 
     const denyAbsent = async (e) => {
         setIsModal(false);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
-        const response = await axios.get(baseUrl + `api/schedule/absent-refuse/${abssentList.applyOfficialAbsentId}`)
-        console.log(response);
+        try{
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+            const response = await axios.post(baseUrl + `api/schedule/absent-refuse/${abssentList.applyOfficialAbsentId}`)
+            console.log(response);
+            if(response.status === 200){
+                alert("거절되었습니다.");
+                fetchData();
+            }
+        } catch(error){
+
+        }
     };
 
     return(
@@ -34,23 +50,23 @@ export default function AbsentComponent ({abssentList}) {
             </MemberBox>
         </MemberContent>
         
-            {/* 모달창 */}
-            {isModal &&
-                (<ModalWrapper>
-                    <ModalBox>
-                        <ModalEmptyWrapper></ModalEmptyWrapper>
-                        <ModalContentWrapper>
-                            <ModalTxt><ModalLine></ModalLine><ModalTitle>{abssentList.scheduleTitle}</ModalTitle></ModalTxt>
-                            <ModalReasonTxt>공결 신청 사유</ModalReasonTxt>
-                            <ModalReasonContent>{abssentList.absentReason}</ModalReasonContent>
-                        </ModalContentWrapper>
-                        <BtnWrapper>
-                            <CancleBtn onClick={denyAbsent}>거절</CancleBtn>
-                            <CheckdBtn onClick={acceptAbsent}>수락</CheckdBtn>
-                        </BtnWrapper>
-                    </ModalBox>
-                </ModalWrapper>)
-            }
+        {/* 모달창 */}
+        {isModal &&
+            (<ModalWrapper>
+                <ModalBox>
+                    <ModalEmptyWrapper></ModalEmptyWrapper>
+                    <ModalContentWrapper>
+                        <ModalTxt><ModalLine></ModalLine><ModalTitle>{abssentList.scheduleTitle}</ModalTitle></ModalTxt>
+                        <ModalReasonTxt>공결 신청 사유</ModalReasonTxt>
+                        <ModalReasonContent>{abssentList.absentReason}</ModalReasonContent>
+                    </ModalContentWrapper>
+                    <BtnWrapper>
+                        <CancleBtn onClick={denyAbsent}>거절</CancleBtn>
+                        <CheckdBtn onClick={acceptAbsent}>수락</CheckdBtn>
+                    </BtnWrapper>
+                </ModalBox>
+            </ModalWrapper>)
+        }
         </>
     )
 }
@@ -208,23 +224,23 @@ export const BtnWrapper = styled.div`
 export const CancleBtn = styled.div`
     background-color: #e7e7e7;
     height: 6vh;
+    width: 100%;
     line-height: 6vh;
     color: #FF4444;
     font-size: 15px;
     font-weight: bold;
     border-radius: 7px;
-    padding: 0 13%; 
     margin: 0 5vw;
 `;
 
 export const CheckdBtn = styled.div`
     background-color: #51F8C4;
     height: 6vh;
+    width: 100%;
     line-height: 6vh;
     color: #171717;
     font-size: 15px;
     font-weight: bold;
     border-radius: 7px;
-    padding: 0 13%; 
     margin: 0 5vw;
 `;
