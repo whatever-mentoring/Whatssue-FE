@@ -6,7 +6,7 @@ export const MainWrapper = styled.div`
     height: calc(var(--vh, 1vh) * 100);
     overflow: auto;
     background-color: #171717;
-    display: flex;sv
+    display: flex;
     flex-direction: column;
     align-items: center;
 `;
