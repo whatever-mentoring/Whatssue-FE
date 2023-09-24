@@ -27,6 +27,8 @@ function AccountingRegister (){
                 alert("필수 정보를 입력하셔야 합니다.");
                 return;
             }
+            console.log(accountingTitle);
+            console.log(`${accountCategory}${price.replace(/\D/g, '')}`);
             axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
             const response = await axios.post(baseUrl + "api/account/book/create", {
                 "bookTitle": accountingTitle,
