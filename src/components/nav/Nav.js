@@ -33,7 +33,7 @@ export default function Nav (){
                                         로그인
                                     </ListLoginWrapper>
                                     ) : (
-                                    <ListLoginWrapper onClick={() => {window.localStorage.clear(); navigate("login")}}>
+                                    <ListLoginWrapper onClick={() => {window.localStorage.clear(); navigate("/login")}}>
                                         로그아웃
                                     </ListLoginWrapper>
                                     )
