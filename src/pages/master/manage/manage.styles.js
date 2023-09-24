@@ -103,6 +103,12 @@ export const MemberTitle = styled.div`
     margin: 1vh 0;
 `;
 
+export const MemberNum = styled.div`
+    width: 100%;
+    font-size: 17px;
+    color: #fff;
+`;
+
 export const Txt = styled.div`
     width: 20vw;
     font-size: 10px;

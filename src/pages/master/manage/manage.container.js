@@ -82,10 +82,11 @@ function Member () {
                 ) : (
                     category === 2 ? (
                         abssentList.length > 0 && (
-                            abssentList.map((e, i) => (<AbsentComponent abssentList={e}/>))
+                            abssentList.map((e, i) => (<AbsentComponent fetchData={fetchData} abssentList={e}/>))
                         )
                     ) : (
                         <>
+                            <S.MemberNum>총 {memberList.length}명</S.MemberNum>
                             <S.MemberTitle>
                                 <S.Txt>이름</S.Txt>
                                 <S.Txt>출석</S.Txt>
