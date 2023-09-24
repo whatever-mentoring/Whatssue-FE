@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import * as S from "./main.styles";
@@ -10,6 +11,7 @@ import back from "../../assets/back.png";
 import status from "../../assets/status.png";
 
 function Main (){
+    const navigate = useNavigate();
     const [nowDate, setNowDate] = useState(new Date);
     const weekDay = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -23,7 +25,11 @@ function Main (){
     }
 
     useEffect(() => {
-        fetchData(nowDate);
+        if(!window.localStorage.getItem("token")){
+            navigate("/login");
+        } else{
+            fetchData(nowDate);
+        }
     }, []);
 
     const handlePrevDate = () => {

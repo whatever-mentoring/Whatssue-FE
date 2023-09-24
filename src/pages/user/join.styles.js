@@ -56,6 +56,12 @@ export const NameInput = styled.input`
     }
 `;
 
+export const PwErrorMsg= styled.div`
+    color: red;
+    font-size: 11px;
+    margin: 0.5vh 1vw;
+`;
+
 export const IdContentWrapper = styled.div`
     width: 100%;
     height: 7vh;
@@ -114,5 +120,9 @@ export const NextBtn = styled.button`
 
     color: ${(props) => 
         props.active ? "#171717" : "#5F5F5F"
+    };
+
+    pointer-events:${(props)=>
+        props.active ? null : 'none'
     };
 `;
