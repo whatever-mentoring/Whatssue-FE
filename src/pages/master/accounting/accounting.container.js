@@ -17,11 +17,19 @@ function Accounting () {
     const baseUrl = "http://115.85.183.74:8090";
     const [category, setCategory] = useState(1);
     const [isDetail, setIsDetail] = useState(false);
+    const [bookList, setBookList] = useState([]);
 
     const fetchData = async () => {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
-        const response = await axios.get(baseUrl + "/api/account/book/list");
-        console.log(response);
+        try{
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+            const response = await axios.get(baseUrl + "/api/account/book/list");
+            console.log(response);
+            if(response.status === 200){
+                setBookList(response.data);
+            }
+        } catch(error){
+            console.log(error);
+        }
     };
 
     useEffect(() => {
@@ -41,8 +49,8 @@ function Accounting () {
             <S.AttendanceWrapper>
                 <S.AttendanceNav>
                     <S.AttendanceUl style={{'color': '#fff'}}>
-                        <S.AttendanceLi onClick={(e) => setCategory(1)}><S.AttendanceBox clicked={category === 1}>입출금 내역</S.AttendanceBox></S.AttendanceLi>
-                        <S.AttendanceLi onClick={(e) => setCategory(2)}><S.AttendanceBox clicked={category === 2}>청구 목록</S.AttendanceBox></S.AttendanceLi>
+                        <S.AttendanceLi onClick={(e) => {setCategory(1); setIsDetail(false);}}><S.AttendanceBox clicked={category === 1}>입출금 내역</S.AttendanceBox></S.AttendanceLi>
+                        <S.AttendanceLi onClick={(e) => {setCategory(2); setIsDetail(false);}}><S.AttendanceBox clicked={category === 2}>청구 목록</S.AttendanceBox></S.AttendanceLi>
                     </S.AttendanceUl>
                 </S.AttendanceNav>
                 {category === 1 ? (
@@ -50,13 +58,12 @@ function Accounting () {
                     <S.ContentWrapper>
                         <S.MoneyWrapper>
                             <S.MoneyTitle>양파시 광산동의 머니</S.MoneyTitle>
-                            <S.MoneyTxt>200,000원</S.MoneyTxt>
+                            <S.MoneyTxt>{bookList.length > 0 && bookList[0].totalPaidAmount?.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</S.MoneyTxt>
                         </S.MoneyWrapper>
                         <S.MoneyHistoryWrapper>
                             <S.MoneyHistoryTitle>입/출금 내역</S.MoneyHistoryTitle>
                             <S.MoneyHistoryContent>
-                                <AccountingComponent/>
-                                
+                                {bookList.length > 0 && bookList.map((e) => (<AccountingComponent key={e.moneyBookId} data={e}/>))}
                             </S.MoneyHistoryContent>
                         </S.MoneyHistoryWrapper>
                     </S.ContentWrapper>
