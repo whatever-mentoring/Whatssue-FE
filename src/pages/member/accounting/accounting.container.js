@@ -17,13 +17,40 @@ function Accounting () {
     const baseUrl = "http://115.85.183.74:8090";
     const [category, setCategory] = useState(1);
     const [isDetail, setIsDetail] = useState(false);
+    const [bookList, setBookList] = useState([]);
+    const [claimList, setClaimLiset] = useState([]);
+
+    const fetchData = async () => {
+        try{
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+            const response = await axios.get(baseUrl + "/api/account/book/list");
+            console.log(response);
+            if(response.status === 200){
+                setBookList(response.data);
+            }
+            
+            const response2 = await axios.get(baseUrl + "/api/account/claim/list");
+            console.log(response2);
+            if(response2.status === 200){
+                setClaimLiset(response2.data);
+            }
+        } catch(error){
+            console.log(error);
+        }
+    };
 
     useEffect(() => {
         console.log(location.state)
         if(location.state == 2){
             setCategory(2);
         }
-    }, [])
+        fetchData();
+    }, []);
+
+    const fetchDetail = async () => {
+        return;
+    };
+
     return(
         <S.MainWrapper>
             <Menu />
@@ -35,7 +62,7 @@ function Accounting () {
                 <S.AttendanceNav>
                     <S.AttendanceUl style={{'color': '#fff'}}>
                         <S.AttendanceLi onClick={(e) => setCategory(1)}><S.AttendanceBox clicked={category === 1}>입출금 내역</S.AttendanceBox></S.AttendanceLi>
-                        <S.AttendanceLi onClick={(e) => setCategory(2)}><S.AttendanceBox clicked={category === 2}>청구 목록</S.AttendanceBox></S.AttendanceLi>
+                        <S.AttendanceLi onClick={(e) => setCategory(2)}><S.AttendanceBox clicked={category === 2}>청구된 목록</S.AttendanceBox></S.AttendanceLi>
                     </S.AttendanceUl>
                 </S.AttendanceNav>
                 {category === 1 ? (
@@ -43,42 +70,28 @@ function Accounting () {
                     <S.ContentWrapper>
                         <S.MoneyWrapper>
                             <S.MoneyTitle>양파시 광산동의 머니</S.MoneyTitle>
-                            <S.MoneyTxt>200,000원</S.MoneyTxt>
+                            <S.MoneyTxt>{bookList.length > 0 && bookList[0].totalPaidAmount?.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</S.MoneyTxt>
                         </S.MoneyWrapper>
                         <S.MoneyHistoryWrapper>
                             <S.MoneyHistoryTitle>입/출금 내역</S.MoneyHistoryTitle>
                             <S.MoneyHistoryContent>
-                                <AccountingComponent/>
-                                
+                                {bookList.length > 0 && bookList.map((e) => (<AccountingComponent key={e.moneyBookId} data={e}/>))}
                             </S.MoneyHistoryContent>
                         </S.MoneyHistoryWrapper>
                     </S.ContentWrapper>
+
+                    {/* <S.AddBtnWrapper>
+                        <S.AddBtn onClick={() => navigate("/accounting/register")}>
+                            <img width='20px' height='20px' src={register} alt="register"/>
+                        </S.AddBtn>
+                    </S.AddBtnWrapper> */}
                     </>
                 ) : (
-                    isDetail ? (
-                        <S.ContentWrapper>
-                            <S.ChargedDetailWrapper>
-                                <S.ChargedDetailTitle>신규 회비</S.ChargedDetailTitle>
-                                <S.ChargedDetailCategory>
-                                    <S.ChargedDetailName>이름</S.ChargedDetailName>
-                                    <S.ChargedDetailMoney>회비</S.ChargedDetailMoney>
-                                    <S.ChargedDetailChecked>납부여부</S.ChargedDetailChecked>
-                                </S.ChargedDetailCategory>
-                                <S.ChargedContentWrapper>
-                                    <ChargedDetailComponent/>
-                                    <ChargedDetailComponent/>
-                                    <ChargedDetailComponent/>
-                                </S.ChargedContentWrapper>
-                            </S.ChargedDetailWrapper>
-                        </S.ContentWrapper>
-                    ) : (
                     <>
-                    <S.ContentWrapper>
-                        <ChargedComponent/>
-                        <ChargedComponent/>
-                    </S.ContentWrapper>
+                        <S.ContentWrapper>
+                        <ChargedComponent fetchDetail={fetchDetail} setIsDetail={setIsDetail}/>
+                        </S.ContentWrapper>
                     </>
-                    )
                 )}
             </S.AttendanceWrapper>
             

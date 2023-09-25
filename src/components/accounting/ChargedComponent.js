@@ -1,11 +1,11 @@
 import styled from "styled-components"
 
-export default function ChargedComponent ({ setIsDetail }) {
+export default function ChargedComponent ({ data, fetchDetail, setIsDetail }) {
     return(
-        <ChargedWrapper onClick={() => setIsDetail(true)}>
-            <ChargedTitle>신규 회비</ChargedTitle>
-            <ChargedDate>2023.09.20</ChargedDate>
-            <ChargedMoney>50,000원</ChargedMoney>
+        <ChargedWrapper onClick={() => {setIsDetail(true); fetchDetail();}}>
+            <ChargedTitle>{data.claimName}</ChargedTitle>
+            <ChargedDate>{data.claimDate.split("-")[0]}.{data.claimDate.split("-")[1]}.{data.claimDate.split("-")[2]}</ChargedDate>
+            <ChargedMoney>{data.claimAmount.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</ChargedMoney>
         </ChargedWrapper>
     )
 }
@@ -27,13 +27,13 @@ export const ChargedTitle = styled.div`
     font-size: 17px;
     font-weight: 550;
     color: #fff;
-    width: 40%;
+    width: 50%;
 `;
 
 export const ChargedDate = styled.div`
 font-size: 13px;
 color: #fff;
-width: 30%;
+width: 20%;
 `;
 
 export const ChargedMoney = styled.div`
