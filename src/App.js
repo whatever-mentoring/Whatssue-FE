@@ -19,6 +19,8 @@ import Manage from './pages/master/manage/manage.container';
 import Attendance from './pages/master/attendance/attendance.container';
 import Setting from './pages/master/setting/setting.container';
 
+import Create from "./pages/createGroup.container";
+
 import Membermain from './pages/member/main.container';
 import Membercalendar from './pages/member/calendar/schedule.container';
 import Memberdetail from './pages/member/calendar/detail.container';
@@ -49,7 +51,7 @@ function App() {
           <Route path='/manage' element={<Manage/>}></Route>
           <Route path='/setting' element={<Setting/>}></Route>
 
-          <Route path='/setting' element={<Setting/>}></Route>
+          <Route path='/create' element={<Create/>}></Route>
 
           <Route path='/accounting' element={<Accounting/>}></Route>
           <Route path='/accounting/register' element={<AccountingRegister/>}></Route>
