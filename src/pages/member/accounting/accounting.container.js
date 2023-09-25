@@ -89,7 +89,7 @@ function Accounting () {
                 ) : (
                     <>
                         <S.ContentWrapper>
-                        <ChargedComponent fetchDetail={fetchDetail} setIsDetail={setIsDetail}/>
+                            {claimList.map((e, i) => (<ChargedComponent data={e}/>))}
                         </S.ContentWrapper>
                     </>
                 )}

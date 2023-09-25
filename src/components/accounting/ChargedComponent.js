@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-export default function ChargedComponent ({ data, fetchDetail, setIsDetail }) {
+export default function ChargedComponent ({ data}) {
     return(
-        <ChargedWrapper onClick={() => {setIsDetail(true); fetchDetail();}}>
+        <ChargedWrapper>
             <ChargedTitle>{data.claimName}</ChargedTitle>
             <ChargedDate>{data.claimDate.split("-")[0]}.{data.claimDate.split("-")[1]}.{data.claimDate.split("-")[2]}</ChargedDate>
             <ChargedMoney>{data.claimAmount.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</ChargedMoney>

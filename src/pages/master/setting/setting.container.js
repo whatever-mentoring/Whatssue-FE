@@ -19,6 +19,7 @@ function Setting (){
     const [explain, setExplain] = useState("최고의 동아리");
 
     const [clubLink, setClubLink] = useState("");
+    const [linkId, setLinkId] = useState("");
 
     const handleLink = async() => {
         try{
@@ -47,6 +48,18 @@ function Setting (){
             setClubLink(response.data[0].linkUrl);
             setName(response.data[0].clubName);
             setExplain(response.data[0].clubInfo);
+            setLinkId(response.data[0].linkId);
+        }
+    };
+
+    // 링크 삭제
+    const deleteLink= async () => {
+        const response = await axios.delete(baseUrl + `api/admin/link/${linkId}`)
+        console.log(response);
+        if(response.status === 200){
+            alert("링크가 삭제되었습니다.");
+            setClubLink("");
+            setLinkId("");
         }
     };
 
@@ -125,7 +138,7 @@ function Setting (){
                 <S.InviteLinkWrapper>
                     <S.LinkTitle>초대 링크 관리 <img width="17px" height="17px" src={link}/></S.LinkTitle>
                     {clubLink ? (
-                        <S.LinkExistBox><S.LinkLeftBox><img style={{'margin': '0 3vw'}} width="18px" height="21px" src={copy}/><S.LinkTxt>{clubLink}</S.LinkTxt></S.LinkLeftBox><img style={{'marginRight': '3vw'}} width="15px" height="15px" src={close}/></S.LinkExistBox>
+                        <S.LinkExistBox><S.LinkLeftBox><img style={{'margin': '0 3vw'}} width="18px" height="21px" src={copy}/><S.LinkTxt>{clubLink}</S.LinkTxt></S.LinkLeftBox><img onClick={deleteLink} style={{'marginRight': '3vw'}} width="15px" height="15px" src={close}/></S.LinkExistBox>
                     ) : (
                         <S.LinkBox onClick={() => setIsModal(true)}><S.LinkPlusIcon width="30px" height="30px" src={linkPlus}/></S.LinkBox>
                     )}
