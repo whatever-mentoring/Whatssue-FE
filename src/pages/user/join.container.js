@@ -71,11 +71,13 @@ function Join (props) {
                     <S.NameTxt>비밀번호 <span style={{'color': 'red'}}>*</span></S.NameTxt>
                     <S.NameInput 
                         placeholder="비밀번호"
+                        type="password"
                         value={data.memberPw}
                         onChange={(e) => setData((prev) => ({...prev, memberPw: e.target.value}))}
                     />
                     <S.NameInput 
                         placeholder="비밀번호 확인"
+                        type="password"
                         value={chkPw}
                         onChange={(e) => setChkPw(e.target.value)}
                     />

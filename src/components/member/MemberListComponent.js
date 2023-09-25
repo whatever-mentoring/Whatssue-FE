@@ -56,7 +56,7 @@ export default function MemberListComponent ({memberList, deleteMember}) {
 
 
 const MemberContent = styled.div`
-    
+    margin: 2vh 0;
 
 `;
 
