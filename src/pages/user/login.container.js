@@ -49,6 +49,7 @@ function Login (){
                 />
                 <S.ContentPw 
                     placeholder="비밀번호"
+                    type="password"
                     value={data.memberPw}
                     onChange={(e) => setData((prev) => ({...prev, "memberPw": e.target.value}))}
                     onKeyDown={(e) => {if(e.key === 'Enter'){handleLogin()}}}

@@ -1,14 +1,18 @@
 import * as S from "./createGroup.styles";
-import warningCircle from '../assets/warningCircle.png'
+import checkCircle from "../assets/checkCircle.png";
 
 function CreateGroup () {
     return(
         <S.MainWrapper>
-            <S.CheckIcon src={warningCircle}></S.CheckIcon>
-            <S.TitleTxt>아직 모임에 가입되어있지 않습니다!</S.TitleTxt>
-            <S.ContentTxt>직접 모임을 만들거나</S.ContentTxt>
-            <S.ContentTxt>모임 관리자에게 초대링크를 받아 가입을 완료해주세요</S.ContentTxt>
-            <S.CreateBtn>모임 만들기</S.CreateBtn>
+            <S.IconWrapper>
+                <S.CheckIcon src={checkCircle}></S.CheckIcon>
+                <S.TitleTxt>모임 생성</S.TitleTxt>
+            </S.IconWrapper>
+            <S.ContentTxt color={"#FFFFFF"}>해당 계정으로</S.ContentTxt>
+            <S.ContentTxt color={"#51F8C4"}>양파시 광산동</S.ContentTxt>
+            <S.ContentTxt color={"#FFFFFF"}>모임에 가입 신청하시겠습니까?</S.ContentTxt>
+            <S.EmailInput placeholder="ex) whatssue@gmail.com"/>
+            <S.CreateBtn >모임 가입하기</S.CreateBtn>
         </S.MainWrapper>
     ) 
 }

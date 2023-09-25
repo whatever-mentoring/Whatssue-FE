@@ -25,11 +25,12 @@ function ChargedRegister (){
                 alert("필수 정보를 입력하셔야 합니다.");
                 return;
             }
+            console.log(moment(date).format("YYYY-MM-DD"),`${price.replace(/\D/g, '')}`,accountingTitle);
             axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
             const response = await axios.post(baseUrl + "api/account/claim", {
-                "claimDate": moment(date).format("YYYY-MM-DD"),
-                "claimAmount": `${price.replace(/\D/g, '')}`,
-                "claimName": accountingTitle
+                "claimName": accountingTitle,
+                "claimAmount": `${price.replace(/\D/g, '')}.0`,
+                "claimDate": moment(date).format("YYYY-MM-DD")
             })
             console.log(response);
         } catch(error){

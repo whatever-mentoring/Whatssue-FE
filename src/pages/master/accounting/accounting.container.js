@@ -18,6 +18,7 @@ function Accounting () {
     const [category, setCategory] = useState(1);
     const [isDetail, setIsDetail] = useState(false);
     const [bookList, setBookList] = useState([]);
+    const [claimList, setClaimLiset] = useState([]);
 
     const fetchData = async () => {
         try{
@@ -26,6 +27,12 @@ function Accounting () {
             console.log(response);
             if(response.status === 200){
                 setBookList(response.data);
+            }
+            
+            const response2 = await axios.get(baseUrl + "/api/account/claim/list");
+            console.log(response2);
+            if(response2.status === 200){
+                setClaimLiset(response2.data);
             }
         } catch(error){
             console.log(error);
@@ -38,7 +45,12 @@ function Accounting () {
             setCategory(2);
         }
         fetchData();
-    }, [])
+    }, []);
+
+    const fetchDetail= async () => {
+        const response = await axios.get(baseUrl + ``)
+    };
+
     return(
         <S.MainWrapper>
             <Menu />
@@ -86,21 +98,13 @@ function Accounting () {
                                 </S.ChargedDetailCategory>
                                 <S.ChargedContentWrapper>
                                     <ChargedDetailComponent/>
-                                    <ChargedDetailComponent/>
-                                    <ChargedDetailComponent/>
                                 </S.ChargedContentWrapper>
                             </S.ChargedDetailWrapper>
                         </S.ContentWrapper>
                     ) : (
                     <>
                     <S.ContentWrapper>
-                        <ChargedComponent setIsDetail={setIsDetail}/>
-                        <ChargedComponent/>
-                        <ChargedComponent/>
-                        <ChargedComponent/>
-                        <ChargedComponent/>
-                        <ChargedComponent/>
-                        <ChargedComponent/>
+                        {claimList.map((e, i) => (<ChargedComponent data={e} fetchDetail={fetchDetail} setIsDetail={setIsDetail}/>))}
                     </S.ContentWrapper>
                     <S.AddBtnWrapper>
                         <S.AddBtn onClick={() => navigate("/charge/register")}>

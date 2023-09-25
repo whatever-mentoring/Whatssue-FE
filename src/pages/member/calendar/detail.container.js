@@ -17,6 +17,7 @@ import clock from "../../../assets/clock.png";
 import pencil from "../../../assets/pencil.png";
 
 function Detail (){
+    const baseUrl = "http://115.85.183.74:8090/";
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -35,10 +36,6 @@ function Detail (){
         }
         fetchData();
     }, []);
-
- 
-
-  
 
     // YYYY-MM-DD => YYYY년 MM월 DD일
     function formatDate(inputDate) {
@@ -59,7 +56,23 @@ function Detail (){
         }
     }
 
-  
+    // 출석 시작 여부 확인
+    const startAttendance = async () => {
+        try{
+            axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+            const response = await axios.get(baseUrl + `api/schedule/${location.state}/attendance/check`);
+            console.log(response);
+            if(response.status === 200){
+                navigate("/Memberattendance", {
+                    state: {title: data.scheduleTitle, id: location.state}
+                });
+            }
+        } catch(error){
+            if(error.response.status === 404){
+                alert("출석이 시작되지 않았습니다.");
+            }
+        }
+    }
 
     return(
         <S.MainWrapper>
@@ -81,8 +94,10 @@ function Detail (){
                 </S.ScheduleTable>   
             </S.ContentWrapper>
             <S.BtnWrapper>
-                <S.AttendanceBtn onClick={(e) => navigate("/Memberattendance")}>출석하기</S.AttendanceBtn>
-                <S.AbsentBtn onClick={(e) => navigate("/Memberabsent")}>공결 신청 하기</S.AbsentBtn>
+                <S.AttendanceBtn onClick={startAttendance}>출석하기</S.AttendanceBtn>
+                <S.AbsentBtn onClick={(e) => navigate("/Memberabsent", {
+                    state: {title: data.scheduleTitle, id: location.state}
+                })}>공결 신청 하기</S.AbsentBtn>
             </S.BtnWrapper>
         </S.MainWrapper>
     )

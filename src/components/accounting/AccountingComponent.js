@@ -12,15 +12,15 @@ export default function AccountingComponent ({data}){
                 <MoneyNowMoney>
                     {parseInt(data.bookAmount) >= 0 ? (
                         <>
-                            <img width="10px" height="10px" style={{'margin': '0.5vh 1vw 0.5vh 0'}} src={moneyPlus}/>{data.bookAmount.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+                            <img width="10px" height="10px" style={{'margin': '0.5vh 1vw 0.5vh 0', 'lineHeight': '20px'}} src={moneyPlus}/>{data.bookAmount.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
                         </>
                     ) : (
                         <>
-                            <img width="10px" height="10px" style={{'margin': '0.5vh 1vw 0.5vh 0'}} src={moneyMinus}/>{data.bookAmount.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+                            <img width="10px" height="3px" style={{'margin': '1vh 1vw 0vh 0', 'lineHeight': '20px'}} src={moneyMinus}/>{data.bookAmount.split(".")[0].split("-")[1].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
                         </>
                     )}
                 </MoneyNowMoney>
-                <MoneyTotal>{data.totalPaidAmount.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</MoneyTotal>
+                {/* <MoneyTotal>{data.totalPaidAmount.split(".")[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</MoneyTotal> */}
             </MoneyNumBox>
         </MoneyBox>
     )
