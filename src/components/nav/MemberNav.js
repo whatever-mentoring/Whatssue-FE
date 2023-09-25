@@ -20,7 +20,7 @@ export default function Nav (){
                             <ImgWrapper><CloseImg onClick={(e) => setIsOpen(false)} src={close} width="20px" height="20px"/></ImgWrapper>
                             <ListWrapper>
                                 <ListUl>
-                                    <ListLi onClick={() => {navigate("/Membermain"); setIsOpen(false);}}>홈</ListLi>
+                                    <ListLi onClick={() => {navigate("/Member"); setIsOpen(false);}}>홈</ListLi>
                                     <ListLi onClick={() => {navigate("/Membercalendar"); setIsOpen(false);}}>캘린더</ListLi>
                                     <ListLi onClick={() => {navigate("/Memberaccounting"); setIsOpen(false);}}>회계</ListLi>
                                 </ListUl>

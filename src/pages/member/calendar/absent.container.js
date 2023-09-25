@@ -21,6 +21,7 @@ function Absent (){
     const registerAbsent = async () => {
         try{
             axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
+            console.log(location.state.id, content, moment(date).format("YYYY-MM-DD"));
             const response = await axios.post(baseUrl + `api/schedule/${location.state.id}/absent-request`, {
                 "absentReason": content,
                 "absentDate": moment(date).format("YYYY-MM-DD")

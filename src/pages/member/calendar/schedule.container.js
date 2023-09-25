@@ -48,22 +48,11 @@ function Schedule(){
         }
     }, [response]);
 
-
-    useEffect(() => {
-        console.log(markedDate);
-        if(markedDate.length === 0 && response.length !== 0){
-            response.map((e) => {
-                if(markedDate.findIndex((el) => e.scheduleDate === el) === -1){
-                    setMarkedDate((prev) => [...prev, e.scheduleDate])
-                }
-            });
-        }
-    }, [response]);
-
     // 달을 변경할 때마다 데이터 불러오기
     const findMonthSchdule = async (e) => {
         setMarkedDate([]);
         let currentDate = value;
+        const currentMonth = value.getMonth();
 
         if(e === "p"){
             currentDate.setMonth(value.getMonth() - 1);
@@ -71,19 +60,15 @@ function Schedule(){
             currentDate.setMonth(value.getMonth() + 1);
         }
 
+        const subMonth = +currentMonth - +(currentDate.getMonth())
+        if(subMonth === -2){
+            currentDate.setMonth(value.getMonth() - 1);
+        } else if(subMonth === 2){
+            currentDate.setMonth(value.getMonth() + 1);
+        }
+
+        console.log(currentDate);
         setNowMonth(new Date(currentDate));
-
-        // fetchData(new Date(currentDate));
-        // const response = await axios.get(`http://115.85.183.74:8090/api/schedule/list/month:${moment(nowMonth).format("YYYY-MM")}`)
-        // console.log(response);
-        // setResponse(response.data);
-
-        // response.data.map((e) => {
-        //     console.log(e.scheduleDate, markedDate);
-        //     if(!markedDate.find((el) => e.scheduleDate === el)){
-        //         setMarkedDate((prev) => [...prev, e.scheduleDate])
-        //     }
-        // });
     };
     
     // 해당 날짜 스케줄 찾기
