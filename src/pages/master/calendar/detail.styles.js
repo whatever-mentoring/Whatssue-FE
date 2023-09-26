@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 
 export const MainWrapper = styled.div`
     width: 100%;
-    overflow: auto;
+    // overflow: auto;
     background-color: #171717;
 
 `;
@@ -23,7 +23,7 @@ export const CloseImg = styled.img`
 `;
 
 export const ContentWrapper = styled.div`
-    height: 70vh;
+    height: 60vh;
     width: 90%;
     margin: 0 5%;
 `;
@@ -139,7 +139,7 @@ export const ContentTxt = styled.div`
 `;
 
 export const BtnWrapper = styled.div`
-    height: 20vh;
+    height: 30vh;
 `;
 
 export const ModifyBtn = styled.div`
