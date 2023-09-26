@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MainWrapper = styled.div`
     width: 100%;
-    overflow: auto;
+    // overflow: auto;
     background-color: #171717;
 
 `;
@@ -22,7 +22,7 @@ export const CloseImg = styled.img`
 `;
 
 export const ContentWrapper = styled.div`
-    height: 78vh;
+    height: 68vh;
     width: 90%;
     margin: 0 5%;
 `;
@@ -59,7 +59,7 @@ export const ScheduleTd = styled.td`
 `;
 
 export const TitleInput = styled.input`
-    width: 90%;
+    width: 80%;
     padding: 10px;
     color: #fff;
     background-color: #171717;
@@ -84,14 +84,14 @@ export const DateTxt = styled.div`
     font-size: 18px;
     font-weight: bold;
 	white-space: nowrap;
- 	margin-top: 0.5vh;
+ 	margin-top: 0.7vh;
 `;
 
 export const TimeTxt = styled.div`
     margin-left: 1em;
     font-size: 17px;
     white-space: nowrap;
-    margin-bottom: 0.5vh;
+    margin-bottom: 0.7vh;
 `;
 
 export const TimeSelect = styled.select`
@@ -111,7 +111,7 @@ export const TimeInput = styled.input`
 `;
 
 export const ContentInput = styled.input`
-    width: 90%;
+    width: 80%;
     padding: 10px;
     color: #fff;
     background-color: #171717;
@@ -128,7 +128,7 @@ export const ContentInput = styled.input`
 `
 
 export const BtnWrapper = styled.div`
-    height: 12vh;
+    height: 22vh;
 `;
 
 export const ModifyBtn = styled.div`
