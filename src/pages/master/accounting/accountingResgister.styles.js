@@ -135,7 +135,7 @@ export const AccountingInput = styled.input`
 `;
 
 export const AccountingSpan = styled.span`
-    margin: 0 0 1vh 1vw;
+    margin: 0 0 2vh 1vw;
 `;
 
 export const TimeSelect = styled.select`
