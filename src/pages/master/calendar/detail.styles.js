@@ -130,6 +130,7 @@ export const DateTxt = styled.div`
 export const TimeTxt = styled.div`
     font-size: 17px;
     margin-left: 1em;
+    white-space: nowrap;
 `;
 
 export const ContentTxt = styled.div`
