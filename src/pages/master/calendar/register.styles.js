@@ -89,6 +89,7 @@ export const DateTxt = styled.div`
 export const TimeTxt = styled.div`
     margin-left: 1em;
     font-size: 17px;
+    white-space: nowrap;
 `;
 
 export const TimeSelect = styled.select`
