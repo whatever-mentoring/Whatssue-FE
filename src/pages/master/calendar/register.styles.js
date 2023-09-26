@@ -83,7 +83,7 @@ color: #51F8C4;
 export const DateTxt = styled.div`
     font-size: 18px;
     font-weight: bold;
-
+	white-space: nowrap;
 `;
 
 export const TimeTxt = styled.div`
