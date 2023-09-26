@@ -61,7 +61,8 @@ export default function AbsentComponent ({fetchData, abssentList}) {
                         <ModalReasonContent>{abssentList.absentReason}</ModalReasonContent>
                     </ModalContentWrapper>
                     <BtnWrapper>
-                        <CheckdBtn onClick={() => setIsModal()}>확인</CheckdBtn>
+                        <CancleBtn onClick={denyAbsent}>거절</CanclrBtn>
+                        <CheckdBtn onClick={acceptAbsent}>수락</CheckdBtn>
                     </BtnWrapper>
                 </ModalBox>
             </ModalWrapper>)
