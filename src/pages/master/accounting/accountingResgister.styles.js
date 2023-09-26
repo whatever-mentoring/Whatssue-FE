@@ -126,15 +126,16 @@ export const AccountingInput = styled.input`
     width: 1.25em;
     height: 1.25em;
     transition: border 0.1s ease-in-out;
+    margin-top: 1vh;
 
-    &:focus{
+    &:checked{
         border: 0.4em solid #51F8C4;
         // outline-offset: max(2px, 0.1em);
 }
 `;
 
 export const AccountingSpan = styled.span`
-    margin: 0 0 1vh 1vw;
+    margin: 0 0 2vh 1vw;
 `;
 
 export const TimeSelect = styled.select`

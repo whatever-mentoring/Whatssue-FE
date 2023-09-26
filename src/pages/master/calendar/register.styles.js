@@ -59,7 +59,7 @@ export const ScheduleTd = styled.td`
 `;
 
 export const TitleInput = styled.input`
-    width: 100%;
+    width: 90%;
     padding: 10px;
     color: #fff;
     background-color: #171717;
@@ -83,12 +83,15 @@ color: #51F8C4;
 export const DateTxt = styled.div`
     font-size: 18px;
     font-weight: bold;
-
+	white-space: nowrap;
+ 	margin-top: 0.3vh;
 `;
 
 export const TimeTxt = styled.div`
     margin-left: 1em;
     font-size: 17px;
+    white-space: nowrap;
+    margin-bottom: 0.3vh;
 `;
 
 export const TimeSelect = styled.select`
@@ -108,7 +111,7 @@ export const TimeInput = styled.input`
 `;
 
 export const ContentInput = styled.input`
-    width: 100%;
+    width: 90%;
     padding: 10px;
     color: #fff;
     background-color: #171717;

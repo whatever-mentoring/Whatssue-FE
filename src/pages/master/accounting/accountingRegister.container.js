@@ -78,11 +78,11 @@ function AccountingRegister (){
                         <S.ScheduleTd>
                             <S.TimeTxt>
                                 <S.AccountingLabel>
-                                    <S.AccountingInput type="radio" name="입금" onChange={() => setAccountCategory("+")}/>
+                                    <S.AccountingInput type="radio" name="deposit" onChange={() => setAccountCategory("+")}/>
                                     <S.AccountingSpan onClick={() => setAccountCategory("+")}>입금</S.AccountingSpan>
                                 </S.AccountingLabel>
                                 <S.AccountingLabel>
-                                    <S.AccountingInput type="radio" name="출금" onClick={() => setAccountCategory("-")}/>
+                                    <S.AccountingInput type="radio" name="deposit" onClick={() => setAccountCategory("-")}/>
                                     <S.AccountingSpan onClick={() => setAccountCategory("-")}>출금</S.AccountingSpan>
                                 </S.AccountingLabel>
                             </S.TimeTxt>
