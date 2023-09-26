@@ -10,19 +10,35 @@ export const MainWrapper = styled.div`
     align-items: center;
 `;
 
+export const TitleWrapper = styled.div`
+height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
 
 export const CheckIcon = styled.img`
     height: 42px;
-    margin-top :79px;
 `;
 
 export const TitleTxt = styled.div`
     color:#FFFFFF;
     font-size: 20px;
     font-weight:550;
-    margin-top:19px;
-    margin-bottom : 82px;
+    margin-top: 1vh;
 `
+
+export const ContentWrapper = styled.div`
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+`;
+
+
 export const ContentTxt = styled.div`
     color:${(props) => props.color};
     font-size: 13px;
