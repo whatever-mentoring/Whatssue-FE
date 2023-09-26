@@ -72,7 +72,7 @@ function App() {
           <Route path='/Memberaccounting' element={<Memberaccounting/>}></Route>
 
           <Route path='/Nonregister' element={<Nonregister/>}></Route>
-          <Route path='/JoinGroup' element={<JoinGroup/>}></Route>
+          <Route path='/member/join/request' element={<JoinGroup/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
