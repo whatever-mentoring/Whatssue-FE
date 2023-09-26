@@ -84,14 +84,14 @@ export const DateTxt = styled.div`
     font-size: 18px;
     font-weight: bold;
 	white-space: nowrap;
- 	margin-top: 0.3vh;
+ 	margin-top: 0.5vh;
 `;
 
 export const TimeTxt = styled.div`
     margin-left: 1em;
     font-size: 17px;
     white-space: nowrap;
-    margin-bottom: 0.3vh;
+    margin-bottom: 0.5vh;
 `;
 
 export const TimeSelect = styled.select`

@@ -54,14 +54,15 @@ export default function AbsentComponent ({fetchData, abssentList}) {
         {isModal &&
             (<ModalWrapper>
                 <ModalBox>
-                    <ModalEmptyWrapper></ModalEmptyWrapper>
                     <ModalContentWrapper>
+                        <ModalCloseBtn><ModalCloseImg onClick={() => setIsModal(false)} src={close} width="15px" height="15px"></ModalCloseImg></ModalCloseBtn>
                         <ModalTxt><ModalLine></ModalLine><ModalTitle>{abssentList.scheduleTitle}</ModalTitle></ModalTxt>
                         <ModalReasonTxt>공결 신청 사유</ModalReasonTxt>
                         <ModalReasonContent>{abssentList.absentReason}</ModalReasonContent>
                     </ModalContentWrapper>
                     <BtnWrapper>
-                        <CheckdBtn onClick={() => setIsModal()}>확인</CheckdBtn>
+                        <CancleBtn onClick={denyAbsent}>거절</CancleBtn>
+                        <CheckdBtn onClick={acceptAbsent}>수락</CheckdBtn>
                     </BtnWrapper>
                 </ModalBox>
             </ModalWrapper>)
@@ -168,8 +169,8 @@ export const ModalCloseBtn = styled.div`
 export const ModalCloseImg = styled.img`
     position: absolute;
     // bottom: 3vh;
-    top: 3vh;
-    left: 35vw;
+    top: 2vh;
+    right: 5vw;
 `;
 
 export const ModalTxt = styled.div`

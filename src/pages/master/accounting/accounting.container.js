@@ -104,13 +104,13 @@ function Accounting () {
                     ) : (
                     <>
                     <S.ContentWrapper>
-                        {claimList.map((e, i) => (<div key={e.moneyBookId} onClick={() => {setIsDetail(true); fetchDetail();}}><ChargedComponent data={e}/></div>))}
+                        {claimList.map((e, i) => (<div key={e.moneyBookId}><ChargedComponent data={e}/></div>))}
                     </S.ContentWrapper>
-                    <S.AddBtnWrapper>
+                    {/* <S.AddBtnWrapper>
                         <S.AddBtn onClick={() => navigate("/charge/register")}>
                             <img width='20px' height='20px' src={register} alt="register"/>
                         </S.AddBtn>
-                    </S.AddBtnWrapper>
+                    </S.AddBtnWrapper> */}
                     </>
                     )
                 )}

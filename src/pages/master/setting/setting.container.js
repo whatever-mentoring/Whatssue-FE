@@ -11,6 +11,7 @@ import close from "../../../assets/greenClose.png";
 
 function Setting (){
     const baseUrl = "http://115.85.183.74:8090/";
+    const baseUrl2 = "http://115.85.183.74:3000/";
     const [isModal, setIsModal] = useState(false);
 
     const [modifyName, setModifyName] = useState(false);
@@ -69,6 +70,7 @@ function Setting (){
 
     // 모임 이름 수정
     const handleGroupName = async (e) => {
+        setModifyName(false);
         try{
             axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("token")}`;
             const response = await axios.patch(baseUrl + "api/admin/settings/club", {
@@ -80,10 +82,18 @@ function Setting (){
             console.log(response);
             if(response.status === 200){
                 alert("수정되었습니다");
-                setModifyName(false);
             }
         } catch(error){
             console.log(error);
+        }
+    }
+
+    const copyLink = async (text) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            alert("링크가 복사되었습니다.");
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -122,7 +132,7 @@ function Setting (){
                                     
                                     </>
                                 )}
-                                <S.GroupModifyIcon width="15px" height="15px" src={pencil} onClick={() => setModifyName(!modifyName)}/>
+                                {/* <S.GroupModifyIcon width="15px" height="15px" src={pencil} onClick={() => setModifyName(!modifyName)}/> */}
                             </S.GroupContentWrapper>
                         </S.GroupBox>
                         <S.GroupBox>
@@ -130,7 +140,7 @@ function Setting (){
                             <S.GroupContentWrapper>
                                     <S.GroupTxt>{explain}</S.GroupTxt>
 
-                                <S.GroupModifyIcon width="15px" height="15px" src={pencil} onClick={() => setModifyExplain(!modifyExplain)}/>
+                                {/* <S.GroupModifyIcon width="15px" height="15px" src={pencil} onClick={() => setModifyExplain(!modifyExplain)}/> */}
                             </S.GroupContentWrapper>
                         </S.GroupBox>
                     </S.GroupContent>
@@ -138,7 +148,7 @@ function Setting (){
                 <S.InviteLinkWrapper>
                     <S.LinkTitle>초대 링크 관리 <img width="17px" height="17px" src={link}/></S.LinkTitle>
                     {clubLink ? (
-                        <S.LinkExistBox><S.LinkLeftBox><img style={{'margin': '0 3vw'}} width="18px" height="21px" src={copy}/><S.LinkTxt>{clubLink}</S.LinkTxt></S.LinkLeftBox><img onClick={deleteLink} style={{'marginRight': '3vw'}} width="15px" height="15px" src={close}/></S.LinkExistBox>
+                        <S.LinkExistBox><S.LinkLeftBox><S.CopyIcon onClick={() => copyLink(`${baseUrl2}${clubLink}`)} width="18px" height="21px" src={copy}/><S.LinkTxt>{clubLink}</S.LinkTxt></S.LinkLeftBox><img onClick={deleteLink} style={{'marginRight': '3vw'}} width="15px" height="15px" src={close}/></S.LinkExistBox>
                     ) : (
                         <S.LinkBox onClick={() => setIsModal(true)}><S.LinkPlusIcon width="30px" height="30px" src={linkPlus}/></S.LinkBox>
                     )}

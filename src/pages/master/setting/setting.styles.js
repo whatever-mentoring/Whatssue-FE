@@ -115,6 +115,10 @@ export const LinkLeftBox = styled.div`
     flex-direction: row;
 `;
 
+export const CopyIcon = styled.img`
+    margin: 1vh 3vw 0 3vw;
+`;
+
 export const LinkPlusIcon = styled.img`
 `;
 
