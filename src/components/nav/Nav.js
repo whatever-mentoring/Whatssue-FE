@@ -96,7 +96,7 @@ const CloseImg = styled.img`
 `;
 
 const ListWrapper = styled.div`
-    height: 80vh;
+    height: 60vh;
 
     display: flex;
     flex-direction: column;
