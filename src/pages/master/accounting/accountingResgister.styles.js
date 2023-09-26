@@ -126,8 +126,9 @@ export const AccountingInput = styled.input`
     width: 1.25em;
     height: 1.25em;
     transition: border 0.1s ease-in-out;
+    margin-top: 1vh;
 
-    &:focus{
+    &:checked{
         border: 0.4em solid #51F8C4;
         // outline-offset: max(2px, 0.1em);
 }
