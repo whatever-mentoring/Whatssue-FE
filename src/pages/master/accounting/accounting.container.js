@@ -115,7 +115,13 @@ function Accounting () {
                     )
                 )}
             </S.AttendanceWrapper>
-            
+            {/* {category === 1 && (
+                <S.AddBtnWrapper>
+                    <S.AddBtn onClick={() => navigate("/accounting/register")}>
+                        <img width='20px' height='20px' src={register} alt="register"/>
+                    </S.AddBtn>
+                </S.AddBtnWrapper>
+            )} */}
         </S.MainWrapper>
     )
 }

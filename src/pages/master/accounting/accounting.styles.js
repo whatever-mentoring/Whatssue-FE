@@ -263,18 +263,17 @@ export const ChargedContentWrapper = styled.div`
 
 export const AddBtnWrapper = styled.div`
     width: 100%;
-    height: 10vh;
+    height: 12vh;
 `;
 
 export const AddBtn = styled.div`
-    position: fixed;
+    position: absolute;
     margin-left: 78vw;
     width: 12vw;
     height: 12vw;
     line-height: 13.5vw;
     background-color: #51F8C4;
     border-radius: 50px;
-    z-index: 101;
 
     color: #000;
     text-align: center;
